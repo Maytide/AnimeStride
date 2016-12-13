@@ -2,6 +2,7 @@ from html.parser import HTMLParser
 import urllib
 ### Making some of these classes more general sounds like a recipe for suicide. MAL HTML = unpredictable.
 
+
 class ParseShowContentInHTMLTag(HTMLParser):
     def __init__(self):
         super().__init__()
@@ -9,6 +10,7 @@ class ParseShowContentInHTMLTag(HTMLParser):
         self.title = ''
         self.image_url = ''
         self.data = []
+
 
     def handle_starttag(self, tag, attr):
         if tag == 'meta':
@@ -29,12 +31,6 @@ class ParseShowContentInHTMLTag(HTMLParser):
                     # print(values)
                     self.image_url = values
                     self.data.append(self.image_url)
-
-        # if tag == 'div':
-        #     # print(attr)
-        #     for name, value in attr:
-        #         if name == 'class' and value == 'spaceit_pad':
-        #             print(attr)
 
 
 class ParseShowContentInHTMLElement(HTMLParser):
