@@ -125,6 +125,7 @@ class ParseShowRelated(HTMLParser):
         super().__init__()
         # <table class="anime_detail_related_anime" style="border-spacing:0px;">
         # </table><br>
+
         self.split_1 = '<table class="anime_detail_related_anime" style="border-spacing:0px;">'
         self.split_2 = '</table><br>'
         self.recording = 0

@@ -186,17 +186,39 @@ class Anime():
                     j = j + 1
         return p_data
 
-    def write_data(self, data):
+    def write_data(self, *data_list):
+        for data in data_list:
+            self.data.append(self.return_data(data))
+            # print(i)
+            # i+=1
+
+    def write_to_file(self):
 
         with open('show_data.txt', 'a') as file:
-            for key, value in data.items():
-                if type(value) == type([]):
-                    file.write(key + ':')
-                    for item in value:
-                        file.write(item + ', ')
-                elif type(value) == type(''):
-                    file.write(key + '-: ' + value)
-                file.write('\n')
+            file.write('**[''Newshow'']**')
+            file.write('\n')
+            self.write_to_file_data(file, self.content_data, 'Content')
+            self.write_to_file_data(file, self.name_data, 'Titles')
+            self.write_to_file_data(file, self.info_data, 'Information')
+            self.write_to_file_data(file, self.statistics_data, 'Statistics')
+            self.write_to_file_data(file, self.related_data, 'Related')
+
+
+    def write_to_file_data(self, file, data, section):
+        #Ordered Dict
+        file.write('--[' + section + ']--')
+        file.write('\n')
+        for key, value in data.items():
+            if type(value) == type([]):
+                file.write(key + ':')
+                for item in value:
+                    file.write(item + ', ')
+            elif type(value) == type(''):
+                file.write(key + '-: ' + value)
+            file.write('\n')
+            #List
+
+
 
     def return_data(self, data):
         l_data = []
@@ -224,6 +246,7 @@ class Anime():
     def __init__(self, MAL_URL):
         response = urllib.urlopen(MAL_URL)
         html = str(response.read())
+        self.data = []
 
         # raw_html = response.read()
         # html = parse(response).getroot()
@@ -236,7 +259,7 @@ class Anime():
         # pst.close()
         ########################################
         pst = ParseShowContentInHTMLTag()
-        content_data = self.parse_data(html, pst, self.parse_content)
+        self.content_data = self.parse_data(html, pst, self.parse_content)
         pst.close()
         ########################################
         # pse = ParseShowContentInHTMLElement()
@@ -247,7 +270,7 @@ class Anime():
         # pse.close()
         #########################################
         pse = ParseShowContentInHTMLElement()
-        name_data = self.parse_data(html, pse, self.parse_titles)
+        self.name_data = self.parse_data(html, pse, self.parse_titles)
         pse.close()
         #########################################
         # psi = ParseShowInformation()
@@ -258,7 +281,7 @@ class Anime():
         # psi.close()
         #########################################
         psi = ParseShowInformation()
-        info_data = self.parse_data(html, psi, self.parse_info)
+        self.info_data = self.parse_data(html, psi, self.parse_info)
         psi.close()
         #########################################
         # pss = ParseShowStatistics()
@@ -270,7 +293,7 @@ class Anime():
         # pss.close()
         #########################################
         pss = ParseShowStatistics()
-        statistics_data = self.parse_data(html, pss, self.parse_statistics)
+        self.statistics_data = self.parse_data(html, pss, self.parse_statistics)
         pss.close()
         #########################################
         #########################################
@@ -281,9 +304,12 @@ class Anime():
         # related_data = self.parse_related(related_data)
         ## When i get back: work on related data
         #########################################
-        psr = ParseShowRelated()
-        related_data = self.parse_data(html, psr, self.parse_related)
-        psr.close()
+        if '<table class="anime_detail_related_anime" style="border-spacing:0px;">' in html:
+            psr = ParseShowRelated()
+            self.related_data = self.parse_data(html, psr, self.parse_related)
+            psr.close()
+        else:
+            self.related_data = OrderedDict([['__[section empty]__', []]], key = lambda t: t[0])
         #########################################
 
         # print(info_data)
@@ -291,11 +317,11 @@ class Anime():
         # data = [element.strip(' \\n') for element in data]
         # data = [element for element in data if element != '\\n']
 
-        self.write_data(content_data)
-        self.write_data(name_data)
-        self.write_data(info_data)
-        self.write_data(statistics_data)
-        self.write_data(related_data)
+        self.write_data(self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
+        # self.write_data(name_data)
+        # self.write_data(info_data)
+        # self.write_data(statistics_data)
+        # self.write_data(related_data)
 
 
 # print(parse_titles(data))
