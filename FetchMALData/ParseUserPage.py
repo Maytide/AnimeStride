@@ -15,6 +15,11 @@ class UserShowGetter(HTMLParser):
                 # print(attr[1][1])
                 self.data = attr[1][1]
 
+    def reformat_data(self):
+        # self.reformatted_data = self.data.replace('[{', '').replace('}]', '')
+        # self.reformatted_data = '{' + self.reformatted_data + '}'
+        pass
+
 
 class UserShowGetterT2(HTMLParser):
     def __init__(self):

@@ -17,6 +17,8 @@ def write_user_data_to_file(filename, MAL_URL, minimal=False):
     else:
         usg = UserShowGetter()
         usg.feed(html)
+        usg.reformat_data()
+        # user_data = usg.reformatted_data
         user_data = usg.data
 
     # if user_data == []:

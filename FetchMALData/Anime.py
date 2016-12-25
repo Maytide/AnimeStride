@@ -1,9 +1,7 @@
-from lxml.html import parse
-from html.parser import HTMLParser
-import lxml.html
 import urllib.request as urllib
 from FetchMALData.ParseShow import ParseShowContentInHTMLTag, ParseShowContentInHTMLElement, ParseShowInformation, ParseShowStatistics, ParseShowRelated
 from collections import OrderedDict
+import sqlite3
 
 
 class Anime():
@@ -26,6 +24,7 @@ class Anime():
         return data
 
     def parse_content(self, data):
+        print(data)
         key = ['Name:', 'Image:', 'Synopsis']
         return OrderedDict(zip(key, data), key = lambda t: t[0])
 
@@ -217,6 +216,52 @@ class Anime():
                 file.write(key + '-: ' + value)
             file.write('\n')
             #List
+
+    #OrderedDict to SQL-compatible string
+    def OD_to_db_string(self, data):
+        db_string = '('
+        # print(data.items())
+        for key, value in data.items():
+            #Function item in ordered dict data?
+            # print(value)
+            if key != 'key':
+                value = value.replace('"', '[Quot]')
+                db_string += '"' + value + '",'
+
+        db_string = db_string[:-1] + ')'
+        # db_string = db_string.replace('"', '[Quot]')
+        return db_string
+
+    def create_db(self, db):
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+        c.execute('''CREATE TABLE content_data
+                  (name text, image_url text, synposis text)''')
+
+    def write_to_db(self, db):
+        self.write_to_db_data(db, self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
+
+    def write_to_db_data(self, db, content_data, name_data, info_data, statistics_data, related_data):
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+        c.execute('''CREATE TABLE IF NOT EXISTS content_data
+                          (name text, image_url text, synposis text)''')
+        # Content: Name, pv image URL, synopsis
+        # Name: English, synonyms, jp
+        # Info: Type, episodes, aired, broadcast, licensors, studios, source, genre, duration, rating
+        # Stats: Score, ranked, popularity, members, favourites
+        # Related: Adaptation, alternative, side-story, spinoff, prequel, sequel, summary
+
+        content_data_str = self.OD_to_db_string(content_data)
+        print(content_data_str)
+        c.execute('INSERT INTO content_data VALUES'
+                  + content_data_str)
+        conn.commit()
+
+
+
+
+        conn.close()
 
 
 

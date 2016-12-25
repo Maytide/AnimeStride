@@ -24,7 +24,8 @@ class User():
             i = 0
             file.write('++[''Newuser'']++' + ' :-: ' + MAL_URL + '\n')
             for entry_tagged in entry_list_tagged:
-                # print(item)
+                # print(entry_tagged)
+                # file.write(str(entry_tagged) + '\n')
                 file.write('**[''Newshow'']**' + ' :-: ' + str(i) + '\n')
                 for attribute in entry_tagged:
                     # f.write(str(i) + ';-; Attribute: ' + attribute[0] + ' ;-; Value: ' + attribute[1])
@@ -34,6 +35,7 @@ class User():
                         # print(i)
 
                 i += 1
+                file.write('\n')
 
     def print_entry_list(self, entry_list):
         for index, entry in enumerate(entry_list):
@@ -53,22 +55,43 @@ class User():
         return entry_list
 
     def get_text_between_bracket(self, user_show_data_list):
+        # str_index = 0
+        # show_data_current = ''
+        # show_data_list = []
+        # add_info = False
+        # while str_index < len(user_show_data_list):
+        #     if add_info == True and user_show_data_list[str_index] != '}':
+        #         # print('getting text between bracket')
+        #         show_data_current += user_show_data_list[str_index]
+        #     if user_show_data_list[str_index] == '{':
+        #         add_info = True
+        #     elif user_show_data_list[str_index] == '}':
+        #         add_info = False
+        #         show_data_list.append(show_data_current)
+        #         show_data_current = ''
+        #     str_index += 1
+        #
+        # return show_data_list
         str_index = 0
         show_data_current = ''
         show_data_list = []
-        add_info = False
+        add_info = 0
         while str_index < len(user_show_data_list):
-            if add_info == True and user_show_data_list[str_index] != '}':
+            if add_info == 1 and user_show_data_list[str_index] != '}':
                 # print('getting text between bracket')
                 show_data_current += user_show_data_list[str_index]
+            elif add_info > 1 and user_show_data_list[str_index] != '}' and user_show_data_list[str_index] != '{':
+                show_data_current += user_show_data_list[str_index]
             if user_show_data_list[str_index] == '{':
-                add_info = True
-            elif user_show_data_list[str_index] == '}':
-                add_info = False
+                add_info = add_info + 1
+            if add_info == 1 and user_show_data_list[str_index] == '}':
+                add_info = add_info - 1
                 show_data_list.append(show_data_current)
                 show_data_current = ''
+            elif add_info > 1 and user_show_data_list[str_index] == '}':
+                add_info = add_info = 1
             str_index += 1
-
+        # print(show_data_list)
         return show_data_list
     # user
     # entry_list
