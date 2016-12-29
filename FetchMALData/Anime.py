@@ -1,7 +1,8 @@
+import sqlite3
 import urllib.request as urllib
 from FetchMALData.ParseShow import ParseShowContentInHTMLTag, ParseShowContentInHTMLElement, ParseShowInformation, ParseShowStatistics, ParseShowRelated
 from collections import OrderedDict
-import sqlite3
+from time import gmtime, strftime
 
 
 class Anime():
@@ -24,7 +25,7 @@ class Anime():
         return data
 
     def parse_content(self, data):
-        print(data)
+        # print(data)
         key = ['Name:', 'Image:', 'Synopsis']
         return OrderedDict(zip(key, data), key = lambda t: t[0])
 
@@ -42,7 +43,7 @@ class Anime():
                 japanese_title = data[i + 1]
 
 
-        return self.trim_output(OrderedDict((('English:', english_title), ('Synonyms:', synonyms), ('Japanese:', japanese_title)), ley = lambda t: t[0]))
+        return self.trim_output(OrderedDict((('English:', english_title), ('Synonyms:', synonyms), ('Japanese:', japanese_title)), key = lambda t: t[0]))
 
 
     def parse_info(self, data):
@@ -109,7 +110,7 @@ class Anime():
         popularity = 'Popularity:'
         favorites = 'Favorites:'
 
-        p_data_raw = ((score, ''), (rank, ''), (popularity, ''), (members, ''), (favorites, ''))
+        p_data_raw = ((score, ''), (rank, ''), (members, ''), (popularity, ''), (favorites, ''))
         p_data = OrderedDict(p_data_raw, key = lambda t: t[0])
 
         for i in range(len(data)):
@@ -217,20 +218,31 @@ class Anime():
             file.write('\n')
             #List
 
+    def valid_table_name(self, table_name):
+        # Prevent injections
+        return not ('drop table' in table_name.lower())
+
     #OrderedDict to SQL-compatible string
-    def OD_to_db_string(self, data):
-        db_string = '('
+    def OD_to_db_list(self, data):
+        db_list = []
         # print(data.items())
         for key, value in data.items():
             #Function item in ordered dict data?
             # print(value)
             if key != 'key':
-                value = value.replace('"', '[Quot]')
-                db_string += '"' + value + '",'
+                if type(value) == type([]):
+                    db_string = ''
+                    for item in value:
+                        db_string += item + ', '
+                    db_list.append(db_string)
+                elif type(value) == type(''):
+                    value = value.replace('"', '[Quot]')
+                    db_list.append(value)
 
-        db_string = db_string[:-1] + ')'
+
+
         # db_string = db_string.replace('"', '[Quot]')
-        return db_string
+        return db_list
 
     def create_db(self, db):
         conn = sqlite3.connect(db)
@@ -238,24 +250,67 @@ class Anime():
         c.execute('''CREATE TABLE content_data
                   (name text, image_url text, synposis text)''')
 
-    def write_to_db(self, db):
-        self.write_to_db_data(db, self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
+    def write_to_db(self, individual_db, aggregated_db, write_individual_entry = True, write_aggregated_entry = False):
+        if write_aggregated_entry == True:
+            self.write_to_db_aggregated(aggregated_db, self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
+        if write_individual_entry == True:
+            self.write_to_db_individual(individual_db, self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
 
-    def write_to_db_data(self, db, content_data, name_data, info_data, statistics_data, related_data):
+    def write_to_db_individual(self, db, content_data, name_data, info_data, statistics_data, related_data):
+        # Only write data which is useful for statistics - score, ranked, members, popularity, favourites.
+        # Also the time/date data was accessed.
+
+        table_name = '[' + content_data['Name:'] + ']'
+        datetime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+
+        if not self.valid_table_name(table_name):
+            raise Exception('Invalid MAL username ' + table_name + '; will cause problems with SQL.')
+
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+
+        c.execute('''CREATE TABLE IF NOT EXISTS {}
+                  (score text, ranked text, members text, popularity text, favourites text, datetime text)'''.format(table_name))
+
+        # statistics_data_list = self.OD_to_db_list(statistics_data)
+
+        c.execute('INSERT INTO {} VALUES (?,?,?,?,?,?)'.format(table_name),
+                  (statistics_data['Score:'], statistics_data['Ranked:'], statistics_data['Members:'], statistics_data['Popularity:'], statistics_data['Favorites:'], datetime))
+        conn.commit()
+
+        conn.close()
+
+
+
+    def write_to_db_aggregated(self, db, content_data, name_data, info_data, statistics_data, related_data):
         conn = sqlite3.connect(db)
         c = conn.cursor()
         c.execute('''CREATE TABLE IF NOT EXISTS content_data
-                          (name text, image_url text, synposis text)''')
-        # Content: Name, pv image URL, synopsis
-        # Name: English, synonyms, jp
-        # Info: Type, episodes, aired, broadcast, licensors, studios, source, genre, duration, rating
-        # Stats: Score, ranked, popularity, members, favourites
-        # Related: Adaptation, alternative, side-story, spinoff, prequel, sequel, summary
+                  (name text, image_url text, synposis text,
+                  english_name text, synonyms text, japanese_name text,
+                  type text, episodes text, aired text, broadcast text, licensors text, studios text, source text, genres text, duration text, rating text,
+                  score text, ranked text, members text, popularity text, favourites text,
+                  adaptation text, alternative_version text, side_story text, spinoff text, prequel text, sequel text, summary text)''')
+                # Content: Name, pv image URL, synopsis
+                # Name: English, synonyms, jp
+                # Info: Type, episodes, aired, broadcast, licensors, studios, source, genre, duration, rating
+                # Stats: Score, ranked, popularity, members, favourites
+                # Related: Adaptation, alternative, side-story, spinoff, prequel, sequel, summary
 
-        content_data_str = self.OD_to_db_string(content_data)
-        print(content_data_str)
-        c.execute('INSERT INTO content_data VALUES'
-                  + content_data_str)
+        content_data_list = self.OD_to_db_list(content_data)
+        name_data_list = self.OD_to_db_list(name_data)
+        info_data_list = self.OD_to_db_list(info_data)
+        statistics_data_list = self.OD_to_db_list(statistics_data)
+        related_data_list = self.OD_to_db_list(related_data)
+
+        data_list = content_data_list + name_data_list + info_data_list + statistics_data_list + related_data_list
+
+        # print(len(content_data_list) + len(name_data_list) + len(info_data_list) + len(statistics_data_list) + len(related_data_list))
+        # print(content_data_str)
+        # content_data_values = (content_data_list[0][1], content_data[1][1], content_data[0][1])
+
+        # Is this susceptible to SQL injections?
+        c.execute('INSERT OR REPLACE INTO content_data VALUES (' + '?,'*27 + '?)', data_list)
         conn.commit()
 
 
@@ -283,10 +338,6 @@ class Anime():
         data = parse(data)
         ps.close()
         return data
-
-
-    def read_from_MAL(self, MAL_URL, func):
-        x=5
 
     def __init__(self, MAL_URL):
         response = urllib.urlopen(MAL_URL)
@@ -354,7 +405,9 @@ class Anime():
             self.related_data = self.parse_data(html, psr, self.parse_related)
             psr.close()
         else:
-            self.related_data = OrderedDict([['__[section empty]__', []]], key = lambda t: t[0])
+            self.related_data = OrderedDict([['Adaptation: ', ''], ['Alternative: ', ''], ['Side Story: ', ''],
+                                             ['Spinoff: ', ''], ['Prequel: ', ''], ['Sequel: ', ''], ['Summary: ', '']],
+                                            key = lambda t: t[0])
         #########################################
 
         # print(info_data)
@@ -362,7 +415,7 @@ class Anime():
         # data = [element.strip(' \\n') for element in data]
         # data = [element for element in data if element != '\\n']
 
-        self.write_data(self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
+        # self.write_data(self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
         # self.write_data(name_data)
         # self.write_data(info_data)
         # self.write_data(statistics_data)

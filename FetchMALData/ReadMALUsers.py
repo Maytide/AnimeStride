@@ -3,7 +3,7 @@ from FetchMALData.GetUserPage import UserPageGetter
 from FetchMALData.User import User
 import urllib.request as urllib
 
-def write_user_data_to_file(filename, MAL_URL, minimal=False):
+def write_user_data(filename, MAL_URL, minimal=False, db=True):
     success = False
 
     response = urllib.urlopen(MAL_URL)
@@ -34,10 +34,15 @@ def write_user_data_to_file(filename, MAL_URL, minimal=False):
     #     print(item)
     # print(user_data)
     if len(entry_list_tagged) != 0:
-        if minimal == True:
+        if minimal == True and db == False:
             user.write_to_file_data_minimal(filename, entry_list_tagged, MAL_URL)
-        else:
+        elif minimal == True and db == True:
+            user.write_to_db_data_minimal(filename, entry_list_tagged, MAL_URL)
+        elif minimal == False and db == False:
             user.write_to_file_data(filename, entry_list_tagged)
+        elif minimal == False and db == True:
+            # Currently no option to write extended info into db
+            user.write_to_db_data_minimal(filename, entry_list_tagged, MAL_URL)
         success = True
     else:
         print('Empty entry list tagged.')
@@ -71,20 +76,20 @@ def get_users(filename):
         if index > 6:
             break
 
-    return user_list[0:100]
+    return user_list
 
 
 
 user_list = get_users('users.php.html')
 #Start writing from:
-start_point = 10
-end_point = 30
+start_point = 5166
+end_point = 10000
 success_count = 0
 for index, MAL_URL in enumerate(user_list):
-    if index > start_point:
-        print(MAL_URL)
+    if index >= start_point:
+        print(str(index) + ' : ' + MAL_URL)
         try:
-            success = write_user_data_to_file('sample_user_list.txt', MAL_URL, minimal=True)
+            success = write_user_data('sample_user_list.db', MAL_URL, minimal=True, db=True)
             if success == True:
                 success_count += 1
         except urllib.HTTPError as e:

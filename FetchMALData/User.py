@@ -1,4 +1,6 @@
+import sqlite3
 from FetchMALData.ParseUserPage import UserShowGetter
+
 
 class User():
 
@@ -36,6 +38,44 @@ class User():
 
                 i += 1
                 file.write('\n')
+
+
+
+    def valid_table_name(self, table_name):
+        # Prevent injections
+        return not ('drop table' in table_name.lower())
+        # return all(char.isalnum() for char in table_name)
+
+    def write_to_db_data_minimal(self, db, entry_list_tagged, MAL_URL):
+
+        # Vulnerable to SQL Injection! Fix in the future!
+        if not self.valid_table_name(MAL_URL):
+            raise Exception('Invalid MAL username ' + MAL_URL + '; will cause problems with SQL.')
+
+        # Format so can use any characters in SQL table name
+        MAL_URL_formatted = '[' + MAL_URL + ']'
+
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+
+        c.execute('''CREATE TABLE IF NOT EXISTS {}
+                  (anime TEXT, score TEXT, UNIQUE (anime))'''.format(MAL_URL_formatted))
+
+        for entry_tagged in entry_list_tagged:
+            anime_title = ''
+            score = ''
+            for attribute in entry_tagged:
+                if attribute[0] == '"score"':
+                    score = attribute[1]
+                elif attribute[0] == '"anime_title"':
+                    anime_title = attribute[1]
+            # http://stackoverflow.com/questions/3634984/insert-if-not-exists-else-update
+            # Method does not work to update 1 field at a time - this shouldn't be a problem for this.
+            c.execute('INSERT OR REPLACE INTO ' + MAL_URL_formatted + ' VALUES (?,?)', (anime_title, score))
+
+        conn.commit()
+        conn.close()
+
 
     def print_entry_list(self, entry_list):
         for index, entry in enumerate(entry_list):
@@ -79,7 +119,10 @@ class User():
         while str_index < len(user_show_data_list):
             if add_info == 1 and user_show_data_list[str_index] != '}':
                 # print('getting text between bracket')
-                show_data_current += user_show_data_list[str_index]
+                current_char = user_show_data_list[str_index]
+                # if current_char == ',':
+                #     current_char = '[Comma]'
+                show_data_current += current_char
             elif add_info > 1 and user_show_data_list[str_index] != '}' and user_show_data_list[str_index] != '{':
                 show_data_current += user_show_data_list[str_index]
             if user_show_data_list[str_index] == '{':
@@ -116,6 +159,9 @@ class User():
 
     def get_attributes(self, entry):
         user_show_data_list = entry.split(',')
+        # User page with additional comments: https://myanimelist.net/animelist/AnimaticLunatic
+        # Breaks because comma inside quote inside comment :/
+        # Possible solution: If comma is not beside a quot, remove it?
         # for user_show_data in user_show_data_list:
         #     if (':' not in user_show_data):
         #         print('Data missing colon: ' + user_show_data)
