@@ -47,8 +47,9 @@ class User():
         # return all(char.isalnum() for char in table_name)
 
     def write_to_db_data_minimal(self, db, entry_list_tagged, MAL_URL):
-
+        # TODO:
         # Vulnerable to SQL Injection! Fix in the future!
+        # Remove quotes from anime name!
         if not self.valid_table_name(MAL_URL):
             raise Exception('Invalid MAL username ' + MAL_URL + '; will cause problems with SQL.')
 

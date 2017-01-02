@@ -250,6 +250,9 @@ class Anime():
         c.execute('''CREATE TABLE content_data
                   (name text, image_url text, synposis text)''')
 
+    # In the future:
+    # Port this db stuff to ReadMALShows...
+
     def write_to_db(self, individual_db, aggregated_db, write_individual_entry = True, write_aggregated_entry = False):
         if write_aggregated_entry == True:
             self.write_to_db_aggregated(aggregated_db, self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
@@ -281,6 +284,11 @@ class Anime():
         conn.close()
 
 
+
+
+    def trim_quotations(self, item):
+        item = item.strip('"')
+        return item
 
     def write_to_db_aggregated(self, db, content_data, name_data, info_data, statistics_data, related_data):
         conn = sqlite3.connect(db)
