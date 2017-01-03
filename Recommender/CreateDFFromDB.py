@@ -70,6 +70,9 @@ def create_ratings_dataframe(user_list_db ='sample_user_list.db', show_list_db =
 
         ratings_dataframe = ratings_dataframe.append(user_ratings_dataframe, ignore_index=True)
         if i > max_users + 2:
+            if verbose:
+                print('Users: ' + str(user_index) + ', Shows: ' + str(show_index))
+                print('Length of dataframe: ' + str(len(ratings_dataframe)))
             break
         if verbose:
             print('user: ' + str(i) + ', ' + user_ratings_table)
