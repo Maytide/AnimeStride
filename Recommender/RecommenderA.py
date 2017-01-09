@@ -21,6 +21,12 @@ def rmse(prediction, ground_truth):
     #     print('Actual: ' + str(ground_truth[index]))
     return sqrt(mean_squared_error(prediction, ground_truth))
 
+def ae(prediction, ground_truth):
+    prediction = prediction[ground_truth.nonzero()].flatten()
+    ground_truth = ground_truth[ground_truth.nonzero()].flatten()
+
+    return abs(prediction - ground_truth).sum()/len(prediction)
+
 def predict(ratings, similarity, type='user'):
     mask = np.copy(ratings)
     mask[ratings > 0] = 1
@@ -58,7 +64,7 @@ def predict(ratings, similarity, type='user'):
         # pred = mean_user_rating[:, np.newaxis] + similarity.dot(ratings_diff) / np.array([np.abs(similarity).sum(axis=1)]).T
         pred = mean_user_rating[:, np.newaxis] + similarity_norm.dot(ratings_diff)
         # pred = []
-        print(pred)
+        # print(pred)
         # print('Mean user rating: ' + str(len(mean_user_rating[:, np.newaxis])))
         # print('Mean user rating: ' + str(len(mean_user_rating[:, np.newaxis][0])))
         # print('Similarity: ' + str(len(similarity)))
@@ -124,9 +130,10 @@ X_pred = np.dot(np.dot(u, s_diag_matrix), vt)
 
 
 print('User-based CF RMSE: ' + str(rmse(user_prediction, test_data_matrix)))
+print('User-based CF AE: ' + str(ae(user_prediction, test_data_matrix)))
 # print('Item-based CF RMSE: ' + str(rmse(item_prediction, test_data_matrix)))
 # print('User-based CF MSE: ' + str(rmse(X_pred, test_data_matrix)))
-
+# print('User-based CF AE: ' + str(ae(X_pred, test_data_matrix)))
 # First 100 users
 # Manhattan:
 # User-based CF RMSE: 6.07177500808337
