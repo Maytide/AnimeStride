@@ -106,35 +106,45 @@ def create_ratings_matrix(user_list_db ='sample_user_list.db', show_list_db = 's
 
     show_name_list = tuple([item[0] for item in c_a.fetchall()])
     user_ratings_table_list = [item[0] for item in c_u.fetchall()]
-    num_users = max_users
-    num_shows = 2000
-    ratings_matrix = np.zeros((num_shows, num_users))
     users = dict()
     shows = dict()
+    num_users = max_users
+    num_shows = len(show_name_list)
+
+    for index, show in enumerate(show_name_list):
+        shows[show] = index + 1
+
+    ratings_matrix = np.zeros((num_shows, num_users))
+    if verbose:
+        print(ratings_matrix.shape)
     show_index = 1
     user_index = 1
+
 
 
     # Future possible change ?:
     # http://stackoverflow.com/questions/29582736/python3-is-there-a-way-to-iterate-row-by-row-over-a-very-large-sqlite-table-wi
     i = 0
     for user_ratings_table in user_ratings_table_list:
+        if i > num_users - 2:
+            break
         c_u.execute('''SELECT "{}" AS user, "anime", "score" FROM "{}"
                        WHERE ("score" NOT IN ("0","-")
                        AND "anime" IN {} )'''.format(user_ratings_table, user_ratings_table, show_name_list))
 
-
         index = 0
         for row_user, row_anime, score in c_u:
 
-            if row_anime not in shows:
-                shows[row_anime] = show_index
-                show_index = show_index + 1
+            # if row_anime not in shows:
+            #     shows[row_anime] = show_index
+            #     show_index = show_index + 1
 
             if row_user not in users:
                 users[row_user] = user_index
                 user_index = user_index + 1
+                i = i + 1
 
+            # print(i, row_user, users[row_user])
             ratings_matrix[shows[row_anime]][users[row_user]] = score
             # if row_anime in shows:
             #     ratings_matrix[shows[row_anime]][users[row_user]] = score
@@ -150,18 +160,16 @@ def create_ratings_matrix(user_list_db ='sample_user_list.db', show_list_db = 's
             #     ratings_matrix[shows[row_anime]][users[row_user]] = score
             #     user_index = user_index + 1
             # index += 1
-        if i >= max_users - 2:
-            break
         if verbose:
             print('user: ' + str(i) + ', ' + user_ratings_table)
-        i += 1
+
 
     if verbose:
         print('Users: ' + str(user_index) + ', Shows: ' + str(show_index))
         print('Matrix Dimensions: ' + str(ratings_matrix.shape))
 
 
-    return (ratings_matrix,{index: show for show, index in shows.items()} ,{index: user for user, index in users.items()})
+    return (num_shows, ratings_matrix, shows, users)
 # print(create_ratings_dataframe(max_users=1))
 
 # def index_dataframe(dataframe):
