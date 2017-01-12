@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 # http://stackoverflow.com/questions/305378/list-of-tables-db-schema-dump-etc-using-the-python-sqlite3-api/33100538#33100538
 
-def create_ratings_dataframe(user_list_db ='sample_user_list.db', show_list_db = 'show_data.db', verbose = False, max_users = 10000):
+def create_ratings_dataframe(c_u, c_a, verbose = False, max_users = 10000):
     # conn = sqlite3.connect(db)
     # c = conn.cursor()
     # c.execute("SELECT name FROM sqlite_master WHERE type='table';")
@@ -20,14 +20,14 @@ def create_ratings_dataframe(user_list_db ='sample_user_list.db', show_list_db =
     # http://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_sql_table.html#pandas.read_sql_table
 
     # Get all users and their ratings
-    conn_u = sqlite3.connect(user_list_db)
-    c_u = conn_u.cursor()
+    # conn_u = sqlite3.connect(user_list_db)
+    # c_u = conn_u.cursor()
     c_u.execute('''SELECT name FROM sqlite_master WHERE type="table";''')
     # print(c.fetchall())
 
     # Get all shows
-    conn_a = sqlite3.connect(show_list_db)
-    c_a = conn_a.cursor()
+    # conn_a = sqlite3.connect(show_list_db)
+    # c_a = conn_a.cursor()
     c_a.execute('''SELECT * FROM content_data''')
 
     show_name_list = tuple([item[0] for item in c_a.fetchall()])
@@ -93,15 +93,15 @@ def create_ratings_dataframe(user_list_db ='sample_user_list.db', show_list_db =
     # print(shows)
     return (ratings_dataframe,{index: show for show, index in shows.items()} ,{index: user for user, index in users.items()})
 
-def create_ratings_matrix(user_list_db ='sample_user_list.db', show_list_db = 'show_data.db', verbose = False, max_users = 10000):
-    conn_u = sqlite3.connect(user_list_db)
-    c_u = conn_u.cursor()
+def create_ratings_matrix(c_u, c_a, verbose = False, max_users = 10000):
+    # conn_u = sqlite3.connect(user_list_db)
+    # c_u = conn_u.cursor()
     c_u.execute('''SELECT name FROM sqlite_master WHERE type="table";''')
     # print(c.fetchall())
 
     # Get all shows
-    conn_a = sqlite3.connect(show_list_db)
-    c_a = conn_a.cursor()
+    # conn_a = sqlite3.connect(show_list_db)
+    # c_a = conn_a.cursor()
     c_a.execute('''SELECT * FROM content_data''')
 
     show_name_list = tuple([item[0] for item in c_a.fetchall()])

@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be5fdea8-7c8c-4345-8647-24dc33cd6ba6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Recommender/Recommender.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Recommender/RecommenderA/RecommenderA.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Recommender/RecommenderA/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Recommender/RecommenderC/RecommenderC.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Recommender/RecommenderC/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Recommender/RecommenderC/cofiCostFunc.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Recommender/RecommenderC/normalizeRatings.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Recommender/RecommenderA.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Recommender/RecommenderC.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Recommender/CreateDFFromDB.py" afterPath="$PROJECT_DIR$/Recommender/CreateDFFromDB.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Recommender/Recommender.py" afterPath="$PROJECT_DIR$/Recommender/Recommender.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Recommender/RecommenderA/RecommenderA.py" afterPath="$PROJECT_DIR$/Recommender/RA/RecommenderA.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Recommender/RecommenderA/__init__.py" afterPath="$PROJECT_DIR$/Recommender/RC/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Recommender/RecommenderC/RecommenderC.py" afterPath="$PROJECT_DIR$/Recommender/RC/RecommenderC.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Recommender/RecommenderC/__init__.py" afterPath="$PROJECT_DIR$/Recommender/RA/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Recommender/RecommenderC/cofiCostFunc.py" afterPath="$PROJECT_DIR$/Recommender/RC/cofiCostFunc.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Recommender/RecommenderC/normalizeRatings.py" afterPath="$PROJECT_DIR$/Recommender/RC/normalizeRatings.py" />
     </list>
     <ignored path="Parse MAL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,40 +33,40 @@
       <file leaf-file-name="CreateDFFromDB.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Recommender/CreateDFFromDB.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="95" column="16" lean-forward="false" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
+            <state relative-caret-position="259">
+              <caret line="97" column="27" lean-forward="true" selection-start-line="97" selection-start-column="27" selection-end-line="97" selection-end-column="27" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <element signature="e#6294#6318#0" expanded="false" />
+                <element signature="e#6194#6218#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Recommender.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Recommender.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Recommender/Recommender.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="442">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
-                <element signature="e#0#25#0" expanded="true" />
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RecommenderC.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Recommender/RecommenderC/RecommenderC.py">
+      <file leaf-file-name="RecommenderC.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Recommender/RC/RecommenderC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="28" />
+            <state relative-caret-position="85">
+              <caret line="20" column="84" lean-forward="false" selection-start-line="20" selection-start-column="84" selection-end-line="20" selection-end-column="84" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="RecommenderA.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Recommender/RecommenderA/RecommenderA.py">
+        <entry file="file://$PROJECT_DIR$/Recommender/RA/RecommenderA.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -135,8 +133,9 @@
         <option value="$PROJECT_DIR$/Recommender/checkCostFunction.py" />
         <option value="$PROJECT_DIR$/Recommender/RecommenderA.py" />
         <option value="$PROJECT_DIR$/Recommender/cofiCostFunc.py" />
-        <option value="$PROJECT_DIR$/Recommender/CreateDFFromDB.py" />
         <option value="$PROJECT_DIR$/Recommender/RecommenderC.py" />
+        <option value="$PROJECT_DIR$/Recommender/CreateDFFromDB.py" />
+        <option value="$PROJECT_DIR$/Recommender/RecommenderC/RecommenderC.py" />
         <option value="$PROJECT_DIR$/Recommender/Recommender.py" />
       </list>
     </option>
@@ -217,7 +216,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="RecommenderC" />
+              <option name="myItemId" value="RC" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -235,7 +234,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="RecommenderA" />
+              <option name="myItemId" value="RA" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -592,7 +591,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483930475313</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Restructuring recommender">
+      <created>1484195434889</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1484195434889</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -613,7 +619,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26086956" sideWeight="0.5052083" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.267101" sideWeight="0.49479166" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.267101" sideWeight="0.49479166" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -686,7 +692,8 @@
     <MESSAGE value="Working on recommender" />
     <MESSAGE value="Very basic recommender tested with RMSE ~ 1.4 for MAL's 1-10 rating scale" />
     <MESSAGE value="Cost function recommender working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cost function recommender working" />
+    <MESSAGE value="Restructuring recommender" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructuring recommender" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -929,7 +936,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Recommender/RecommenderA/RecommenderA.py">
+    <entry file="file://$PROJECT_DIR$/Recommender/RA/RecommenderA.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -939,32 +946,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Recommender/RC/RecommenderC.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="20" column="84" lean-forward="false" selection-start-line="20" selection-start-column="84" selection-end-line="20" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Recommender/CreateDFFromDB.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="95" column="16" lean-forward="false" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
+        <state relative-caret-position="259">
+          <caret line="97" column="27" lean-forward="true" selection-start-line="97" selection-start-column="27" selection-end-line="97" selection-end-column="27" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#6294#6318#0" expanded="false" />
+            <element signature="e#6194#6218#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Recommender/Recommender.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="442">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Recommender/RecommenderC/RecommenderC.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>

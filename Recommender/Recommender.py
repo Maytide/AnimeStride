@@ -1,6 +1,26 @@
-import RecommenderC as rc
+import RC.RecommenderC as rc
 import CreateDFFromDB as cdf
+import os.path
+import sqlite3
 
 
+class Recommender():
+    def __init__(self):
+        user_list_db = os.path.dirname(__file__) + '/../data/sample_user_list.db'
+        show_list_db = os.path.dirname(__file__) + '/../data/show_data.db'
+        conn_u = sqlite3.connect(user_list_db)
+        conn_a = sqlite3.connect(show_list_db)
+        self.c_u = conn_u.cursor()
+        self.c_a = conn_a.cursor()
+
+    def get_recommendation_c(self):
+        num_shows, ratings_matrix, shows, users = cdf.create_ratings_matrix(self.c_u, self.c_a, verbose = True, max_users = 100)
+        self.recommendation = rc.recommend(user_ratings, num_shows, ratings_matrix, shows, users, verbose=True)
+
+user_ratings = {'07-Ghost':10, 'Accel World':10, 'Ajin':10, 'Aldnoah.Zero':10, 'Clannad':1, 'Clannad: After Story':1, 'Fate/stay night Movie: Unlimited Blade Works':10,
+                'Golden Time':1, 'Hachimitsu to Clover':1, 'Hanasaku Iroha':1}
 
 
+rec = Recommender()
+rec.get_recommendation_c()
+print(rec.recommendation)

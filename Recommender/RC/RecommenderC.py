@@ -14,16 +14,15 @@ from scipy.optimize import minimize
 #  You will start by loading the movie ratings dataset to understand the
 #  structure of the data.
 #
-from cofiCostFunc import cofiCostFunc
+from .cofiCostFunc import cofiCostFunc
 # from loadMovieList import loadMovieList
-from normalizeRatings import normalizeRatings
-import CreateDFFromDB as cdf
+from .normalizeRatings import normalizeRatings
 
-def recommend(user_ratings, user_list_db = 'sample_user_list.db', show_list_db = 'show_data.db', verbose = True, num_users = 100, num_recommendations = 5):
+def recommend(user_ratings, num_shows, ratings_matrix, shows, users, verbose = False, num_users = 100, num_recommendations = 5):
 
     # num_users = 100
-    num_shows, ratings_matrix, shows, users = cdf.create_ratings_matrix(user_list_db = user_list_db,
-                                                                        show_list_db = show_list_db, verbose = verbose, max_users = num_users)
+    # num_shows, ratings_matrix, shows, users = cdf.create_ratings_matrix(user_list_db = user_list_db,
+    #                                                                     show_list_db = show_list_db, verbose = verbose, max_users = num_users)
 
     # Notes: X - num_movies  x num_features matrix of movie features
     #        Theta - num_users  x num_features matrix of user features
@@ -44,14 +43,14 @@ def recommend(user_ratings, user_list_db = 'sample_user_list.db', show_list_db =
     for show, rating in user_ratings.items():
         my_ratings[shows[show]] = rating
 
-    ratings_matrix = np.column_stack((my_ratings, ratings_matrix))
-    R = np.greater(ratings_matrix, np.zeros(ratings_matrix.shape))
+    ratings_matrix_ = np.column_stack((my_ratings, ratings_matrix))
+    R = np.greater(ratings_matrix_, np.zeros(ratings_matrix_.shape))
     # print(user_rated)
     # print(ratings_matrix.shape)
-    ratings_norm, ratings_mean = normalizeRatings(ratings_matrix, R)
+    ratings_norm, ratings_mean = normalizeRatings(ratings_matrix_, R)
     # print(ratings_norm)
     # print(ratings_mean)
-    num_users = ratings_matrix.shape[1]
+    num_users = ratings_matrix_.shape[1]
     # for row in ratings_matrix:
     #     print(row)
     # for row in R:
@@ -123,6 +122,3 @@ def recommend(user_ratings, user_list_db = 'sample_user_list.db', show_list_db =
     # for i in range(len(my_ratings)):
     #     if my_ratings[i] > 0:
     #         print('Rated %d for %s\n' % (my_ratings[i], movieList[i]))
-user_ratings = {'07-Ghost':10, 'Accel World':10, 'Ajin':10, 'Aldnoah.Zero':10, 'Clannad':1, 'Clannad: After Story':1, 'Fate/stay night Movie: Unlimited Blade Works':10,
-                'Golden Time':1, 'Hachimitsu to Clover':1, 'Hanasaku Iroha':1}
-print(recommend(user_ratings, num_users = 50))
