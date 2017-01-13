@@ -1,8 +1,8 @@
+import urllib.request as urllib
 import sqlite3
 
-from FetchMALData.ParseUserPage import UserShowGetter
-from Recommender import Recommender
-
+from FetchMALData.ParseUserPage import UserShowGetter, UserShowGetterT2
+from Recommender.Recommender import Recommender
 
 class User():
 
@@ -170,7 +170,23 @@ class User():
 
         return [user_show_data for user_show_data in user_show_data_list if user_show_data != '']
 
-    def create_user_show_list_tagged(self, sample_user_data):
+    def create_user_show_list_tagged(self, MAL_URL):
+        self.MAL_URL = MAL_URL
+        response = urllib.urlopen(self.MAL_URL)
+        html = str(response.read())
+
+        if '<div id="list_surround">' in html:
+            usg = UserShowGetterT2()
+            usg.feed(html)
+            usg.reformat_data()
+            sample_user_data = usg.reformatted_data
+        else:
+            usg = UserShowGetter()
+            usg.feed(html)
+            usg.reformat_data()
+            # user_data = usg.reformatted_data
+            sample_user_data = usg.data
+
 
         table_entry = sample_user_data
         entry_list = self.get_text_between_bracket(table_entry)
@@ -192,21 +208,21 @@ class User():
             #         tagged_entry[1] = attribute
             #         print('attribute: ' + attribute)
             #         attribute_list_tagged.append(tagged_entry)
-            for attribute in attribute_list:
+            for attribute_item in attribute_list:
                 # print('attribute; ' + attribute)
                 try:
-                    (name, value) = attribute.split(':', 1)
+                    (attribute, value) = attribute_item.split(':', 1)
                 except ValueError as e:
                     print('Unable to parse user MAL page html!')
-                    print('attribute; ' + attribute)
+                    print('attribute; ' + attribute_item)
                     print(e)
                     return []
                     # print('Error: ' + attribute)
-                tagged_entry[0] = name
+                tagged_entry[0] = attribute
                 tagged_entry[1] = value
 
-                tagged_entry[0] = tagged_entry[0][:-1] if tagged_entry[0].endswith('"') else tagged_entry[0]
-                tagged_entry[0] = tagged_entry[0][1:] if tagged_entry[0].startswith('"') else tagged_entry[0]
+                tagged_entry[1] = tagged_entry[1][:-1] if tagged_entry[1].endswith('"') else tagged_entry[1]
+                tagged_entry[1] = tagged_entry[1][1:] if tagged_entry[1].startswith('"') else tagged_entry[1]
                 # print('attribute; ' + tagged_entry[0] + ' ; ' + tagged_entry[1])
                 # print(tagged_entry)
                 attribute_list_tagged.append((tagged_entry[0], tagged_entry[1]))
@@ -220,9 +236,22 @@ class User():
     # def get_user_data_from_db(self, db):
     #     pass
 
+    # Enforce that recommendations must be made from entering a new user from the web:
+    # User data cannot be taken from database for this purpose.
     def get_user_recommendation(self, recommender = 'c', verbose = False):
         if self.MAL_URL == '':
             raise Exception('User has no MAL URL defined.')
+        entry_dict_tagged = dict()
+
+        for score, anime_title in self.entry_list_tagged:
+            score = score[1] if score[1] != '-' else '0'
+            print(score)
+            anime_title = anime_title[1]
+            entry_dict_tagged[anime_title] = score
+
+        r = Recommender()
+        return r.get_recommendation_c(entry_dict_tagged, verbose = True)
+
 
 
 
@@ -234,6 +263,7 @@ class User():
     def __init__(self):
         self.MAL_URL = ''
         self.username = ''
+        self.entry_list_tagged = []
         # self.entry_list_tagged = self.create_user_show_list_tagged(user_data)
 
         # sample_user_data = open('sample_user_data.txt', 'r').read()

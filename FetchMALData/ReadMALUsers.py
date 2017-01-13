@@ -2,7 +2,6 @@ import urllib.request as urllib
 import os
 
 from FetchMALData.GetUserPage import UserPageGetter
-from FetchMALData.ParseUserPage import UserShowGetter, UserShowGetterT2
 from User import User
 
 user_list_db = os.path.dirname(__file__) + '/../data/sample_user_list.db'
@@ -11,30 +10,10 @@ user_list_db = os.path.dirname(__file__) + '/../data/sample_user_list.db'
 def write_user_data(filename, MAL_URL, minimal=False, db=True):
     success = False
 
-    response = urllib.urlopen(MAL_URL)
-    html = str(response.read())
-
-    if '<div id="list_surround">' in html:
-        usg = UserShowGetterT2()
-        usg.feed(html)
-        usg.reformat_data()
-        user_data = usg.reformatted_data
-    else:
-        usg = UserShowGetter()
-        usg.feed(html)
-        usg.reformat_data()
-        # user_data = usg.reformatted_data
-        user_data = usg.data
-
-    # if user_data == []:
-    #     print('Unable to parse user MAL page html!')
-    #     return
-
-    # f = open('sample_user_data_tagged.txt', 'w')
-    # f.write(user_data)
+    # Move this top portion to User class?
 
     user = User()
-    entry_list_tagged = user.create_user_show_list_tagged(user_data)
+    entry_list_tagged = user.create_user_show_list_tagged(MAL_URL)
     # for item in user_data:
     #     print(item)
     # print(user_data)

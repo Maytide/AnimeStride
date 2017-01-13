@@ -42,7 +42,11 @@ def recommend(user_ratings, num_shows, ratings_matrix, shows, users, verbose = F
     #     my_ratings[i] = (i+3) % 10 + 1
         # print(show_map[i+3])
     for show, rating in user_ratings.items():
-        my_ratings[shows[show]] = rating
+        try:
+            my_ratings[shows[show]] = rating
+        except KeyError as ke:
+            if verbose:
+                print('Show ' + str(ke) + ' not in anime db.')
 
     ratings_matrix_ = np.column_stack((my_ratings, ratings_matrix))
     R = np.greater(ratings_matrix_, np.zeros(ratings_matrix_.shape))
