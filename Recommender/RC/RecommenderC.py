@@ -1,6 +1,7 @@
 ## Based off of python implementation of Coursera ML 1 Course.
 ## https://github.com/mstampfer/Coursera-Stanford-ML-Python
-#
+##
+
 from matplotlib import use, cm
 
 use('TkAgg')

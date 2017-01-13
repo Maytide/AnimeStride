@@ -1,5 +1,7 @@
 import sqlite3
+
 from FetchMALData.ParseUserPage import UserShowGetter
+from Recommender import Recommender
 
 
 class User():
@@ -18,7 +20,6 @@ class User():
                     file.write('\n')
                     # print(i)
                 i += 1
-
 
     def write_to_file_data_minimal(self, filename, entry_list_tagged, MAL_URL):
         #sample_user_data_tagged.txt
@@ -39,8 +40,6 @@ class User():
                 i += 1
                 file.write('\n')
 
-
-
     def valid_table_name(self, table_name):
         # Prevent injections
         return not ('drop table' in table_name.lower())
@@ -49,7 +48,7 @@ class User():
     def write_to_db_data_minimal(self, db, entry_list_tagged, MAL_URL):
         # TODO:
         # Vulnerable to SQL Injection! Fix in the future!
-        # Remove quotes from anime name!
+        # Remove quotes from anime name! - Done in create_user_show_list_tagged(...). Removed quotes when parsing from MAL directly.
         if not self.valid_table_name(MAL_URL):
             raise Exception('Invalid MAL username ' + MAL_URL + '; will cause problems with SQL.')
 
@@ -76,7 +75,6 @@ class User():
 
         conn.commit()
         conn.close()
-
 
     def print_entry_list(self, entry_list):
         for index, entry in enumerate(entry_list):
@@ -141,6 +139,7 @@ class User():
     # entry_list
     # attribute_list
     # attribute_list_tagged
+
     def replace_comma_between_quote(self, entry):
         str_index = 0
         commaless_entry_str = ''
@@ -170,12 +169,13 @@ class User():
         #         print('Data with colon: ' + user_show_data)
 
         return [user_show_data for user_show_data in user_show_data_list if user_show_data != '']
+
     def create_user_show_list_tagged(self, sample_user_data):
 
         table_entry = sample_user_data
         entry_list = self.get_text_between_bracket(table_entry)
         # print(len(entry_list))
-        entry_list_tagged = []
+        self.entry_list_tagged = []
         for entry in entry_list:
             attribute_list_tagged = []
             # print('create_user_show_list_tagged: ' + entry)
@@ -204,23 +204,37 @@ class User():
                     # print('Error: ' + attribute)
                 tagged_entry[0] = name
                 tagged_entry[1] = value
+
+                tagged_entry[0] = tagged_entry[0][:-1] if tagged_entry[0].endswith('"') else tagged_entry[0]
+                tagged_entry[0] = tagged_entry[0][1:] if tagged_entry[0].startswith('"') else tagged_entry[0]
                 # print('attribute; ' + tagged_entry[0] + ' ; ' + tagged_entry[1])
                 # print(tagged_entry)
                 attribute_list_tagged.append((tagged_entry[0], tagged_entry[1]))
-            entry_list_tagged.append(attribute_list_tagged)
+            self.entry_list_tagged.append(attribute_list_tagged)
             # print_entry_list_tagged(attribute_list_tagged)
             # entry_list_tagged.append(attribute_list_tagged)
 
         # print(attribute_list_tagged)
-        return entry_list_tagged
+        return self.entry_list_tagged
+
+    # def get_user_data_from_db(self, db):
+    #     pass
+
+    def get_user_recommendation(self, recommender = 'c', verbose = False):
+        if self.MAL_URL == '':
+            raise Exception('User has no MAL URL defined.')
+
+
 
     # @classmethod
     # def from_untagged_data(user_class, user_data):
     #     entry_list_tagged = user_class.create_user_show_list_tagged(user_data)
     #     return entry_list_tagged
 
-    def __init__(self, user_data):
-        self.entry_list_tagged = self.create_user_show_list_tagged(user_data)
+    def __init__(self):
+        self.MAL_URL = ''
+        self.username = ''
+        # self.entry_list_tagged = self.create_user_show_list_tagged(user_data)
 
         # sample_user_data = open('sample_user_data.txt', 'r').read()
         # self.entry_list_tagged = self.create_user_show_list_tagged(sample_user_data)

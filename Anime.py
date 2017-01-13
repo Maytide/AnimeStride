@@ -347,7 +347,7 @@ class Anime():
         ps.close()
         return data
 
-    def __init__(self, MAL_URL):
+    def build_data_from_web(self, MAL_URL):
         response = urllib.urlopen(MAL_URL)
         html = str(response.read())
         self.data = []
@@ -415,19 +415,22 @@ class Anime():
         else:
             self.related_data = OrderedDict([['Adaptation: ', ''], ['Alternative: ', ''], ['Side Story: ', ''],
                                              ['Spinoff: ', ''], ['Prequel: ', ''], ['Sequel: ', ''], ['Summary: ', '']],
-                                            key = lambda t: t[0])
-        #########################################
+                                            key=lambda t: t[0])
+            #########################################
 
-        # print(info_data)
-        # data = info_data + content_data + name_data + info_data + statistics_data
-        # data = [element.strip(' \\n') for element in data]
-        # data = [element for element in data if element != '\\n']
+            # print(info_data)
+            # data = info_data + content_data + name_data + info_data + statistics_data
+            # data = [element.strip(' \\n') for element in data]
+            # data = [element for element in data if element != '\\n']
 
-        # self.write_data(self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
-        # self.write_data(name_data)
-        # self.write_data(info_data)
-        # self.write_data(statistics_data)
-        # self.write_data(related_data)
+            # self.write_data(self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
+            # self.write_data(name_data)
+            # self.write_data(info_data)
+            # self.write_data(statistics_data)
+            # self.write_data(related_data)
+
+    def __init__(self):
+        pass
 
 
 # print(parse_titles(data))

@@ -1,7 +1,12 @@
-from FetchMALData.ParseUserPage import UserShowGetter, UserShowGetterT2
-from FetchMALData.GetUserPage import UserPageGetter
-from FetchMALData.User import User
 import urllib.request as urllib
+import os
+
+from FetchMALData.GetUserPage import UserPageGetter
+from FetchMALData.ParseUserPage import UserShowGetter, UserShowGetterT2
+from User import User
+
+user_list_db = os.path.dirname(__file__) + '/../data/sample_user_list.db'
+
 
 def write_user_data(filename, MAL_URL, minimal=False, db=True):
     success = False
@@ -28,8 +33,8 @@ def write_user_data(filename, MAL_URL, minimal=False, db=True):
     # f = open('sample_user_data_tagged.txt', 'w')
     # f.write(user_data)
 
-    user = User(user_data)
-    entry_list_tagged = user.entry_list_tagged
+    user = User()
+    entry_list_tagged = user.create_user_show_list_tagged(user_data)
     # for item in user_data:
     #     print(item)
     # print(user_data)
@@ -89,7 +94,7 @@ for index, MAL_URL in enumerate(user_list):
     if index >= start_point:
         print(str(index) + ' : ' + MAL_URL)
         try:
-            success = write_user_data('sample_user_list.db', MAL_URL, minimal=True, db=True)
+            success = write_user_data(user_list_db, MAL_URL, minimal=True, db=True)
             if success == True:
                 success_count += 1
         except urllib.HTTPError as e:
@@ -115,3 +120,45 @@ print(success_count/(end_point - start_point))
 # f = open('sample_user_data_2.txt', 'w')
 # f.write(user_data)
 # f.close()
+
+# Should never have to call this function again, ever. (After parsing in User class fixed to remove outer quotes)
+# def remove_outer_quotes(db = 'sample_user_list.db'):
+#     # Prone to injection
+#     conn = sqlite3.connect(db)
+#     c = conn.cursor()
+#
+#     c.execute('''SELECT name FROM sqlite_master WHERE type="table";''')
+#     tables_list = ['[' + item[0] + ']' for item in c.fetchall()]
+#     # tables_list = c.fetchall()
+#
+#     for i, table in enumerate(tables_list):
+#         # print(type(table))
+#         print('index: ' + str(i) + ', table: ' + table)
+#         c.execute('''SELECT "anime" FROM {}'''.format(table))
+#         row_list = [item[0] for item in c.fetchall()]
+#         # print(row_list)
+#         # table = table[:-1] if table.endswith(']') else table
+#         # table = table[1:] if table.startswith('[') else table
+#         # print(table)
+#         for index, row in enumerate(row_list):
+#             # print(row)
+#             row_list[index] = row[:-1] if row.endswith('"') else row
+#             row_list[index] = row_list[index][1:] if row.startswith('"') else row
+#             # print(row_list[index])
+#             # http://stackoverflow.com/questions/25387537/sqlite3-operationalerror-near-syntax-error
+#             # Use String.format for database object;
+#             # Use sql parameter formatting for non-database objects
+#             c.execute('''UPDATE {} SET "anime" = ? WHERE "anime" = ?'''.format(table), (row_list[index], row))
+#             # print(row)
+#         # print(table)
+#         c.execute('''SELECT "anime" from {}'''.format(table))
+#         # print(len(c.fetchall()))
+#
+#         #
+#         #     print(row)
+#         #     c.execute('''SELECT "anime" from {}'''.format(row))
+#
+#         # c.execute('''UPDATE {} '''.format(table))
+#     conn.commit()
+#     conn.close()
+# # remove_outer_quotes()

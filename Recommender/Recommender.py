@@ -13,14 +13,15 @@ class Recommender():
         self.c_u = conn_u.cursor()
         self.c_a = conn_a.cursor()
 
-    def get_recommendation_c(self):
-        num_shows, ratings_matrix, shows, users = cdf.create_ratings_matrix(self.c_u, self.c_a, verbose = True, max_users = 100)
-        self.recommendation = rc.recommend(user_ratings, num_shows, ratings_matrix, shows, users, verbose=True)
+    def get_recommendation_c(self, user_ratings, verbose = False):
+        num_shows, ratings_matrix, shows, users = cdf.create_ratings_matrix(self.c_u, self.c_a, verbose = verbose, max_users = 100)
+        self.recommendation_c = rc.recommend(user_ratings, num_shows, ratings_matrix, shows, users, verbose = verbose)
+        return self.recommendation_c
 
-user_ratings = {'07-Ghost':10, 'Accel World':10, 'Ajin':10, 'Aldnoah.Zero':10, 'Clannad':1, 'Clannad: After Story':1, 'Fate/stay night Movie: Unlimited Blade Works':10,
-                'Golden Time':1, 'Hachimitsu to Clover':1, 'Hanasaku Iroha':1}
-
-
-rec = Recommender()
-rec.get_recommendation_c()
-print(rec.recommendation)
+# user_ratings = {'07-Ghost':10, 'Accel World':10, 'Ajin':10, 'Aldnoah.Zero':10, 'Clannad':1, 'Clannad: After Story':1, 'Fate/stay night Movie: Unlimited Blade Works':10,
+#                 'Golden Time':1, 'Hachimitsu to Clover':1, 'Hanasaku Iroha':1, 'Mononoke Hime':1}
+#
+#
+# rec = Recommender()
+# rec.get_recommendation_c(user_ratings)
+# print(rec.recommendation)

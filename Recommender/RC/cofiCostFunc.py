@@ -1,3 +1,7 @@
+## Based off of python implementation of Coursera ML 1 Course.
+## https://github.com/mstampfer/Coursera-Stanford-ML-Python
+##
+
 import numpy as np
 
 
