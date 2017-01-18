@@ -170,7 +170,7 @@ class User():
 
         return [user_show_data for user_show_data in user_show_data_list if user_show_data != '']
 
-    def create_user_show_list_tagged(self, MAL_URL):
+    def create_user_show_list_tagged(self, MAL_URL, minimal = False):
         self.MAL_URL = MAL_URL
         response = urllib.urlopen(self.MAL_URL)
         html = str(response.read())
@@ -186,6 +186,7 @@ class User():
             usg.reformat_data()
             # user_data = usg.reformatted_data
             sample_user_data = usg.data
+            # print(sample_user_data)
 
 
         table_entry = sample_user_data
@@ -218,6 +219,10 @@ class User():
                     print(e)
                     return []
                     # print('Error: ' + attribute)
+                if minimal:
+                    # print(attribute)
+                    if attribute != '"score"' and attribute != '"anime_title"':
+                        continue
                 tagged_entry[0] = attribute
                 tagged_entry[1] = value
 
@@ -243,14 +248,24 @@ class User():
             raise Exception('User has no MAL URL defined.')
         entry_dict_tagged = dict()
 
+        # print(self.entry_list_tagged)
+
+        # filtered_list_tagged = []
+        # # Filter entry list tagged
+        # for show in self.entry_list_tagged:
+        #     anime_title = ''
+        #     score = ''
+        #     for attribute_item in show:
+
+
         for score, anime_title in self.entry_list_tagged:
             score = score[1] if score[1] != '-' else '0'
-            print(score)
+            # print(score)
             anime_title = anime_title[1]
             entry_dict_tagged[anime_title] = score
 
         r = Recommender()
-        return r.get_recommendation_c(entry_dict_tagged, verbose = True)
+        return r.get_recommendation_c(entry_dict_tagged, verbose = verbose)
 
 
 

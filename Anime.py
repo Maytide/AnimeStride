@@ -253,9 +253,9 @@ class Anime():
     # In the future:
     # Port this db stuff to ReadMALShows...
 
-    def write_to_db(self, individual_db, aggregated_db, write_individual_entry = True, write_aggregated_entry = False):
+    def write_to_db(self, anime_url, individual_db, aggregated_db, write_individual_entry = True, write_aggregated_entry = False):
         if write_aggregated_entry == True:
-            self.write_to_db_aggregated(aggregated_db, self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
+            self.write_to_db_aggregated(aggregated_db, self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data, anime_url)
         if write_individual_entry == True:
             self.write_to_db_individual(individual_db, self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
 
@@ -290,13 +290,14 @@ class Anime():
         item = item.strip('"')
         return item
 
-    def write_to_db_aggregated(self, db, content_data, name_data, info_data, statistics_data, related_data):
+    def write_to_db_aggregated(self, db, content_data, name_data, info_data, statistics_data, related_data, anime_url):
         conn = sqlite3.connect(db)
         c = conn.cursor()
         c.execute('''CREATE TABLE IF NOT EXISTS content_data
-                  (name text, image_url text, synposis text,
+                  (anime_url text,
+                  name text PRIMARY KEY, image_url text, synopsis text,
                   english_name text, synonyms text, japanese_name text,
-                  type text, episodes text, aired text, broadcast text, licensors text, studios text, source text, genres text, duration text, rating text,
+                  media text, episodes text, aired text, broadcast text, licensors text, studios text, source text, genres text, duration text, rating text,
                   score text, ranked text, members text, popularity text, favourites text,
                   adaptation text, alternative_version text, side_story text, spinoff text, prequel text, sequel text, summary text)''')
                 # Content: Name, pv image URL, synopsis
@@ -311,14 +312,14 @@ class Anime():
         statistics_data_list = self.OD_to_db_list(statistics_data)
         related_data_list = self.OD_to_db_list(related_data)
 
-        data_list = content_data_list + name_data_list + info_data_list + statistics_data_list + related_data_list
-
+        data_list = [anime_url] + content_data_list + name_data_list + info_data_list + statistics_data_list + related_data_list
+        # print(len(data_list))
         # print(len(content_data_list) + len(name_data_list) + len(info_data_list) + len(statistics_data_list) + len(related_data_list))
         # print(content_data_str)
         # content_data_values = (content_data_list[0][1], content_data[1][1], content_data[0][1])
 
         # Is this susceptible to SQL injections?
-        c.execute('INSERT OR REPLACE INTO content_data VALUES (' + '?,'*27 + '?)', data_list)
+        c.execute('INSERT OR REPLACE INTO content_data VALUES (' + '?,'*(len(data_list)-1) + '?)', data_list)
         conn.commit()
 
 
@@ -428,7 +429,7 @@ class Anime():
             # self.write_data(info_data)
             # self.write_data(statistics_data)
             # self.write_data(related_data)
-
+    # TODO: Add ability to create anime object from anime name only if anime name in database.
     def __init__(self):
         pass
 
