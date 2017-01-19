@@ -1,0 +1,47 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Website</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+<!--    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/style.css"/>-->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<!--
+    {% verbatim %}
+
+    <div ng-app="myApp" ng-controller="cardsListController" id="cardsList">
+        <div ng-repeat="card in cards" class="cardItem">
+            Card {{card.id}}
+        </div>
+    </div>
+    {% endverbatim %}
+-->
+    
+    <div class="container-fluid">
+        {% block urlbar %}
+        {% endblock %}
+        
+    </div>
+        
+    <div class="container-fluid">
+        <h1></h1>
+        {% block showdisplay %}
+        {% endblock %}
+    </div>
+
+</body>
+
+</html>

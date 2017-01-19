@@ -46,7 +46,7 @@ def read_MAL_pages(file_or_db = 'db', write_individual_entry = True, write_aggre
             showcount = showcount + 1
 
 
-read_MAL_pages(write_individual_entry = True, write_aggregated_entry = True, start_point = 0, verbose = True)
+read_MAL_pages(write_individual_entry = True, write_aggregated_entry = False, start_point = 0, verbose = True)
 # response = urllib.urlopen('https://myanimelist.net/topanime.php?type=tv')
 # html = str(response.read())
 #

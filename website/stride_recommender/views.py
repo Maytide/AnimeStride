@@ -19,4 +19,4 @@ def index(request):
     else:
         shows = get_shows()
 
-    return render(request, 'url_bar.html', {'shows': shows, 'form': form})
+    return render(request, 'recommender.html', {'shows': shows, 'form': form})

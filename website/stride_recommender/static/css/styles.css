@@ -1,6 +1,4 @@
-/*http://www.minimit.com/articles/solutions-tutorials/bootstrap-3-responsive-centered-columns*/
 /* centered columns styles */
-
 .row-centered {
     text-align:center;
 }
@@ -11,4 +9,12 @@
     text-align:left;
     /* inline-block space fix */
     margin-right:-4px;
+}
+
+.url-bar-box{
+    background-color:bisque;
+}
+
+.url-bar{
+    margin: 0 auto;
 }
