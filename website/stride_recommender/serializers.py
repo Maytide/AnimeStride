@@ -3,10 +3,10 @@ from rest_framework import serializers
 from .models import ContentData
 
 class ContentDataSerializer(serializers.ModelSerializer):
-    name = serializers.HyperlinkedIdentityField('name')
-    image_url = serializers.HyperlinkedIdentityField('image_url')
-    synopsis = serializers.HyperlinkedIdentityField('synopsis')
-    anime_url = serializers.HyperlinkedIdentityField('anime_url')
+    # anime_url = serializers.HyperlinkedIdentityField('ContentData-list')
+    # name = serializers.CharField()
+    # image_url = serializers.HyperlinkedIdentityField('ContentData-list')
+    # synopsis = serializers.CharField()
 
     class Meta:
         model = ContentData

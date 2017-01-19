@@ -18,11 +18,11 @@ from django.contrib import admin
 from stride_recommender import api
 from rest_framework import routers
 
-router = routers.DefaultRouter()
-router.register(r'ContentData', api.ContentDataViewSet)
+# router = routers.DefaultRouter()
+# router.register(r'ContentData', api.ContentDataViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^stride_recommender/', include('stride_recommender.urls')),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
