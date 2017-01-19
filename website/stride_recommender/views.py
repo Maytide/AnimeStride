@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-from .models import ContentData
+
 from .getshows import get_shows, get_shows_url
+
+from .models import ContentData
+
 from .forms import URLForm
 
 def index(request):
