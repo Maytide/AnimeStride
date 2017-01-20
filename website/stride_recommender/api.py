@@ -7,7 +7,8 @@ from rest_framework.parsers import JSONParser
 
 from .models import ContentData
 from .serializers import ContentDataSerializer
-from .getshows import get_shows
+from .getshows import get_shows_random, get_shows_url
+from .forms import URLForm
 
 # class ContentDataViewSet(viewsets.ModelViewSet):
 #     queryset = ContentData.objects.all().order_by('name')
@@ -44,7 +45,7 @@ def api_get_show(request, pk):
         return ContentDataJSONResponse(serializer.data)
 
 def api_get_shows_random(request, num_shows=3):
-    show_list = get_shows(num_shows)
+    show_list = get_shows_random(num_shows)
 
     if request.method == 'GET':
         serializer = ContentDataSerializer(show_list, many=True)
@@ -52,3 +53,39 @@ def api_get_shows_random(request, num_shows=3):
     elif request.method == 'POST':
         serializer = ContentDataSerializer(show_list, many=True)
         return ContentDataJSONResponse(serializer.data)
+
+# TODO:
+# Not working because API has no form!
+# How to get form data from webpage to API...
+def api_get_shows_url(request, num_shows=3):
+    if request.method == 'POST':
+        form = URLForm(request.POST)
+
+        if form.is_valid():
+            cd = form.cleaned_data
+            show_list = get_shows_url(cd.get('url'))
+            serializer = ContentDataSerializer(show_list, many=True)
+        else:
+            show_list = get_shows_random(num_shows=10)
+            serializer = ContentDataSerializer(show_list, many=True)
+
+        return ContentDataJSONResponse(serializer.data)
+    else:
+        show_list = get_shows_random(num_shows=5)
+        serializer = ContentDataSerializer(show_list, many=True)
+        return ContentDataJSONResponse(serializer.data)
+    ################
+    # show_list = None
+    # serializer = None
+    # # if request.method == 'GET':
+    # #     show_list = get_shows_random()
+    # #     serializer = ContentDataSerializer(show_list, many=True)
+    # #     return ContentDataJSONResponse(serializer.data)
+    # # elif request.method == 'POST':
+    # form = URLForm(request.POST)
+    # if form.is_valid():
+    #     cd = form.cleaned_data
+    #     show_list = get_shows_url(cd.get('url'))
+    #     serializer = ContentDataSerializer(show_list, many=True)
+    #
+    # return ContentDataJSONResponse(serializer.data)

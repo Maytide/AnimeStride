@@ -13,7 +13,7 @@
             <form method="POST" class="post-form url-bar">
                 
                 {% csrf_token %} {{ form.as_p }}
-                <button type="submit" class="save btn btn-primary" ng-click="loadData()">Enter</button>
+                <button type="submit" class="save btn btn-primary" ng-click="postData()">Enter</button>
             </form>
         </div>
     </div>
