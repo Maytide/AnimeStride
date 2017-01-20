@@ -28,8 +28,10 @@
 
 {% verbatim %}
 <div ng-app="myApp" ng-controller="cardsListController" id="cardsList">
+<!--    Show {{shows.id}} {{shows.content}} ABCDE-->
     <div ng-repeat="show in shows" class="cardItem">
-        Show {{show.name}}
+        Show: {{show.name}} 
+        URL: {{show.anime_url}}
     </div>
 </div>
 {% endverbatim %}
