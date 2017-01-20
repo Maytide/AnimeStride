@@ -6,6 +6,7 @@ from django.template import RequestContext
 from .getshows import get_shows_random, get_shows_url
 from .models import ContentData
 from .forms import URLForm
+from .api import api_get_shows_url
 
 def index(request):
     form = URLForm()
