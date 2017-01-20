@@ -13,7 +13,7 @@ from django.db import models
 class ContentData(models.Model):
     anime_url = models.TextField(blank=True, null=True)
     name = models.TextField(primary_key=True, blank=True, null=False)
-    image_url = models.ImageField(default='', blank=True, null=True)
+    image_url = models.TextField(default='', blank=True, null=True)
     synopsis = models.TextField(default='', blank=True, null=True)
     english_name = models.TextField(default='', blank=True, null=True)
     synonyms = models.TextField(default='', blank=True, null=True)

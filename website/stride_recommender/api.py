@@ -49,3 +49,6 @@ def api_get_shows_random(request, num_shows=3):
     if request.method == 'GET':
         serializer = ContentDataSerializer(show_list, many=True)
         return ContentDataJSONResponse(serializer.data)
+    elif request.method == 'POST':
+        serializer = ContentDataSerializer(show_list, many=True)
+        return ContentDataJSONResponse(serializer.data)

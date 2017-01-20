@@ -19,6 +19,9 @@
 </head>
 
 <body>
+    <div class="recommender" ng-app="recommenderApp" ng-controller="recommenderController" >
+        
+    
 <!--
     {% verbatim %}
 
@@ -30,18 +33,18 @@
     {% endverbatim %}
 -->
     
-    <div class="container-fluid">
-        {% block urlbar %}
-        {% endblock %}
-        
-    </div>
-        
-    <div class="container-fluid">
-        <h1></h1>
-        {% block showdisplay %}
-        {% endblock %}
-    </div>
+        <div class="container-fluid">
+            {% block urlbar %}
+            {% endblock %}
 
+        </div>
+
+        <div class="container-fluid">
+            <h1></h1>
+            {% block showdisplay %}
+            {% endblock %}
+        </div>
+    </div>
 </body>
 
 </html>

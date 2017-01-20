@@ -13,7 +13,7 @@
             <form method="POST" class="post-form url-bar">
                 
                 {% csrf_token %} {{ form.as_p }}
-                <button type="submit" class="save btn btn-primary">Enter</button>
+                <button type="submit" class="save btn btn-primary" ng-click="loadData()">Enter</button>
             </form>
         </div>
     </div>
@@ -27,17 +27,10 @@
 {% block showdisplay %}
 
 {% verbatim %}
-<div ng-app="myApp" ng-controller="cardsListController" id="cardsList">
+<div id="cardsList">
 <!--    Show {{shows.id}} {{shows.content}} ABCDE-->
     <div ng-repeat="show in shows" class="cardItem">
-        Show: {{show.name}} 
-        URL: {{show.anime_url}}
-    </div>
-</div>
-{% endverbatim %}
-
-    {% for show in shows %}
-    <div class="row row-centered">
+        <div class="row row-centered">
         <div class="col-md-6 col-centered">
             <div class="row row-centered">
                 <div class="col-md-4">
@@ -59,5 +52,11 @@
             </div>
         </div>
     </div>
+    </div>
+</div>
+{% endverbatim %}
+
+    {% for show in shows %}
+    
     {% endfor %}
 {% endblock %}
