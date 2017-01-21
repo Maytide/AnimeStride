@@ -45,7 +45,7 @@ def api_get_show(request, pk):
         return ContentDataJSONResponse(serializer.data)
 
 def api_get_shows_random(request, num_shows=3):
-    show_list = get_shows_random(num_shows)
+    show_list = get_shows_random(num_shows=num_shows)
 
     if request.method == 'GET':
         serializer = ContentDataSerializer(show_list, many=True)
@@ -63,8 +63,9 @@ def api_get_shows_url(request, num_shows=3):
 
         if form.is_valid():
             cd = form.cleaned_data
-            show_list = get_shows_url(cd.get('url'))
+            show_list = get_shows_url(cd.get('url'), num_shows=4)
             serializer = ContentDataSerializer(show_list, many=True)
+            # return show_list
         else:
             show_list = get_shows_random(num_shows=10)
             serializer = ContentDataSerializer(show_list, many=True)
@@ -74,6 +75,7 @@ def api_get_shows_url(request, num_shows=3):
         show_list = get_shows_random(num_shows=5)
         serializer = ContentDataSerializer(show_list, many=True)
         return ContentDataJSONResponse(serializer.data)
+
     ################
     # show_list = None
     # serializer = None

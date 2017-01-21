@@ -11,7 +11,10 @@ app.config(['$httpProvider', function($httpProvider) {
 }]);
 
 app.controller('recommenderController', function($scope, $http) {
-	// $http.get('https://maytide.github.io/').
+	
+    $scope.formData = {'url': ''};
+
+    // $http.get('https://maytide.github.io/').
 	// TODO: Remove hard coded URL
 	$scope.getData = function () {
 	$http.get('http://127.0.0.1:8000/stride_recommender/api/random/').
@@ -20,7 +23,19 @@ app.controller('recommenderController', function($scope, $http) {
         });
     };
     $scope.postData = function () {
-	$http.post('http://127.0.0.1:8000/stride_recommender/api/url/').
+    // $http.post('http://127.0.0.1:8000/stride_recommender/api/url/').
+	// $http.post('http://127.0.0.1:8000/stride_recommender/').
+ //        then(function(response) {
+ //            $scope.shows = response.data;
+ //        });
+ //    };
+////////////////
+        $http({
+            url: "http://127.0.0.1:8000/stride_recommender/",
+            method: 'POST',
+            // data: {'url': '00'},
+            data: $scope.formData, 
+        }).
         then(function(response) {
             $scope.shows = response.data;
         });

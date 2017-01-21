@@ -1,4 +1,4 @@
-{% extends 'website.html' %}
+{% extends 'recommender-wrapper.html' %}
 
 {% block urlbar %}
     
@@ -11,8 +11,9 @@
         <div class="url-bar-box">
             <h3>Enter MAL Profile:</h3>
             <form method="POST" class="post-form url-bar">
-                
-                {% csrf_token %} {{ form.as_p }}
+                <input type="text" name="url" class="form-control" ng-model="formData.url">
+                {% csrf_token %} 
+<!--                {{ form.as_p }}-->
                 <button type="submit" class="save btn btn-primary" ng-click="postData()">Enter</button>
             </form>
         </div>
