@@ -16,6 +16,7 @@ app.controller('recommenderController', function($scope, $http) {
 
     // $http.get('https://maytide.github.io/').
 	// TODO: Remove hard coded URL
+    // Is this function even being used?
 	$scope.getData = function () {
 	$http.get('http://127.0.0.1:8000/stride_recommender/api/random/').
         then(function(response) {

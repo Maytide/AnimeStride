@@ -7,7 +7,7 @@ from django.template import RequestContext
 from .getshows import get_shows_random, get_shows_url
 from .models import ContentData
 from .forms import URLForm
-from .api import api_get_shows_url
+from .api import api_get_shows_url, api_get_shows_recommendation
 
 def index(request):
     form = URLForm()
@@ -24,7 +24,8 @@ def index(request):
         #
         #     # return redirect('index')
         #     return show_list
-        return api_get_shows_url(request)
+        # return api_get_shows_url(request)
+        return api_get_shows_recommendation(request)
     else:
         # print('GET request!')
         show_list = get_shows_random(num_shows=10)

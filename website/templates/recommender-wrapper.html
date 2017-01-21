@@ -1,0 +1,32 @@
+{% extends 'website.html' %}
+
+{% block recommender-html %}
+    
+<div class="recommender" ng-app="recommenderApp" ng-controller="recommenderController" >
+        
+    
+<!--
+    {% verbatim %}
+
+    <div ng-app="myApp" ng-controller="cardsListController" id="cardsList">
+        <div ng-repeat="card in cards" class="cardItem">
+            Card {{card.id}}
+        </div>
+    </div>
+    {% endverbatim %}
+-->
+    
+        <div class="container-fluid">
+            {% block urlbar %}
+            {% endblock %}
+
+        </div>
+
+        <div class="container-fluid">
+            <h1></h1>
+            {% block showdisplay %}
+            {% endblock %}
+        </div>
+    </div>
+    
+{% endblock %}
