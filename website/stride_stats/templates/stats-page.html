@@ -1,0 +1,32 @@
+{% extends 'stats-wrapper.html' %}
+{% load staticfiles %}
+
+{% block body %}
+
+<div class="row row-centered">
+    <div class="col-md-6 col-centered">
+        <div class="row row-centered">
+            <h1>Show statistics</h1>
+        </div>
+    </div>
+</div>
+
+
+<div class="row row-centered">
+    <div class="col-md-6 col-centered">
+        <div class="row row-centered">
+<!--            Chart.js scales to parent element size-->
+<!--            http://stackoverflow.com/questions/28162810/why-is-chart-js-canvas-not-respecting-the-padding-of-the-container-element-->
+            <div>
+                <canvas class="chart-container" id="myChart"></canvas>
+            </div>
+            <script type="text/javascript" src="{% static 'stride_stats/js/show-chart.js' %}"></script>
+            
+        </div>
+        <div class="row row-centered">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

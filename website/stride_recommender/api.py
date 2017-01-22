@@ -54,6 +54,7 @@ def api_get_shows_random(request, num_shows=3):
         serializer = ContentDataSerializer(show_list, many=True)
         return ContentDataJSONResponse(serializer.data)
 
+
 # TODO:
 # Not working because API has no form!
 # How to get form data from webpage to API...
@@ -98,7 +99,7 @@ def api_get_shows_recommendation(request, num_shows=3):
 
         if form.is_valid():
             cd = form.cleaned_data
-            show_list = get_shows_recommendation(cd.get('url'), num_shows=4)
+            show_list = get_shows_recommendation(cd.get('url'), num_recommendations=4)
             serializer = ContentDataSerializer(show_list, many=True)
             # return show_list
         else:

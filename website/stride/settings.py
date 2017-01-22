@@ -25,6 +25,7 @@ SECRET_KEY = '=nqdei0*$&k&n^qgiqkk8djxvpe=b#n$6xz8o7&0)cg_94h4-k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# TODO: Allow eventual web host
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'stride_recommender',
+    'stride_stats',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,8 @@ ROOT_URLCONF = 'stride.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), 'stride_recommender/templates/stride_recommender'],
+        # App directories currently contain no templates
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), 'stride_recommender/templates', 'stride_stats/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,7 +84,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(FILES_DIR, 'show_data_aggregated.db'),
-    }
+    },
 }
 
 
@@ -132,4 +135,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     '/static/',
+    'stride_recommender/templates/static',
+    'stride_stats/templates/static'
 ]

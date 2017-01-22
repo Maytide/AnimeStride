@@ -32,7 +32,8 @@ app.controller('recommenderController', function($scope, $http) {
  //    };
 ////////////////
         $http({
-            url: "http://127.0.0.1:8000/stride_recommender/",
+            // url: "http://127.0.0.1:8000/stride_recommender/",
+            url: window.location.href,
             method: 'POST',
             // data: {'url': '00'},
             data: $scope.formData, 

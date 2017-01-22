@@ -1,0 +1,36 @@
+{% extends 'stats-wrapper.html' %}
+<!--This part of the site does not need to be dynamic - no need for Angular-->
+
+{% block textbox %}
+
+
+{% endblock %}
+
+{% block body %}
+{% for show in shows %}
+    
+    <div class="row row-centered">
+        <div class="col-md-6 col-centered">
+            <div class="row row-centered">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a href="{{show.anime_url}}">
+                            <img src={{show.image_url}} alt="Lights" style="width:100%">
+                            <div class="caption">
+                                <p>{{show.name}}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="description">
+                        <p>{{show.synopsis}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+{% endblock %}

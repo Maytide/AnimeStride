@@ -13,9 +13,9 @@ class Recommender():
         self.c_u = conn_u.cursor()
         self.c_a = conn_a.cursor()
 
-    def get_recommendation_c(self, user_ratings, verbose = False):
+    def get_recommendation_c(self, user_ratings, verbose = False, num_recommendations=5):
         num_shows, ratings_matrix, shows, users = create_ratings_matrix(self.c_u, self.c_a, verbose = verbose, max_users = 100)
-        self.recommendation_c = recommend_c(user_ratings, num_shows, ratings_matrix, shows, users, verbose = verbose)
+        self.recommendation_c = recommend_c(user_ratings, num_shows, ratings_matrix, shows, users, verbose = verbose, num_recommendations = num_recommendations)
         return self.recommendation_c
 
 # user_ratings = {'07-Ghost':10, 'Accel World':10, 'Ajin':10, 'Aldnoah.Zero':10, 'Clannad':1, 'Clannad: After Story':1, 'Fate/stay night Movie: Unlimited Blade Works':10,

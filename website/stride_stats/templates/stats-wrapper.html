@@ -1,0 +1,18 @@
+{% extends 'website.html' %}
+
+
+{% block app-html %}
+    
+<div class="stats" ng-app="statsApp" ng-controller="statsController">
+
+<!--Chart.js CDN-->
+<script id='chart-js' src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+
+    <div class="container-fluid">
+        {% block body %} {% endblock %}
+
+    </div>
+</div>
+    
+{% endblock %}

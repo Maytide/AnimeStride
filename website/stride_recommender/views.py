@@ -4,10 +4,12 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, QueryDict
 from django.template import RequestContext
 
-from .getshows import get_shows_random, get_shows_url
 from .models import ContentData
 from .forms import URLForm
-from .api import api_get_shows_url, api_get_shows_recommendation
+from .getshows import get_shows_random, get_shows_url
+from .api import api_get_shows_url, api_get_shows_recommendation, api_get_shows_random
+
+# getshows returns list data, while api requires a request and returns json data.
 
 def index(request):
     form = URLForm()
@@ -29,8 +31,8 @@ def index(request):
     else:
         # print('GET request!')
         show_list = get_shows_random(num_shows=10)
-
-    return render(request, 'recommender.html', {'shows': show_list, 'form': form}, RequestContext(request))
+    # RequestContext(request) not needed?
+    return render(request, 'recommender.html', {'shows': show_list, 'form': form})
 
 # Error: Pass JSON, expected Querydict
 # https://coderwall.com/p/mwhmfg/posting-from-angular-to-django

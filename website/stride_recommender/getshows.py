@@ -17,13 +17,18 @@ def get_shows_random(num_shows=3):
     show_list = [ContentData.objects.all()[randint(0, 1999)] for i in range(num_shows)]
     return show_list
 
+# TODO: Implement method that prevents SQL Injections
 def get_shows_url(url, num_shows=3):
     show_list = [ContentData.objects.all()[len(url)] for i in range(num_shows)]
     return show_list
 
-def get_shows_recommendation(url, num_shows=3):
+def get_shows_recommendation(url, num_recommendations=3):
+    # Measure against SQL Injections:
+    if 'drop table' in url:
+        return [ContentData.objects.get(pk = 'Boku no Pico') for i in range(num_recommendations)]
+
     user = User()
     user.MAL_URL = url
     user.create_user_show_list_tagged(user.MAL_URL, minimal = True)
 
-    return [ContentData.objects.get(pk = show) for score, show in user.get_user_recommendation(verbose=False)]
+    return [ContentData.objects.get(pk = show) for score, show in user.get_user_recommendation(verbose=False, num_recommendations = num_recommendations)]
