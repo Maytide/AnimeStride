@@ -27,8 +27,8 @@ app.controller('statsController', function($scope, $http) {
         	// They do not retain value after exiting function
         	// Fix is to call drawChart() within this function
             $scope.show_data = response.data;
-            $scope.axis_labels = JSON.parse($scope.show_data['axis_labels']);
-            $scope.values = JSON.parse($scope.show_data['values']);
+            $scope.axis_labels = $scope.show_data['axis_labels'];
+            $scope.values = $scope.show_data['values'];
             // $scope.axis_labels = [$scope.path_name, 100, 100, 100, 100, 100];
             $scope.drawChart()
             
@@ -44,11 +44,11 @@ app.controller('statsController', function($scope, $http) {
 		    type: 'line',
 		    data: {
 		        // labels: [0, 1, 2, 3, 4, 5],
-		        labels: $scope.axis_labels,
+		        labels: $scope.axis_labels['timestamp'],
 		        datasets: [{
 		            label: '# of Votes',
 		            // data: [12, 19, 3, 5, 2, 3],
-		            data: $scope.values,
+		            data: $scope.values['members'],
 		        }]
 		    },
 		    options: {

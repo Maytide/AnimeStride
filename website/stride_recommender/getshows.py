@@ -2,13 +2,13 @@ import sys
 import os.path
 from random import randint
 
+from django.conf import settings
 # Navigate to the directory two levels above this one,
 # which contains the User class definition in User.py
-sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '..')))
-from User import User
 # Remove the path after importing is complete.
-sys.path.remove(os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '..')))
+sys.path.append(settings.PROJECT_ROOT)
+from User import User
+sys.path.remove(settings.PROJECT_ROOT)
 
 from .models import ContentData
 

@@ -1,8 +1,9 @@
-from django.http import HttpResponse
+import json
 
+from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
 
-from .getshows import get_show_test, get_show_test2
+from .getshows import get_show_test, get_show_test2, get_show_stats
 from .serializers import StatisticsSerializer, StatisticsListSerializer
 
 
@@ -12,7 +13,7 @@ class JSONResponse(HttpResponse):
         kwargs['content_type'] = 'application/json'
         super(JSONResponse, self).__init__(content, **kwargs)
 
-class ChartContent(object):
+class StatisticsContent(object):
     def __init__(self, axis_labels, values):
         self.axis_labels = axis_labels
         self.values = values
@@ -22,13 +23,22 @@ class ChartContent(object):
 # Should filter out number symbol on popularity
 # e.g. '#5' -> 5
 
+def api_get_show_stats(request, show_name):
+    # test_list = get_show_test()
+    stats_dict, timestamp = get_show_stats(show_name)
+
+    chart_data = StatisticsContent(timestamp, stats_dict)
+    serializer = StatisticsSerializer(chart_data)
+
+    return JSONResponse(serializer.data)
+    # return JSONResponse(json.dumps({'values': stats_dict, 'axis_labels': timestamp}))
 
 def api_get_show_test(request, show_name):
     # test_list = get_show_test()
     test_list = get_show_test2(show_name)
     axis_labels = list(range(len(test_list)))
 
-    chart_data = ChartContent(axis_labels, test_list)
+    chart_data = StatisticsContent(axis_labels, test_list)
     serializer = StatisticsSerializer(chart_data)
 
     return JSONResponse(serializer.data)

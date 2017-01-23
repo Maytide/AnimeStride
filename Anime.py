@@ -1,10 +1,15 @@
 import sqlite3
 import urllib.request as urllib
-from FetchMALData.ParseShow import ParseShowContentInHTMLTag, ParseShowContentInHTMLElement, ParseShowInformation, ParseShowStatistics, ParseShowRelated
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 from time import gmtime, strftime
 
+from master import UNMODELED_DATABASES, string_SQL_safe
+from FetchMALData.ParseShow import ParseShowContentInHTMLTag, ParseShowContentInHTMLElement, ParseShowInformation, ParseShowStatistics, ParseShowRelated
 
+
+# TODO: class Anime should know which databases to import from when called.
+# Remove all references to them (except in settings.py, where it is safer to
+# link directly to them for django models).
 class Anime():
 
     def trim_output(self, data):
@@ -429,8 +434,68 @@ class Anime():
             # self.write_data(info_data)
             # self.write_data(statistics_data)
             # self.write_data(related_data)
-    # TODO: Add ability to create anime object from anime name only if anime name in database.
+    # Done: Add ability to create anime object from anime name only if anime name in database.
+    def build_stats_from_db(self, show_name):
+        db = UNMODELED_DATABASES['show_data_individual']['location']
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+
+        # self.declare_stats()
+        self.full_stats = [[]]
+        self.timestamp = [[]]
+        # c.execute('SELECT * FROM sqlite_master WHERE type="table" AND name="[{}]"'.format(show_name))
+        # print(c.fetchall())
+
+        if not string_SQL_safe(show_name):
+            self.full_stats = [['Why are you doing this?']]
+            self.timestamp = [['Nope']]
+        else:
+            try:
+                c.execute('SELECT * FROM [{}]'.format(show_name))
+            except sqlite3.OperationalError:
+                self.full_stats = [['Show does not exist in database']]
+            else:
+                # Returns the transpose of the table data
+                # Ordered so that it returns:
+                # [(score1, score2, ... ), (popularity1, popularity2, ...), ... , (timestamp1, timestamp2, ...)]
+                # Which is easier to handle for Chart.js
+                tags = ['score', 'ranked', 'members', 'popularity', 'favorites']
+                # print(*c.fetchall())
+                full_stats = list(zip(*c.fetchall()))
+                timestamp = full_stats[-1:]
+                full_stats = full_stats[:-1]
+                # print(self.axis_labels)
+                self.full_stats = dict(zip(tags, full_stats))
+                self.timestamp = dict(zip(['timestamp'], timestamp))
+
+                for key, value in self.full_stats.items():
+                    self.full_stats[key] = list(self.full_stats[key])
+
+                for key, value in self.timestamp.items():
+                    self.timestamp[key] = list(self.timestamp[key])
+
+                for index in range(len((self.full_stats['favorites']))):
+                    self.full_stats['score'][index] = float(self.full_stats['score'][index])
+
+                    self.full_stats['favorites'][index] = int(self.full_stats['favorites'][index].replace(',',''))
+                    self.full_stats['members'][index] = int(self.full_stats['members'][index].replace(',', ''))
+
+                    self.full_stats['popularity'][index] = int(self.full_stats['popularity'][index][1:]) if \
+                    self.full_stats['popularity'][index][0] == '#' else int(self.full_stats['popularity'][index])
+                    self.full_stats['ranked'][index] = int(self.full_stats['ranked'][index][1:]) if \
+                    self.full_stats['ranked'][index][0] == '#' else int(self.full_stats['ranked'][index])
+
+                # print(dict(zip(*c.fetchall())))
+                # print(list(zip([tags ,list(zip(*c.fetchall()))])))
+                # self.full_stats = dict(zip([tags ,list(zip(*c.fetchall()))]))
+                # self.full_stats = {list(self.p_stats.items())[index]:statistic for index, statistic in enumerate(self.full_stats)}
+
+        # conn.close()
+
+        conn.close()
+
     def __init__(self):
+
         pass
 
 

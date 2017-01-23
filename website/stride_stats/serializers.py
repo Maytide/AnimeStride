@@ -1,8 +1,8 @@
 from rest_framework import serializers
 
 class StatisticsSerializer(serializers.Serializer):
-    axis_labels = serializers.CharField(max_length='500')
-    values = serializers.CharField(max_length='500')
+    axis_labels = serializers.DictField()
+    values = serializers.DictField()
 
 class StatisticsListSerializer(serializers.ListSerializer):
 
