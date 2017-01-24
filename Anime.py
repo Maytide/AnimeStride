@@ -435,7 +435,7 @@ class Anime():
             # self.write_data(statistics_data)
             # self.write_data(related_data)
     # Done: Add ability to create anime object from anime name only if anime name in database.
-    def build_stats_from_db(self, show_name):
+    def build_stats_from_db(self, show_name, max_recall):
         db = UNMODELED_DATABASES['show_data_individual']['location']
         conn = sqlite3.connect(db)
         c = conn.cursor()
@@ -451,7 +451,8 @@ class Anime():
             self.timestamp = [['Nope']]
         else:
             try:
-                c.execute('SELECT * FROM [{}]'.format(show_name))
+                # http://stackoverflow.com/questions/16856647/sqlite3-programmingerror-incorrect-number-of-bindings-supplied-the-current-sta
+                c.execute('''SELECT * FROM [{}] ORDER BY datetime DESC LIMIT (?)'''.format(show_name), (max_recall,))
             except sqlite3.OperationalError:
                 self.full_stats = [['Show does not exist in database']]
             else:

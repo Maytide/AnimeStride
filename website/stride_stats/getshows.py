@@ -12,9 +12,9 @@ def get_shows(num_shows=10):
     show_list = [ContentData.objects.all()[i] for i in range(num_shows)]
     return show_list
 
-def get_show_stats(show_name):
+def get_show_stats(show_name, max_recall=30):
     anime = Anime()
-    anime.build_stats_from_db(show_name)
+    anime.build_stats_from_db(show_name, max_recall)
 
     stats_dict = anime.full_stats
     timestamp = anime.timestamp

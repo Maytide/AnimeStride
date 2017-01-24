@@ -13,6 +13,13 @@ app.controller('statsController', function($scope, $http) {
 	$scope.axis_labels = [0, 0, 0, 0, 0, 0];
 	$scope.values = [12, 19, 3, 5, 2, 3];
 
+	function convert(date_array){
+        for(var i = 0; i < date_array.length; i++){
+            date_array[i] = moment(date_array[i], 'YYYY-MM-DD HH:mm:ss')
+        }
+        return date_array
+    }
+
 	// http://stackoverflow.com/questions/13272406/javascript-string-to-array-conversion
 	$scope.getData = function () {
 	$scope.current_href = window.location.href.toString()
@@ -39,12 +46,12 @@ app.controller('statsController', function($scope, $http) {
     $scope.getData();
 
     $scope.drawChart = function () {
-		var ctx = document.getElementById("myChart");
+		var ctx = document.getElementById("myChart").getContext('2d');
 		var myChart = new Chart(ctx, {
 		    type: 'line',
 		    data: {
 		        // labels: [0, 1, 2, 3, 4, 5],
-		        labels: $scope.axis_labels['timestamp'],
+		        labels: convert($scope.axis_labels['timestamp']),
 		        datasets: [{
 		            label: '# of Votes',
 		            // data: [12, 19, 3, 5, 2, 3],
@@ -53,13 +60,28 @@ app.controller('statsController', function($scope, $http) {
 		    },
 		    options: {
 		        scales: {
-		            yAxes: [{
-		                ticks: {
-		                    beginAtZero: true
-		                }
-		            }]
-		        }
-		    },
+		          xAxes: [{
+		          	// Why does having type: 'time', fail?
+		          	// ANSWER: Have to declare moment script 
+		          	// before chart.js script in the 
+		          	// stats-wrapper.html
+		            type: 'time',
+		            time: {
+		              displayFormats: {
+		                'millisecond': 'MMM DD',
+		                'second': 'MMM DD',
+		                'minute': 'MMM DD',
+		                'hour': 'MMM DD',
+		                'day': 'MMM DD',
+		                'week': 'MMM DD',
+		                'month': 'MMM DD',
+		                'quarter': 'MMM DD',
+		                'year': 'MMM DD',
+		              }
+		            }
+		          }],
+		        },
+		      }
 		});
 	};
 

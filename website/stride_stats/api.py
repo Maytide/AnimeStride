@@ -1,4 +1,5 @@
 import json
+from urllib.request import unquote
 
 from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
@@ -25,7 +26,8 @@ class StatisticsContent(object):
 
 def api_get_show_stats(request, show_name):
     # test_list = get_show_test()
-    stats_dict, timestamp = get_show_stats(show_name)
+    # Use unquote to handle special URL characters
+    stats_dict, timestamp = get_show_stats(unquote(show_name))
 
     chart_data = StatisticsContent(timestamp, stats_dict)
     serializer = StatisticsSerializer(chart_data)
