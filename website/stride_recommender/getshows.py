@@ -18,7 +18,7 @@ def get_shows_random(num_shows=3):
     show_list = [ContentData.objects.all()[randint(0, 1999)] for i in range(num_shows)]
     return show_list
 
-# TODO: Implement method that prevents SQL Injections
+# Done: Implement method that prevents SQL Injections
 def get_shows_url(url, num_shows=3):
     show_list = [ContentData.objects.all()[len(url)] for i in range(num_shows)]
     return show_list
@@ -31,7 +31,8 @@ def get_shows_recommendation(url, num_recommendations=3):
     user = User()
     user.MAL_URL = url
     if user.create_user_show_list_tagged(user.MAL_URL, minimal = True):
-        return SHOW_LIST_TYPES['nonempty'], [ContentData.objects.get(pk = show) for score, show in
-                user.get_user_recommendation(verbose = False, num_recommendations = num_recommendations)]
+        # Method = 'random' selects random db entries to use for kNN
+        return SHOW_LIST_TYPES['nonempty'], [ContentData.objects.get(pk = show) for show, id, score in \
+                user.get_user_recommendation(verbose = False, num_recommendations = num_recommendations, method='random')['top-rated']]
     else:
         return SHOW_LIST_TYPES['empty'], get_shows_random(num_recommendations)

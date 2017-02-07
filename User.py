@@ -266,9 +266,10 @@ class User():
             # print(type(score))
 
         r = Recommender()
-        if recommender == 'c':
-            return r.get_recommendation_c(entry_dict_tagged, verbose = verbose, num_recommendations = num_recommendations, max_users = max_users)
-        elif recommender == 'd':
+        # if recommender == 'c':
+        #     # DOES NOT WORK! Returns list instead of new dict format.
+        #     return r.get_recommendation_c(entry_dict_tagged, verbose = verbose, num_recommendations = num_recommendations, max_users = max_users)
+        if recommender == 'd':
             return r.get_recommendation_d(entry_dict_tagged, verbose=verbose, num_recommendations=num_recommendations,
                                           max_users=max_users, max_shows=max_shows, method=method)
         else:

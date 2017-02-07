@@ -129,7 +129,7 @@ def recommend(user_ratings_vector, num_shows, num_users, ratings_matrix, shows, 
 
     #########################
 
-    corr_sample_size = 15
+    corr_sample_size = 16
 
     # Recommender
     #########################
@@ -233,7 +233,7 @@ def recommend(user_ratings_vector, num_shows, num_users, ratings_matrix, shows, 
 
         user_not_watched = user_not_watched[:5]
         max_diff_unwatched = max_diff_unwatched[:5]
-        recommend_flavors = {'top-rated': user_not_watched, 'top-diff': max_diff_unwatched}
+        recommend_flavors = {'top-rated': user_not_watched, 'top-diff': max_diff_unwatched, 'rmse-generic-prediction': rmse, 'ae-generic-prediction': ae}
 
 
         return recommend_flavors

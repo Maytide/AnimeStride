@@ -2,23 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be5fdea8-7c8c-4345-8647-24dc33cd6ba6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Recommender/RD/RecommenderD.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Recommender/RD/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/stride_recommender/templates/recommender-wrapper.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/stride_recommender/templates/recommender.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Parse MAL.iml" afterPath="$PROJECT_DIR$/.idea/Parse MAL.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Recommender/CreateDFFromDB.py" afterPath="$PROJECT_DIR$/Recommender/CreateDFFromDB.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Recommender/RC/RecommenderC.py" afterPath="$PROJECT_DIR$/Recommender/RC/RecommenderC.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Recommender/Recommender.py" afterPath="$PROJECT_DIR$/Recommender/Recommender.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Recommender/RD/RecommenderD.py" afterPath="$PROJECT_DIR$/Recommender/RD/RecommenderD.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/User.py" afterPath="$PROJECT_DIR$/User.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/master.py" afterPath="$PROJECT_DIR$/master.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride_recommender/api.py" afterPath="$PROJECT_DIR$/website/stride_recommender/api.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride_recommender/getshows.py" afterPath="$PROJECT_DIR$/website/stride_recommender/getshows.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride_recommender/static/js/main.js" afterPath="$PROJECT_DIR$/website/stride_recommender/static/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride_stats/templates/stats-page.html" afterPath="$PROJECT_DIR$/website/stride_stats/templates/stats-page.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/templates/website.html" afterPath="$PROJECT_DIR$/website/templates/website.html" />
     </list>
     <ignored path="Parse MAL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,11 +25,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="sandbox.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sandbox.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sandbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="9" column="58" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="58" />
+            <state relative-caret-position="153">
+              <caret line="13" column="100" lean-forward="false" selection-start-line="13" selection-start-column="83" selection-end-line="13" selection-end-column="100" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/stride_recommender/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="12" column="63" lean-forward="true" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/stride_recommender/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="29" column="37" lean-forward="false" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="api.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/stride_recommender/api.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="101" column="46" lean-forward="false" selection-start-line="101" selection-start-column="46" selection-end-line="101" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getshows.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/stride_recommender/getshows.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="490">
+              <caret line="33" column="47" lean-forward="false" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -51,8 +78,8 @@
       <file leaf-file-name="User.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/User.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="271" column="35" lean-forward="true" selection-start-line="271" selection-start-column="35" selection-end-line="271" selection-end-column="35" />
+            <state relative-caret-position="220">
+              <caret line="245" column="8" lean-forward="false" selection-start-line="245" selection-start-column="8" selection-end-line="245" selection-end-column="8" />
               <folding>
                 <element signature="e#255#881#0" expanded="false" />
                 <element signature="e#971#1792#0" expanded="false" />
@@ -67,8 +94,8 @@
       <file leaf-file-name="Recommender.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Recommender/Recommender.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="57" column="24" lean-forward="true" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
+            <state relative-caret-position="271">
+              <caret line="49" column="64" lean-forward="true" selection-start-line="49" selection-start-column="64" selection-end-line="49" selection-end-column="64" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -89,14 +116,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RecommenderD.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RecommenderD.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Recommender/RD/RecommenderD.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="237" column="0" lean-forward="false" selection-start-line="236" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
+            <state relative-caret-position="397">
+              <caret line="165" column="31" lean-forward="true" selection-start-line="165" selection-start-column="31" selection-end-line="165" selection-end-column="31" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#2988#3320#0" expanded="false" />
                 <element signature="e#3392#3763#0" expanded="false" />
                 <element signature="e#3833#4199#0" expanded="false" />
               </folding>
@@ -110,28 +136,6 @@
             <state relative-caret-position="544">
               <caret line="32" column="15" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="15" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="knn_recommender.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../sandbox/stride samples/knn_recommender.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="784">
-              <caret line="82" column="54" lean-forward="true" selection-start-line="82" selection-start-column="54" selection-end-line="82" selection-end-column="54" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-                <element signature="e#3781#3838#0" expanded="false" />
-                <element signature="e#3888#4978#0" expanded="false" />
-                <element signature="e#6746#7299#0" expanded="false" />
-                <element signature="e#7436#17723#0" expanded="false" />
-                <element signature="e#9095#10107#0" expanded="false" />
-                <element signature="e#10197#10529#0" expanded="false" />
-                <element signature="e#10601#10972#0" expanded="false" />
-                <element signature="e#11042#11409#0" expanded="false" />
-                <element signature="e#11870#16054#0" expanded="false" />
-                <element signature="e#16082#16111#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -228,17 +232,17 @@
         <option value="$PROJECT_DIR$/Anime.py" />
         <option value="$PROJECT_DIR$/website/stride_recommender/api.py" />
         <option value="$PROJECT_DIR$/master.py" />
-        <option value="$PROJECT_DIR$/website/stride_recommender/getshows.py" />
         <option value="$PROJECT_DIR$/../sandbox/stride samples/create_user_show_list_tagged.py" />
         <option value="$PROJECT_DIR$/Recommender/RC/RecommenderC.py" />
         <option value="$PROJECT_DIR$/../sandbox/stride samples/sandbox.py" />
         <option value="$PROJECT_DIR$/FetchMALData/ReadMALShows.py" />
         <option value="$PROJECT_DIR$/../sandbox/stride samples/knn_recommender.py" />
         <option value="$PROJECT_DIR$/Recommender/Recommender.py" />
-        <option value="$PROJECT_DIR$/User.py" />
         <option value="$PROJECT_DIR$/Recommender/CreateDFFromDB.py" />
-        <option value="$PROJECT_DIR$/Recommender/RD/RecommenderD.py" />
+        <option value="$PROJECT_DIR$/User.py" />
         <option value="$PROJECT_DIR$/sandbox.py" />
+        <option value="$PROJECT_DIR$/website/stride_recommender/getshows.py" />
+        <option value="$PROJECT_DIR$/Recommender/RD/RecommenderD.py" />
       </list>
     </option>
   </component>
@@ -841,9 +845,9 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.sandbox" />
-        <item index="1" class="java.lang.String" itemvalue="Python.RecommenderD" />
-        <item index="2" class="java.lang.String" itemvalue="Python.knn_recommender" />
-        <item index="3" class="java.lang.String" itemvalue="Python.ReadMALShows" />
+        <item index="1" class="java.lang.String" itemvalue="Python.ReadMALShows" />
+        <item index="2" class="java.lang.String" itemvalue="Python.RecommenderD" />
+        <item index="3" class="java.lang.String" itemvalue="Python.knn_recommender" />
         <item index="4" class="java.lang.String" itemvalue="Python.sandbox (2)" />
       </list>
     </recent_temporary>
@@ -1072,7 +1076,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485230821171</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Build subrec using kNN instead of collaborative filtering">
+      <created>1486441492852</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1486441492852</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1091,6 +1102,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18229716" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5046875" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17984831" sideWeight="0.4953125" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25460455" sideWeight="0.49479166" order="2" side_tool="false" content_ui="tabs" />
@@ -1103,7 +1115,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17984831" sideWeight="0.4953125" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1177,7 +1188,8 @@
     <MESSAGE value="Working on graphs for displaying stats" />
     <MESSAGE value="Displaying charts based on show data works now" />
     <MESSAGE value="Improved URL handling, and charts now display dated data points properly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved URL handling, and charts now display dated data points properly" />
+    <MESSAGE value="Build subrec using kNN instead of collaborative filtering" />
+    <option name="LAST_COMMIT_MESSAGE" value="Build subrec using kNN instead of collaborative filtering" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1390,38 +1402,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/website/stride_recommender/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="29" column="26" lean-forward="false" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/master.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/stride_recommender/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="4" column="6" lean-forward="false" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/stride_recommender/api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="99" column="27" lean-forward="false" selection-start-line="99" selection-start-column="27" selection-end-line="99" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/stride_recommender/getshows.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="34" column="34" lean-forward="false" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -1474,25 +1458,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FetchMALData/ReadMALShows.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="34" column="51" lean-forward="false" selection-start-line="34" selection-start-column="51" selection-end-line="34" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/sklearn/cross_validation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="861">
           <caret line="1905" column="0" lean-forward="false" selection-start-line="1905" selection-start-column="0" selection-end-line="1905" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Recommender/RC/RecommenderC.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="15" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1516,6 +1485,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/FetchMALData/ReadMALShows.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Recommender/RC/RecommenderC.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="15" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Recommender/CreateDFFromDB.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="427">
@@ -1527,33 +1512,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Recommender/Recommender.py">
+    <entry file="file://$PROJECT_DIR$/website/stride_recommender/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="57" column="24" lean-forward="true" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="340">
+          <caret line="29" column="37" lean-forward="false" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Recommender/RD/RecommenderD.py">
+    <entry file="file://$PROJECT_DIR$/website/stride_recommender/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="237" column="0" lean-forward="false" selection-start-line="236" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#2988#3320#0" expanded="false" />
-            <element signature="e#3392#3763#0" expanded="false" />
-            <element signature="e#3833#4199#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="170">
+          <caret line="12" column="63" lean-forward="true" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/User.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="271" column="35" lean-forward="true" selection-start-line="271" selection-start-column="35" selection-end-line="271" selection-end-column="35" />
+        <state relative-caret-position="220">
+          <caret line="245" column="8" lean-forward="false" selection-start-line="245" selection-start-column="8" selection-end-line="245" selection-end-column="8" />
           <folding>
             <element signature="e#255#881#0" expanded="false" />
             <element signature="e#971#1792#0" expanded="false" />
@@ -1564,11 +1542,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/website/stride_recommender/api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="101" column="46" lean-forward="false" selection-start-line="101" selection-start-column="46" selection-end-line="101" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sandbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="58" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="58" />
+        <state relative-caret-position="153">
+          <caret line="13" column="100" lean-forward="false" selection-start-line="13" selection-start-column="83" selection-end-line="13" selection-end-column="100" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/stride_recommender/getshows.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="33" column="47" lean-forward="false" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Recommender/Recommender.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="49" column="64" lean-forward="true" selection-start-line="49" selection-start-column="64" selection-end-line="49" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Recommender/RD/RecommenderD.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="165" column="31" lean-forward="true" selection-start-line="165" selection-start-column="31" selection-end-line="165" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#3392#3763#0" expanded="false" />
+            <element signature="e#3833#4199#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
