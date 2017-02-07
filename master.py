@@ -21,6 +21,11 @@ UNMODELED_DATABASES = {
     }
 }
 
+SHOW_LIST_TYPES = {
+    'empty' : 'empty',
+    'nonempty' : 'nonempty'
+}
+
 # Make this a lot better
 def string_SQL_safe(sql_string):
     if 'drop table' not in sql_string:

@@ -8,6 +8,7 @@ from django.conf import settings
 # Remove the path after importing is complete.
 sys.path.append(settings.PROJECT_ROOT)
 from User import User
+from master import string_SQL_safe, SHOW_LIST_TYPES
 sys.path.remove(settings.PROJECT_ROOT)
 
 from .models import ContentData
@@ -24,11 +25,13 @@ def get_shows_url(url, num_shows=3):
 
 def get_shows_recommendation(url, num_recommendations=3):
     # Measure against SQL Injections:
-    if 'drop table' in url:
+    if not string_SQL_safe(url):
         return [ContentData.objects.get(pk = 'Boku no Pico') for i in range(num_recommendations)]
 
     user = User()
     user.MAL_URL = url
-    user.create_user_show_list_tagged(user.MAL_URL, minimal = True)
-
-    return [ContentData.objects.get(pk = show) for score, show in user.get_user_recommendation(verbose=False, num_recommendations = num_recommendations)]
+    if user.create_user_show_list_tagged(user.MAL_URL, minimal = True):
+        return SHOW_LIST_TYPES['nonempty'], [ContentData.objects.get(pk = show) for score, show in
+                user.get_user_recommendation(verbose = False, num_recommendations = num_recommendations)]
+    else:
+        return SHOW_LIST_TYPES['empty'], get_shows_random(num_recommendations)

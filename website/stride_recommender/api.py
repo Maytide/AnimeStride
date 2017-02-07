@@ -99,8 +99,12 @@ def api_get_shows_recommendation(request, num_shows=3):
 
         if form.is_valid():
             cd = form.cleaned_data
-            show_list = get_shows_recommendation(cd.get('url'), num_recommendations=4)
-            serializer = ContentDataSerializer(show_list, many=True)
+            list_type, show_list = get_shows_recommendation(cd.get('url'), num_recommendations=4)
+            # Create special case for this later
+            if list_type == 'empty':
+                serializer = ContentDataSerializer(show_list, many=True)
+            elif list_type == 'nonempty':
+                serializer = ContentDataSerializer(show_list, many=True)
             # return show_list
         else:
             show_list = get_shows_random(num_shows=10)

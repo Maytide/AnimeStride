@@ -24,13 +24,6 @@ app.controller('recommenderController', function($scope, $http) {
         });
     };
     $scope.postData = function () {
-    // $http.post('http://127.0.0.1:8000/stride_recommender/api/url/').
-	// $http.post('http://127.0.0.1:8000/stride_recommender/').
- //        then(function(response) {
- //            $scope.shows = response.data;
- //        });
- //    };
-////////////////
         $http({
             // url: "http://127.0.0.1:8000/stride_recommender/",
             url: window.location.href,
@@ -48,29 +41,3 @@ app.controller('recommenderController', function($scope, $http) {
 
 
 });
-
-// $http.get('/api/random').then(function(result) {
-//   angular.forEach(result.data, function(item) {
-//     $scope.shows.push(item);
-//   });
-
-// var app = angular.module('myApp', []);
-//     app.controller('cardsListController', function($scope, $http) {
-//         $http.get("http://rest-service.guides.spring.io/greeting")
-//                 .success(function(response) {
-//                     $scope.shows = response.data;
-//                 });
-//     });
-
-// var app = angular.module('myApp', []);
-// app.controller('cardsListController', function($scope) {
-// $scope.shows = []
-
-// $http.get('/api/random').then(function(result) {
-//   return angular.forEach(result.data, function(item) {
-//     return $scope.shows.push(item);
-//   });
-// });
-
-
-//         });

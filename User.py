@@ -243,7 +243,7 @@ class User():
 
     # Enforce that recommendations must be made from entering a new user from the web:
     # User data cannot be taken from database for this purpose.
-    def get_user_recommendation(self, recommender = 'c', verbose = False, num_recommendations = 5):
+    def get_user_recommendation(self, recommender = 'c', verbose = False, num_recommendations = 5, max_users=100, max_shows=500, method='generic'):
         if self.MAL_URL == '':
             raise Exception('User has no MAL URL defined.')
         entry_dict_tagged = dict()
@@ -259,13 +259,21 @@ class User():
 
 
         for score, anime_title in self.entry_list_tagged:
-            score = score[1] if score[1] != '-' else '0'
+            score = score[1] if score[1] != '-' and score[1] != 'N/A' else '0'
             # print(score)
             anime_title = anime_title[1]
-            entry_dict_tagged[anime_title] = score
+            entry_dict_tagged[anime_title] = int(score)
+            # print(type(score))
 
         r = Recommender()
-        return r.get_recommendation_c(entry_dict_tagged, verbose = verbose, num_recommendations = num_recommendations)
+        if recommender == 'c':
+            return r.get_recommendation_c(entry_dict_tagged, verbose = verbose, num_recommendations = num_recommendations, max_users = max_users)
+        elif recommender == 'd':
+            return r.get_recommendation_d(entry_dict_tagged, verbose=verbose, num_recommendations=num_recommendations,
+                                          max_users=max_users, max_shows=max_shows, method=method)
+        else:
+            return r.get_recommendation_d(entry_dict_tagged, verbose=verbose, num_recommendations=num_recommendations,
+                                          max_users=max_users, max_shows=max_shows, method=method)
 
 
 
