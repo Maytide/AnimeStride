@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+# Did not fix css not loading:
+# http://stackoverflow.com/questions/39670443/django-1-9-7-admin-pages-css-loaded-but-not-rendering
+# import mimetypes
+# mimetypes.add_type("text/css", ".css", True)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..'))
@@ -40,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'home',
     'stride_recommender',
     'stride_stats',
 ]
@@ -135,7 +141,8 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    '/static/',
+    'templates/static/',
     'stride_recommender/templates/static',
-    'stride_stats/templates/static'
+    'stride_stats/templates/static',
+    'home/templates/static',
 ]

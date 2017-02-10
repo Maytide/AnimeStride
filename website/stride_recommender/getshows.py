@@ -23,7 +23,7 @@ def get_shows_url(url, num_shows=3):
     show_list = [ContentData.objects.all()[len(url)] for i in range(num_shows)]
     return show_list
 
-def get_shows_recommendation(url, num_recommendations=3):
+def get_shows_recommendation(url, num_recommendations=3, rec_type = 'top-rated'):
     # Measure against SQL Injections:
     if not string_SQL_safe(url):
         return [ContentData.objects.get(pk = 'Boku no Pico') for i in range(num_recommendations)]
@@ -33,6 +33,6 @@ def get_shows_recommendation(url, num_recommendations=3):
     if user.create_user_show_list_tagged(user.MAL_URL, minimal = True):
         # Method = 'random' selects random db entries to use for kNN
         return SHOW_LIST_TYPES['nonempty'], [ContentData.objects.get(pk = show) for show, id, score in \
-                user.get_user_recommendation(verbose = False, num_recommendations = num_recommendations, method='random')['top-rated']]
+                user.get_user_recommendation(verbose = False, num_recommendations = num_recommendations, method='random')[rec_type]]
     else:
         return SHOW_LIST_TYPES['empty'], get_shows_random(num_recommendations)
