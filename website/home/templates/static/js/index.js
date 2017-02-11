@@ -11,9 +11,11 @@ app.config(['$httpProvider', function($httpProvider) {
 }]);
 
 app.controller('displayController', function($scope, $http) {
+  $scope.testvar = window.location.protocol + '//' + window.location.hostname + '/stride_recommender/api/random/' + ' ' + window.location.href;
 
 	$scope.getData = function () {
-	$http.get('http://127.0.0.1:8000/stride_recommender/api/random/').
+  $http.get(window.location.href + 'stride_recommender/api/random/').
+	// $http.get('http://127.0.0.1:8000/stride_recommender/api/random/').
       then(function(response) {
           $scope.shows = response.data;
       });

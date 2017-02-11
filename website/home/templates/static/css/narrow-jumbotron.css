@@ -1,3 +1,7 @@
+li {
+  list-style: none;
+}
+
 /* Space out content a bit */
 .main {
   padding-top: 1.5rem;
@@ -7,7 +11,9 @@
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
 
-.display,
+.display{
+
+}
 .description{
   padding-right: 0.5rem;
   padding-left: 0.5rem;
@@ -20,6 +26,12 @@
 
 .btn-main{
     margin:0px auto;
+}
+
+.thumbnail img {
+    height: 100px;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 /* Customize container */
@@ -46,14 +58,27 @@
 .display {
   margin: 3rem 0;
 }
-.display p + h4 {
+.display p + h4 + li{
   margin-top: 1.5rem;
+}
+
+.row-display {
+  margin-top: 10px;
+}
+
+.row-display:hover {
+  color: rgb(49, 176, 213);
+}
+
+.show-name {
+  padding-bottom: 5px;
+  border-bottom: .05rem solid #e5e5e5;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 48em) {
   /* Remove the padding we set earlier */
-  
+
   .display,
   .description{
     padding-right: 0;

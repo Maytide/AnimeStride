@@ -4,7 +4,7 @@
 
 <div class="container">
 <!--    Load navbar-->
-    <div id="navbar"></div>
+    
 
     <div class="jumbotron">
         <h1 class="display-3">Jumbotron heading</h1>
@@ -23,12 +23,22 @@
             <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
         </div>
     </div>
+    
     {% verbatim %}
+<!--    {{testvar}}-->
     <div class="row display">
         
         <div class="col-lg-6">
             <div ng-repeat="show in shows">
-                <li>{{show.name}}</li>
+                <div class="row row-display">
+                    <div class="col-3">
+                        <a href="{{show.anime_url}}" class="thumbnail"><img src="{{show.image_url}}" alt=""></a>
+                    </div>
+                    <div class="col-9">
+                        <h6 class="show-name">{{show.name}}</h6>
+                    </div>
+
+                </div>
             </div>
         </div>
 
