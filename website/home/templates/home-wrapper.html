@@ -5,7 +5,7 @@
 {% block app-html %}
 
 
-<div class="main">
+<div class="main" ng-app="displayApp" ng-controller="displayController">
     {% block home %}
     {% endblock %}
 </div>
@@ -14,4 +14,8 @@
 
 {% block app-css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/narrow-jumbotron.css' %}"/>
+{% endblock %}
+
+{% block app-js %}
+    <script src="{% static 'js/index.js' %}"></script>
 {% endblock %}

@@ -14,9 +14,18 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
     {% block app-css %}
     {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}"/>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script> 
+        $(function(){
+          $("#navbar").load("{% static 'html/navbar.html' %}"); 
+        });
+    </script> 
+    {% block app-js %}
+    {% endblock %}
 </head>
 
 <body>
