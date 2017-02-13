@@ -1,5 +1,7 @@
 {% extends 'home-wrapper.html' %}
 
+{% load staticfiles %}
+
 {% block home %}
 
 <div class="container">
@@ -24,22 +26,39 @@
         </div>
     </div>
     
-    {% verbatim %}
+    
 <!--    {{testvar}}-->
     <div class="row display">
         
         <div class="col-lg-6">
+            <div class="row row-category-name">
+                <div class="col-3">
+                    <a><img class="icon" src="{% static 'img/icons/icon-updoot.png' %}"></a>
+                </div>
+                <div class="col-9">
+                    <h4 class="category-name">Rising</h4>
+                </div>
+            </div>
+            {% verbatim %}
             <div ng-repeat="show in shows">
                 <div class="row row-display">
                     <div class="col-3">
-                        <a href="{{show.anime_url}}" class="thumbnail"><img src="{{show.image_url}}" alt=""></a>
+<!--
+                        Use ng-src so that django doesn't throw a 404
+                        (Note that using src works though - Angular renders it, but
+                        doesn't remove the {{show.imageurl}}, so django tries to render
+                        as well.)
+-->
+                        <a href="{{show.anime_url}}" class="thumbnail"><img ng-src="{{show.image_url}}" alt=""></a>
                     </div>
                     <div class="col-9">
-                        <h6 class="show-name">{{show.name}}</h6>
+                        <h6 class="thumbnail-name">{{show.name}}</h6>
+                        <p class="thumbnail-genres">{{show.genres}}</p>
                     </div>
 
                 </div>
             </div>
+            {% endverbatim %}
         </div>
 
         <div class="col-lg-6">
@@ -53,7 +72,7 @@
             <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
         </div>
     </div>
-    {% endverbatim %}
+    
 
     <footer class="footer">
         <p>&copy; Company 2017</p>
