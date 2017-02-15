@@ -2,6 +2,7 @@ import sqlite3
 import urllib.request as urllib
 from collections import OrderedDict, defaultdict
 from time import gmtime, strftime
+from datetime import datetime
 
 from master import UNMODELED_DATABASES, string_SQL_safe
 from FetchMALData.ParseShow import ParseShowContentInHTMLTag, ParseShowContentInHTMLElement, ParseShowInformation, ParseShowStatistics, ParseShowRelated
@@ -73,8 +74,30 @@ class Anime():
                 # Yes, type has to be special and use i+2.
                 p_data[type] = data[i+2]
             elif data[i] == 'Episodes:':
+                if data[i+1] == 'Unknown':
+                    data[i+1] = 0
+
+                try:
+                    data[i+1] = int(data[i+1])
+                except Exception as ex:
+                    data[i+1] = 0
+
                 p_data[episodes] = data[i+1]
             elif data[i] == 'Aired:':
+                air_datetime = data[i+1]
+
+                if 'to' in air_datetime:
+                    air_datetime = air_datetime.split('to')[0].strip()
+
+                try:
+                    # print(air_datetime)
+                    datetime_obj = datetime.strptime(air_datetime, '%b %d, %Y')
+                except Exception as e:
+                    datetime_obj = datetime.strptime('Jan 1, 1970', '%b %d, %Y')
+                    pass
+
+                data[i+1] = int(datetime_obj.timestamp())
+
                 p_data[air_date] = data[i+1]
             elif data[i] == 'Licensors:':
                 j = i + 1
@@ -120,14 +143,54 @@ class Anime():
 
         for i in range(len(data)):
             if data[i] == score:
+                if data[i+2] == 'N/A':
+                    data[i+2] = 0
+
+                try:
+                    data[i+2] = float(data[i+2])
+                except Exception as ex:
+                    data[i+2] = 0
+
                 p_data[score] = data[i+2]
             elif data[i] == rank:
+                if data[i+1] == 'N/A':
+                    data[i+1] = 0
+
+                try:
+                    if data[i+1][0] == '#':
+                        data[i+1] = int(data[i+1][1:])
+                except Exception as ex:
+                    data[i+1] = -1
+
                 p_data[rank] = data[i+1]
             elif data[i] == members:
+                data[i+1] = data[i+1].replace(',','')
+
+                try:
+                    data[i+1] = int(data[i+1])
+                except Exception as ex:
+                    data[i+1] = -1
+
                 p_data[members] = data[i+1]
             elif data[i] == popularity:
+                if data[i+1] == 'N/A':
+                    data[i+1] = -1
+
+                try:
+                    if data[i+1][0] == '#':
+                        data[i+1] = int(data[i+1][1:])
+                except Exception as ex:
+                    data[i+1] = -1
+
                 p_data[popularity] = data[i+1]
             elif data[i] == favorites:
+                data[i+1] = data[i+1].replace(',','')
+
+                try:
+                    data[i+1] = int(data[i+1])
+                except Exception as ex:
+                    data[i+1] = -1
+
                 p_data[favorites] = data[i+1]
 
         p_data = self.trim_output(p_data)
@@ -232,7 +295,7 @@ class Anime():
         db_list = []
         # print(data.items())
         for key, value in data.items():
-            #Function item in ordered dict data?
+            # Function item in ordered dict data?
             # print(value)
             if key != 'key':
                 if type(value) == type([]):
@@ -302,8 +365,8 @@ class Anime():
                   (anime_url text,
                   name text PRIMARY KEY, image_url text, synopsis text,
                   english_name text, synonyms text, japanese_name text,
-                  media text, episodes text, aired text, broadcast text, licensors text, studios text, source text, genres text, duration text, rating text,
-                  score text, ranked text, members text, popularity text, favourites text,
+                  media text, episodes INTEGER, aired INTEGER, broadcast text, licensors text, studios text, source text, genres text, duration text, rating text,
+                  score REAL, ranked INTEGER, members INTEGER, popularity INTEGER, favourites INTEGER,
                   adaptation text, alternative_version text, side_story text, spinoff text, prequel text, sequel text, summary text)''')
                 # Content: Name, pv image URL, synopsis
                 # Name: English, synonyms, jp

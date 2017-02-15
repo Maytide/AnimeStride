@@ -3,23 +3,35 @@
 {% block urlbar %}
     
 <div class="row row-centered">
-    <div class="col-md-3 col-centered">
-
-    </div>
-
-    <div class="col-md-6 col-centered">
-        <div class="url-bar-box">
-            <h3>Enter MAL Profile:</h3>
-            <form method="POST" class="post-form url-bar">
-                <input type="text" name="url" class="form-control" ng-model="formData.url">
-                {% csrf_token %} 
-<!--                {{ form.as_p }}-->
-                <button type="submit" class="save btn btn-primary" ng-click="postData()">Get Recommendations</button>
-            </form>
+    <div class="container">
+        <div class="page-desc">
+        
+        <h4>How does this work?</h4>
+        <p>(Insert description here)</p>
         </div>
     </div>
-    <div class="col-md-3 col-centered">
+    
+    <div class="container">
 
+        <p class="text-muted">(Enter direct link to 'All anime' section if necessary! ex. if your /animelist defaults to 'Currently watching', recommender will not work properly!)</p>
+        <div class="col-md-12 col-centered">
+            <div class="search-form">
+    <!--            <h3>Enter MAL Profile:</h3>-->
+                <form method="POST" class="post-form url-bar">
+                    <div class="search-bar">
+                        <input type="text" name="url" class="form-control" ng-model="formData.url" placeholder="Your MAL Profile ">
+                        {% csrf_token %} 
+        <!--                {{ form.as_p }}-->
+                        <button type="submit" class="save btn btn-info" ng-click="postData()">Get Recommendations</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <!--
+        <div class="col-md-3 col-centered">
+
+        </div>
+    -->
     </div>
 </div>
     
@@ -28,28 +40,32 @@
 {% block showdisplay %}
 
 {% verbatim %}
-<div class="show-list">
-<!--    Show {{shows.id}} {{shows.content}} ABCDE-->
-    <div ng-repeat="show in shows">
-        <div class="row row-centered">
-            <div class="col-md-6 col-centered">
-                <div class="row row-centered">
-                    <div class="col-md-4">
-                        <div class="thumbnail">
-                            <a href="{{show.anime_url}}">
-                                <img src={{show.image_url}} alt="Lights" style="width:100%">
-                                <div class="caption">
-                                    <p>{{show.name}}</p>
-                                </div>
-                            </a>
+<div class="container">
+    <div class="row display">
+        <div class="col-lg-12">
+            <div ng-repeat="show in shows">
+                <div class="row row-display row-preview">
+                    <div class="col-3">
+            <!--
+                        Use ng-src so that django doesn't throw a 404
+                        (Note that using src works though - Angular renders it, but
+                        doesn't remove the {{show.imageurl}}, so django tries to render
+                        as well.)
+            -->
+                        <a href="{{show.anime_url}}" class="preview"><img ng-src="{{show.image_url}}" alt=""></a>
+                    </div>
+                    <div class="col-9">
+                        <div class="preview-head-wrapper">
+                            <h6 class="preview-name">{{show.name}}</h6>
+                            <p class="preview-studios">{{show.studios}}</p>
+                            <p class="preview-genres">{{show.genres}}</p>
+                        </div>
+                        <div class="preview-body-wrapper">
+                            <p class="preview-synopsis">{{show.synopsis}}</p>
+                        
                         </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="description">
-                            <p>{{show.synopsis}}</p>
-                        </div>
 
-                    </div>
                 </div>
             </div>
         </div>

@@ -41,7 +41,7 @@
             </div>
             {% verbatim %}
             <div ng-repeat="show in shows">
-                <div class="row row-display">
+                <div class="row row-display row-thumbnail">
                     <div class="col-3">
 <!--
                         Use ng-src so that django doesn't throw a 404
@@ -52,7 +52,9 @@
                         <a href="{{show.anime_url}}" class="thumbnail"><img ng-src="{{show.image_url}}" alt=""></a>
                     </div>
                     <div class="col-9">
-                        <h6 class="thumbnail-name">{{show.name}}</h6>
+                        <div class="thumbnail-head-wrapper">
+                            <h6 class="thumbnail-name">{{show.name}}</h6>
+                        </div>
                         <p class="thumbnail-genres">{{show.genres}}</p>
                     </div>
 
