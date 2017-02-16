@@ -2,18 +2,26 @@
 
 {% block urlbar %}
     
-<div class="row row-centered">
-    <div class="container">
-        <div class="page-desc">
-        
-        <h4>How does this work?</h4>
-        <p>(Insert description here)</p>
-        </div>
-    </div>
-    
-    <div class="container">
 
+<div class="container">
+    <div class="page-desc">
+
+        <h4>How does this work?</h4>
+        <p>Your scored entries are compared to other users, and we find what users similar to you liked. Check out the technical description here.</p>
+        
+        <p>There are currently a few bugs, and some requirements for this to work properly. You can find them here.</p>
+        
+        <p>All data such as descriptions and images from MAL.</p>
+    </div>
+</div>
+    
+<div class="container">
+    <div class="page-desc">
+        <h4>Try it out!</h4>
         <p class="text-muted">(Enter direct link to 'All anime' section if necessary! ex. if your /animelist defaults to 'Currently watching', recommender will not work properly!)</p>
+        </div>
+    <div class="row row-centered">
+        
         <div class="col-md-12 col-centered">
             <div class="search-form">
     <!--            <h3>Enter MAL Profile:</h3>-->
@@ -57,8 +65,16 @@
                     <div class="col-9">
                         <div class="preview-head-wrapper">
                             <h6 class="preview-name">{{show.name}}</h6>
-                            <p class="preview-studios">{{show.studios}}</p>
-                            <p class="preview-genres">{{show.genres}}</p>
+                            <div class="row">
+                                <div class="col-11">
+                                    <p class="preview-studios">{{show.studios}}</p>
+                                    <p class="preview-genres">{{show.genres}}</p>
+                                </div>
+                                <div class="col-1">
+<!--                                    Add MAL icon here?-->
+<!--                                    Trouble with adding static files inside a verbatim tag.-->
+                                </div>
+                            </div>
                         </div>
                         <div class="preview-body-wrapper">
                             <p class="preview-synopsis">{{show.synopsis}}</p>

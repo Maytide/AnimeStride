@@ -1,36 +1,34 @@
 {% extends 'stats-wrapper.html' %}
-<!--This part of the site does not need to be dynamic - no need for Angular-->
 
-{% block textbox %}
+{% load staticfiles %}
 
-
+{% block sub-js %} 
+<script type="text/javascript" src="{% static 'js/stats.js' %}"></script>
 {% endblock %}
 
 {% block body %}
-{% for show in shows %}
-    
-    <div class="row row-centered">
-        <div class="col-md-6 col-centered">
-            <div class="row row-centered">
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <a href="{{show.anime_url}}">
-                            <img src={{show.image_url}} alt="Lights" style="width:100%">
-                            <div class="caption">
-                                <p>{{show.name}}</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="description">
-                        <p>{{show.synopsis}}</p>
-                    </div>
 
-                </div>
-            </div>
-        </div>
+<div class="container">
+    <div ng-app="statsApp" ng-controller="statsController">
+        {% verbatim %}
+        <table class="table-striped table-responsive table-panel">
+            <thead>
+            </thead>
+            
+            <tbody>
+                <tr ng-repeat="show in shows">
+                    <td class="col-1">
+                        <div class="panel">
+                            <a href="{{show.anime_url}}"><img ng-src="{{show.image_url}}" alt=""></a>
+                        </div>
+                    </td>
+                    <td class="col-8">{{show.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+        {% endverbatim %}
     </div>
+</div>
 
-{% endfor %}
+
 {% endblock %}

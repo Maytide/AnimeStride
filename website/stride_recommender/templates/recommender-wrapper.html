@@ -2,13 +2,19 @@
 
 {% load staticfiles %}
 
+{% block app-js %}
+
+<script src="{% static 'js/main.js' %}"></script>
+
+{% endblock %}
+
 {% block app-html %}
 
 
 <div class="recommender" ng-app="recommenderApp" ng-controller="recommenderController" >
 
     
-    <script src="{% static 'js/main.js' %}"></script>
+    
     
 <!--
     {% verbatim %}

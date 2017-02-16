@@ -1,0 +1,184 @@
+li {
+  list-style: none;
+}
+
+/* Space out content a bit */
+.main {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.form-control{
+  margin-bottom: 10px;
+}
+
+.display{
+
+}
+.description{
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.display,
+.description {
+    padding-bottom: 2rem;
+}
+
+.btn-main{
+    margin:0px auto;
+}
+
+
+/* Customize container */
+@media (min-width: 48em) {
+  .container {
+    max-width: 46rem;
+  }
+}
+.container-narrow > hr {
+  margin: 2rem 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: .05rem solid #e5e5e5;
+}
+.jumbotron .btn {
+  padding: .75rem 1.5rem;
+  font-size: 1.5rem;
+}
+
+.icon {
+  max-height: 50px;
+  max-width: 50px;
+}
+
+.page-desc {
+  padding-top: .75rem;
+}
+
+.search-bar input {
+  display:inline-block; width:495px;
+}
+
+.search-bar button {
+  display:inline-block;
+}
+
+/* Supporting marketing content */
+.display {
+  margin: 3rem 0;
+}
+.display p + h4 + li{
+  margin-top: 1.5rem;
+}
+
+.row-display {
+  margin-top: 10px;
+  max-height: 230px;
+}
+
+.row-display.row-preview {
+  min-height: 220px;
+}
+
+.row-display:hover .preview-head-wrapper{
+  color: rgb(49, 176, 213);
+}
+
+.row-display:hover .thumbnail-head-wrapper{
+  color: rgb(49, 176, 213);
+}
+
+
+.row-category-name {
+  font-weight: 650;
+  padding-bottom: 10px;
+  border-bottom: .05rem solid #aaaaaa;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.category-name {
+
+}
+
+.thumbnail-name {
+  padding-bottom: 5px;
+  border-bottom: .05rem solid #e5e5e5;
+  line-height: 1.35;
+}
+.thumbnail-genres {
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.thumbnail img {
+    height: 100px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.preview-head-wrapper {
+  border-bottom: .05rem solid #e5e5e5;
+}
+
+.preview-name {
+  margin-bottom: 0.6rem;
+  font-size: 20px;
+  line-height: 1;
+}
+.preview-genres,
+.preview-studios {
+  margin-bottom: 0.4rem;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.preview-genres {
+  margin-bottom: 0.5rem;
+}
+
+.preview-body-wrapper {
+  overflow: auto;
+  max-height: 125px;
+  color: rgb(108,108,108);
+}
+
+.preview-synopsis {
+  font-size: 14px;
+
+}
+
+.preview img {
+  width: 225px;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.table-panel tr{
+  height: 150px;
+}
+
+.panel img {
+  height: 150px;
+}
+
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 48em) {
+  /* Remove the padding we set earlier */
+
+  .display,
+  .description{
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}

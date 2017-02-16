@@ -8,7 +8,7 @@ from .api import api_get_show_test
 
 def index(request):
     show_list = None
-    # request.method should always be POST?
+
 
     if request.method == "POST":
         pass

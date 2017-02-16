@@ -22,6 +22,18 @@ def get_show_stats(show_name, max_recall=30):
     return stats_dict, timestamp
 
 
+def get_shows_popularity(num_shows=50):
+
+    try:
+        num_shows_ = int(num_shows)
+    except Exception as ex:
+        num_shows_ = 50
+
+    show_list = ContentData.objects.order_by('popularity')[:num_shows_]
+    # print(show_list)
+
+    return show_list
+
 
 ###################################
 # Test methods

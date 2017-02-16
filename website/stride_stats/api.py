@@ -4,8 +4,8 @@ from urllib.request import unquote
 from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
 
-from .getshows import get_show_test, get_show_test2, get_show_stats
-from .serializers import StatisticsSerializer, StatisticsListSerializer
+from .getshows import get_show_test, get_show_test2, get_show_stats, get_shows_popularity
+from .serializers import StatisticsSerializer, StatisticsListSerializer, ContentDataSerializer
 
 
 class JSONResponse(HttpResponse):
@@ -34,6 +34,18 @@ def api_get_show_stats(request, show_name):
 
     return JSONResponse(serializer.data)
     # return JSONResponse(json.dumps({'values': stats_dict, 'axis_labels': timestamp}))
+
+
+def api_get_shows_popularity(request, num_shows):
+    show_list = get_shows_popularity(num_shows=num_shows)
+
+    serializer = ContentDataSerializer(show_list, many=True)
+
+    return JSONResponse(serializer.data)
+
+###################################
+# Test methods
+
 
 def api_get_show_test(request, show_name):
     # test_list = get_show_test()

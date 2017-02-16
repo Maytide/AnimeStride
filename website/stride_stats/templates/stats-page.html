@@ -1,36 +1,44 @@
 {% extends 'stats-wrapper.html' %}
+
 {% load staticfiles %}
 
+{% block sub-js %}
 
+<script type="text/javascript" src="{% static 'js/show-chart.js' %}"></script>
+
+{% endblock %}
 
 {% block body %}
-
-<div class="row row-centered">
-    <div class="col-md-6 col-centered">
+<div class="container">
+    <div class="stats" ng-app="chartApp" ng-controller="chartController">
         <div class="row row-centered">
-            
-        </div>
-    </div>
-</div>
+            <div class="col-md-6 col-centered">
+                <div class="row row-centered">
 
-
-<div class="row row-centered">
-    <div class="col-md-6 col-centered">
-        <div class="row row-centered">
-<!--            Chart.js scales to parent element size-->
-<!--            http://stackoverflow.com/questions/28162810/why-is-chart-js-canvas-not-respecting-the-padding-of-the-container-element-->
-            {% verbatim %}
-            <h1>Show statistics for {{path_name}}</h1>
-            {% endverbatim %}
-            <div>
-                <canvas class="chart-container" id="myChart"></canvas>
+                </div>
             </div>
-            <script type="text/javascript" src="{% static 'js/show-chart.js' %}"></script>
         </div>
-        <div class="row row-centered">
+
+        <div class="container">
+            <div class="row row-centered">
+                <div class="col-md-6 col-centered">
+                    <div class="row row-centered">
+            <!--            Chart.js scales to parent element size-->
+            <!--            http://stackoverflow.com/questions/28162810/why-is-chart-js-canvas-not-respecting-the-padding-of-the-container-element-->
+                        {% verbatim %}
+                        <h1>Show statistics for {{path_name}}</h1>
+                        {% endverbatim %}
+                        <div>
+                            <canvas class="chart-container" id="myChart"></canvas>
+                        </div>
+
+                    </div>
+                    <div class="row row-centered">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 
 {% endblock %}

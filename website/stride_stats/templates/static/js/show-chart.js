@@ -1,4 +1,4 @@
-var app = angular.module('statsApp', []);
+var app = angular.module('chartApp', []);
 
 // Required for csrf
 // http://stackoverflow.com/questions/18156452/django-csrf-token-angularjs
@@ -7,7 +7,7 @@ app.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 }]);
 
-app.controller('statsController', function($scope, $http) {
+app.controller('chartController', function($scope, $http) {
 
 	$scope.test_variable = 0;
 	$scope.axis_labels = [0, 0, 0, 0, 0, 0];
