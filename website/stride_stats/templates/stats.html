@@ -11,18 +11,66 @@
 <div class="container">
     <div ng-app="statsApp" ng-controller="statsController">
         {% verbatim %}
-        <table class="table-striped table-responsive table-panel">
+        <table class="table-striped table table-panel">
             <thead>
+                <tr class="row row-panel-label">
+                    <td class="col-1 col-unpad"></td>
+                    <td class="col-5">
+                        <h5>Information</h5>
+                    </td>
+                    <td class="col-2">
+                        <h5>Rating</h5>
+                    </td>
+                    <td class="col-2">
+                        <h5>Genres</h5>
+                    </td>
+                    <td class="col-2">
+                        <h5>Studios</h5>
+                    </td>
+                </tr>
             </thead>
             
             <tbody>
-                <tr ng-repeat="show in shows">
-                    <td class="col-1">
-                        <div class="panel">
+                <tr class="row row-display row-panel" ng-repeat="show in shows">
+                    <td class="col-1 col-unpad">
+                        <div class="panel-img-wrapper">
                             <a href="{{show.anime_url}}"><img ng-src="{{show.image_url}}" alt=""></a>
                         </div>
                     </td>
-                    <td class="col-8">{{show.name}}</td>
+                    <td class="col-5">
+                        <div class="panel-head-wrapper">
+                            <a class="href-colorless" ng-href="{{show.stride_url}}"><h6 class="panel-name">{{show.name}}</h6></a>
+                            <span ng-class-even="'panel-line-even'" ng-class-odd="'panel-line-odd'"></span>
+                        </div>
+                        <div class="panel-body-wrapper">
+                            <p class="panel-members">{{show.members}} MyAnimeList users</p>
+                            <p class="panel-media">{{show.media}} ({{show.episodes}} episodes)</p>
+                            <p class="panel-aired">Aired: {{show.aired}}</p>
+                            
+                        </div>
+                    </td>
+                    <td class="col-2 panel-box-container">
+                        <span class=""><h6>{{show.score}}</h6></span>
+                    
+                    </td>
+                    <td class="col-2 panel-box-container">
+<!--                        // {{show.genres}}-->
+                        <span class="" ng-repeat="genre in show.genres track by $index">
+                            <span class="text-white text-genre-box">
+                                <span class="panel-box-padding">{{genre}}</span>
+                            </span>
+                        </span>
+                        
+                    </td>
+                    <td class="col-2 panel-box-container">
+<!--                        {{show.studios}}-->
+                        <span class="" ng-repeat="studio in show.studios track by $index">
+                            <span class="text-white text-studio-box">
+                                <span class="panel-box-padding">{{studio}}</span>
+                            </span>
+                        </span>
+                    </td>
+                    
                 </tr>
             </tbody>
         </table>

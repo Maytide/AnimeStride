@@ -2,6 +2,25 @@ li {
   list-style: none;
 }
 
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.1);
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: rgba(0,0,0,.03);
+}
+
+.text-white {
+  color: white;
+}
+
+.href-colorless {
+  color:rgb(41, 43, 44);
+}
+
+.href-colorless:hover {
+  color:inherit;
+}
 /* Space out content a bit */
 .main {
   padding-top: 1.5rem;
@@ -22,20 +41,29 @@ li {
 
 .display,
 .description {
-    padding-bottom: 2rem;
+  padding-bottom: 2rem;
 }
 
 .btn-main{
-    margin:0px auto;
+  margin:0px auto;
+}
+
+.col-unpad {
+  padding-top: 0.75rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 0.75rem !important;
+
 }
 
 
 /* Customize container */
-@media (min-width: 48em) {
+@media (min-width: 60em) {
   .container {
-    max-width: 46rem;
+    max-width: 58rem;
   }
 }
+
 .container-narrow > hr {
   margin: 2rem 0;
 }
@@ -76,21 +104,10 @@ li {
 }
 
 .row-display {
-  margin-top: 10px;
-  max-height: 230px;
+
+  max-height: 280px;
 }
 
-.row-display.row-preview {
-  min-height: 220px;
-}
-
-.row-display:hover .preview-head-wrapper{
-  color: rgb(49, 176, 213);
-}
-
-.row-display:hover .thumbnail-head-wrapper{
-  color: rgb(49, 176, 213);
-}
 
 
 .row-category-name {
@@ -107,6 +124,7 @@ li {
 }
 
 .thumbnail-name {
+  font-size: 16px;
   padding-bottom: 5px;
   border-bottom: .05rem solid #e5e5e5;
   line-height: 1.35;
@@ -117,9 +135,26 @@ li {
 }
 
 .thumbnail img {
-    height: 100px;
+    height: 70px;
     max-height: 100%;
     max-width: 100%;
+}
+
+.thumbnail-img-wrapper {
+  min-width:65px;
+}
+
+.row-display:hover .thumbnail-head-wrapper{
+  color: rgb(49, 176, 213);
+}
+
+.row-display.row-preview {
+  margin-top: 20px;
+  min-height: 270px;
+}
+
+.row-display:hover .preview-head-wrapper{
+  color: rgb(49, 176, 213);
 }
 
 .preview-head-wrapper {
@@ -144,7 +179,7 @@ li {
 
 .preview-body-wrapper {
   overflow: auto;
-  max-height: 125px;
+  max-height: 210px;
   color: rgb(108,108,108);
 }
 
@@ -159,17 +194,112 @@ li {
   max-width: 100%;
 }
 
+.row-display:hover .panel-head-wrapper{
+  color: rgb(49, 176, 213);
+}
+
+.row-display:hover .panel-head-wrapper .href-colorless{
+  color: rgb(49, 176, 213);
+}
+
 .table-panel tr{
-  height: 150px;
+  height: 80px;
 }
 
-.panel img {
-  height: 150px;
+.row.row-panel-label {
+  height: 60px;
 }
 
+.panel-head-wrapper {
+  /*border-bottom: .05rem solid #e5e5e5;*/
+  color:black;
+  margin-bottom: 0.3rem;
+}
+
+.panel-line-even {
+  display:block;
+  border:none;
+  color:white;
+  height:1px;
+  background:black;
+  background: red; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(-90deg, white, rgb(192,192,192)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(-90deg, white, rgb(192,192,192)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(-90deg, white, rgb(192,192,192)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(-90deg, white, rgb(192,192,192)); /* Standard syntax */
+}
+
+.panel-line-odd {
+  display:block;
+  border:none;
+  color:white;
+  height:1px;
+  background:black;
+  background: red; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(-90deg, rgb(230,230,230), rgba(0,0,0,.2)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(-90deg, rgb(230,230,230), rgba(0,0,0,.2)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(-90deg, rgb(230,230,230), rgba(0,0,0,.2)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(-90deg, rgb(230,230,230), rgba(0,0,0,.2)); /* Standard syntax */
+}
+
+.panel-body-wrapper {
+  color: rgb(108,108,108);
+  font-size: 14px;
+}
+
+.panel-img-wrapper img {
+  height: 45px;
+}
+
+.panel-name {
+  margin-bottom: .25rem;
+}
+
+.panel-media,
+.panel-aired,
+.panel-members {
+  margin-bottom: 0px;
+}
+
+.panel-media,
+.panel-aired {
+  visibility: hidden;
+}
+
+.panel-box-container{
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.text-genre-box,
+.text-studio-box {
+  border-top-left-radius: 20px 20px;
+  border-bottom-left-radius:  20px 20px;
+  border-top-right-radius: 20px 20px;
+  border-bottom-right-radius:  20px 20px;
+}
+
+.text-genre-box {
+  font-size: 13px;
+  background-color: rgb(91, 192, 222);
+  padding:2px;
+
+  /*border: 2px solid rgb(108,108,108);*/
+}
+
+.text-studio-box {
+  font-size: 13px;
+  background-color: rgb(92, 184, 92);
+  padding:2px;
+}
+
+.panel-box-padding {
+  padding-left: 5px;
+  padding-right: 5px;
+}
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 60em) {
   /* Remove the padding we set earlier */
 
   .display,
@@ -180,5 +310,24 @@ li {
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
+  }
+
+  .panel-img-wrapper img {
+    height: 90px;
+  }
+
+  .table-panel tr{
+    height: 120px;
+  }
+
+  .panel-media,
+  .panel-aired {
+    visibility:inherit;
+  }
+}
+
+@media screen and (max-width: 60em) {
+  .panel-box-container {
+    padding: 0.3rem !important;
   }
 }
