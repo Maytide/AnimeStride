@@ -34,7 +34,9 @@ app.controller('statsController', function($scope, $http) {
   };
   $scope.getData()
 
+  $scope.postData = function () {
 
+  }
 
 
 });

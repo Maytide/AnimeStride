@@ -10,6 +10,24 @@
 
 <div class="container">
     <div ng-app="statsApp" ng-controller="statsController">
+        <div class="page-desc">
+            <h4>Search for a show</h4>
+            <p class="text-muted">Make sure to enter as much of the exact name as you can rememeber!</p>
+        </div>
+        <div class="row row-centered">
+
+            <div class="col-md-12 col-centered">
+                <div class="search-form">
+                    <form method="POST" class="post-form url-bar">
+                        <div class="search-bar">
+                            <input type="text" name="url" class="form-control" ng-model="formData.url" placeholder="">
+                            {% csrf_token %} 
+                            <button type="submit" class="save btn btn-info" ng-click="postData()">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         {% verbatim %}
         <table class="table-striped table table-panel">
             <thead>

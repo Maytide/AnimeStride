@@ -8,6 +8,15 @@ sys.path.remove(settings.PROJECT_ROOT)
 from .models import ContentData
 
 
+def get_show(show_name):
+    show = None
+    try:
+        show = ContentData.objects.get(pk = show_name)
+    except show.DoesNotExist:
+        pass
+
+    return show
+
 def get_shows(num_shows=10):
     show_list = [ContentData.objects.all()[i] for i in range(num_shows)]
     return show_list

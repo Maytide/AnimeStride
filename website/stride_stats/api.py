@@ -4,7 +4,8 @@ from urllib.request import unquote
 from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
 
-from .getshows import get_show_test, get_show_test2, get_show_stats, get_shows_popularity
+from .getshows import get_show_test, get_show_test2, get_show_stats, get_shows_popularity, \
+     get_show
 from .serializers import StatisticsSerializer, StatisticsListSerializer, ContentDataSerializer
 
 
@@ -23,6 +24,12 @@ class StatisticsContent(object):
 # Should convert strings to ints
 # Should filter out number symbol on popularity
 # e.g. '#5' -> 5
+
+def api_get_show_info(request, show_name):
+    show = get_show(show_name)
+
+    serializer = ContentDataSerializer(show)
+    return JSONResponse(serializer.data)
 
 def api_get_show_stats(request, show_name):
     # test_list = get_show_test()

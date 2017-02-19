@@ -3,40 +3,56 @@
 {% load staticfiles %}
 
 {% block sub-js %}
-
 <script type="text/javascript" src="{% static 'js/show-chart.js' %}"></script>
+{% endblock %}
 
+{% block sub-css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/stats.css' %}"/>
 {% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="stats" ng-app="chartApp" ng-controller="chartController">
-        <div class="row row-centered">
-            <div class="col-md-6 col-centered">
-                <div class="row row-centered">
 
+<div class="stats">
+    <div class="container stats-container">
+        <div class="row row-centered">
+            <div class="col-sm-8 col-centered">
+                <div class="row row-centered text-center">
+<!--
+                    {% verbatim %}
+                        <h5 class="">Show statistics for {{path_name}}</h5>
+                    {% endverbatim %}
+-->
                 </div>
             </div>
         </div>
 
-        <div class="container">
-            <div class="row row-centered">
-                <div class="col-md-6 col-centered">
-                    <div class="row row-centered">
-            <!--            Chart.js scales to parent element size-->
-            <!--            http://stackoverflow.com/questions/28162810/why-is-chart-js-canvas-not-respecting-the-padding-of-the-container-element-->
-                        {% verbatim %}
-                        <h1>Show statistics for {{path_name}}</h1>
-                        {% endverbatim %}
-                        <div>
-                            <canvas class="chart-container" id="myChart"></canvas>
-                        </div>
+        
+        <div class="row row-centered">
+            
+            <div class="col-sm-9 col-centered" ng-app="chartApp" ng-controller="chartController">
+                <div class="row row-centered row-chart-main">
+        <!--            Chart.js scales to parent element size-->
+        <!--            http://stackoverflow.com/questions/28162810/why-is-chart-js-canvas-not-respecting-the-padding-of-the-container-element-->
 
-                    </div>
-                    <div class="row row-centered">
+                    
+                    <canvas class="chart-container" id="myChart"></canvas>
+                    
+
+                </div>
+                <div class="row row-centered">
+                    
+                </div>
+            </div>
+            {% verbatim %}
+            <div id="idAppDisplay" class="col-sm-3 col-centered" ng-app="displayApp" ng-controller="displayController">
+                <div class="portrait-container">
+                    <div class="row portrait-element-pad"><h4>{{show.name}}</h4></div>
+                    <div class="row portrait-element-pad portrait-img">
+                        <a ng-href="{{show.anime_url}}"><img ng-src="{{show.image_url}}" alt=""></a>
                     </div>
                 </div>
             </div>
+            {% endverbatim %}
         </div>
     </div>
 </div>

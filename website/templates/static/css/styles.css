@@ -2,6 +2,13 @@ li {
   list-style: none;
 }
 
+.btn-group {
+  margin: 0 auto;
+  text-align: center;
+  width: inherit;
+  display: inline-block;
+}
+
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(0,0,0,.1);
 }
@@ -221,8 +228,7 @@ li {
   border:none;
   color:white;
   height:1px;
-  background:black;
-  background: red; /* For browsers that do not support gradients */
+  background: rgb(192,192,192);
   background: -webkit-linear-gradient(-90deg, white, rgb(192,192,192)); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(-90deg, white, rgb(192,192,192)); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(-90deg, white, rgb(192,192,192)); /* For Firefox 3.6 to 15 */
@@ -234,8 +240,7 @@ li {
   border:none;
   color:white;
   height:1px;
-  background:black;
-  background: red; /* For browsers that do not support gradients */
+  background: rgb(230,230,230);
   background: -webkit-linear-gradient(-90deg, rgb(230,230,230), rgba(0,0,0,.2)); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(-90deg, rgb(230,230,230), rgba(0,0,0,.2)); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(-90deg, rgb(230,230,230), rgba(0,0,0,.2)); /* For Firefox 3.6 to 15 */
