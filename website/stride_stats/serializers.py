@@ -21,4 +21,5 @@ class ContentDataSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ContentData
-        fields = ('anime_url', 'name', 'image_url', 'synopsis', 'studios', 'genres', 'media', 'members', 'aired', 'episodes', 'score')
+        # fields = ('anime_url', 'name', 'image_url', 'synopsis', 'studios', 'genres', 'media', 'members', 'aired', 'episodes', 'score')
+        fields = '__all__'

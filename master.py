@@ -32,3 +32,11 @@ def string_SQL_safe(sql_string):
         return True
 
     return False
+
+def string_delimiter_upper(lower_string, delimiter, exception_list = None):
+    words = lower_string.split(delimiter)
+    for index, word in enumerate(words):
+        if word not in exception_list:
+            words[index] = word[0].upper() + word[1:]
+
+    return ' '.join(words)

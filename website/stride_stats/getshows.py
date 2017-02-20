@@ -3,6 +3,7 @@ import sys
 from django.conf import settings
 sys.path.append(settings.PROJECT_ROOT)
 from Anime import Anime
+from master import string_delimiter_upper
 sys.path.remove(settings.PROJECT_ROOT)
 
 from .models import ContentData
@@ -11,8 +12,17 @@ from .models import ContentData
 def get_show(show_name):
     show = None
     try:
-        show = ContentData.objects.get(pk = show_name)
-    except show.DoesNotExist:
+        show = ContentData.objects.get(pk=show_name)
+        return show
+    except Exception as ex:
+        pass
+
+    try:
+        show = ContentData.objects.get(pk=string_delimiter_upper(show_name, ' ', exception_list=['no', 'to', 'ni']))
+        return show
+    except Exception as ex:
+        pass
+
         pass
 
     return show

@@ -30,30 +30,157 @@
         <div class="row row-centered">
             
             <div class="col-sm-9 col-centered" ng-app="chartApp" ng-controller="chartController">
-                <div class="row row-centered row-chart-main">
+                <div id="chart-1-container" class="row row-centered row-chart-main chart-container">
         <!--            Chart.js scales to parent element size-->
         <!--            http://stackoverflow.com/questions/28162810/why-is-chart-js-canvas-not-respecting-the-padding-of-the-container-element-->
 
                     
-                    <canvas class="chart-container" id="myChart"></canvas>
-                    
-
+                    <canvas class="" id="chart-1"></canvas>
                 </div>
                 <div class="row row-centered">
-                    
-                </div>
-            </div>
-            {% verbatim %}
-            <div id="idAppDisplay" class="col-sm-3 col-centered" ng-app="displayApp" ng-controller="displayController">
-                <div class="portrait-container">
-                    <div class="row portrait-element-pad"><h4>{{show.name}}</h4></div>
-                    <div class="row portrait-element-pad portrait-img">
-                        <a ng-href="{{show.anime_url}}"><img ng-src="{{show.image_url}}" alt=""></a>
+                    <div id="idChartSelector" class="col-sm-12 col-centered ">
+                        <div class="chart-selector-container text-center">
+                            <span id="chart-selector-members" class="chart-selector active" ng-click="drawChart(axis_labels['timestamp'],values['members'],'red'); setStatActive('chart-selector-members')">
+                                <h6 class="icon-md-label">Members</h6>
+                                <img class="icon-md" src="{% static 'img/icons/icon-updoot.png' %}">
+                            </span>
+                            <span id="chart-selector-popularity" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['popularity'],'red'); setStatActive('chart-selector-popularity')">
+                                <h6 class="icon-md-label">Popularity</h6>
+                                <img class="icon-md" src="{% static 'img/icons/icon-updoot.png' %}">
+                            </span>
+                            <span id="chart-selector-favorites" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['favorites'],'red'); setStatActive('chart-selector-favorites')">
+                                <h6 class="icon-md-label">Favorites</h6>
+                                <img class="icon-md" src="{% static 'img/icons/icon-heart.png' %}">
+                            </span>
+                            <span id="chart-selector-ranked" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['ranked'],'red'); setStatActive('chart-selector-ranked')">
+                                <h6 class="icon-md-label">Ranked</h6>
+                                <img class="icon-md" src="{% static 'img/icons/icon-updoot.png' %}">
+                            </span>
+                            <span id="chart-selector-score" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['score'],'red'); setStatActive('chart-selector-score')">
+                                <h6 class="icon-md-label">Score</h6>
+                                <img class="icon-md" src="{% static 'img/icons/icon-star.png' %}">
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
+            {% verbatim %}
+            <div id="idAppDisplay" class="col-sm-3 col-centered portrait" ng-app="displayApp" ng-controller="displayController">
+                <div class="portrait-container">
+<!--                    <div class="row portrait-element-pad"><h4>{{show.name}}</h4></div>-->
+                    <div class="row portrait-img">
+                        <a ng-href="{{show.anime_url}}"><img ng-src="{{show.image_url}}" alt=""></a>
+                    </div>
+                </div>
+                <div class="portrait-tags text-center">
+                    <div><h4 class="portrait-name">{{show.name}}</h4></div>
+                    
+                    <div class="row row-centered no-15px-margin center-span portrait-genre-box">
+                        <p style="margin-bottom: 0.4rem;">
+                            <span class="text-center" ng-repeat="genre in show.genres track by $index">
+                                <span class="text-white text-genre-box">
+                                    <span class="portrait-box-padding">{{genre}}</span>
+                                </span>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="row row-centered no-15px-margin center-span portrait-studio-box">
+                        <p class="" style="margin-bottom: 0.4rem;">
+                            <span class="text-center" ng-repeat="studio in show.studios track by $index">
+                                <span class="text-white text-studio-box">
+                                    <span class="portrait-box-padding">{{studio}}</span>
+                                </span>
+                            </span>
+                            
+                        </p>
+                    </div>
+                    <div class="row row-centered no-15px-margin portrait-description text-margin-bottom-04rem">
+                        <div class="col-12">
+                            <div class="row portrait-description-element">
+                                <div class="col-6">
+                                    <div class="portrait-description-attr">
+                                        <p>Media: </p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="portrait-description-item">
+                                        <p>{{show.media}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portrait-description-element">
+                                <div class="col-6">
+                                    <div class="portrait-description-attr">
+                                        <p>Episodes: </p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="portrait-description-item">
+                                        <p>{{show.episodes}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portrait-description-element">
+                                <div class="col-6">
+                                    <div class="portrait-description-attr">
+                                        <p>Aired: </p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="portrait-description-item">
+                                        <p>{{show.aired}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portrait-description-element">
+                                <div class="col-6">
+                                    <div class="portrait-description-attr">
+                                        <p>Licensors: </p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="portrait-description-item">
+                                        <p>{{show.licensors}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portrait-description-element">
+                                <div class="col-6">
+                                    <div class="portrait-description-attr">
+                                        <p>Source: </p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="portrait-description-item">
+                                        <p>{{show.source}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portrait-description-element">
+                                <div class="col-6">
+                                    <div class="portrait-description-attr">
+                                        <p>Rating: </p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="portrait-description-item">
+                                        <p>{{show.rating}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
             {% endverbatim %}
         </div>
+        <div class="row row-centered">
+            
+            
+            
+        </div>
+        
     </div>
 </div>
 
