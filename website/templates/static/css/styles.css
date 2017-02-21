@@ -13,6 +13,13 @@ li {
   display: inline-block;
 }
 
+.top-bottom-border {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: .05rem solid rgb(196,196,196);
+  border-bottom: .05rem solid rgb(196,196,196);
+}
+
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(0,0,0,.1);
 }
@@ -24,6 +31,22 @@ li {
 .no-15px-margin {
   margin-left: 0px;
   margin-right: 0px;
+}
+
+.text-margin-bottom-5px {
+  margin-bottom: 5px;
+}
+
+.text-margin-top-10px {
+  margin-top: 10px;
+}
+
+.text-margin-top-20px {
+  margin-top: 20px;
+}
+
+.text-margin-top-30px {
+  margin-top: 30px;
 }
 
 .text-margin-bottom-04rem p {
@@ -201,7 +224,7 @@ li {
 }
 
 .preview-name {
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.4rem;
   font-size: 20px;
   line-height: 1;
 }
@@ -324,6 +347,7 @@ li {
   font-size: 13px;
   background-color: rgb(91, 192, 222);
   padding:2px;
+  margin-bottom: 15px;
 
   /*border: 2px solid rgb(108,108,108);*/
 }

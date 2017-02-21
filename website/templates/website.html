@@ -4,6 +4,7 @@
 <html lang="en">
 
 <!--    By George Z, based off of Django and Bootstrap templates. Parts of design inspired by Jack Yan.-->
+<!--    All data has been obtained from MAL! Visit MyAnimeList.net to get more anime information. -->
     
 <head>
     <title>Website</title>
@@ -29,6 +30,9 @@
         $(function(){
           $("#navbar").load("{% static 'html/navbar.html' %}"); 
         });
+        $(function(){
+          $("#footer").load("{% static 'html/footer.html' %}"); 
+        });
     </script> 
     {% block app-js %}
     {% endblock %}
@@ -42,6 +46,10 @@
 <!--    Done                                                                            -->
     {% block app-html %}
     {% endblock %}
+    
+    <div class="container stats-container" id="footer-container">
+        <div id="footer"></div>
+    </div>
 </body>
 
 </html>

@@ -256,7 +256,7 @@ class User():
         #     anime_title = ''
         #     score = ''
         #     for attribute_item in show:
-
+        # print(self.entry_list_tagged)
 
         for score, anime_title in self.entry_list_tagged:
             score = score[1] if score[1] != '-' and score[1] != 'N/A' else '0'
@@ -265,6 +265,7 @@ class User():
             entry_dict_tagged[anime_title] = int(score)
             # print(type(score))
 
+        # print(entry_dict_tagged)
         r = Recommender()
         # if recommender == 'c':
         #     # DOES NOT WORK! Returns list instead of new dict format.

@@ -66,9 +66,18 @@
                         <div class="preview-head-wrapper">
                             <h6 class="preview-name">{{show.name}}</h6>
                             <div class="row">
-                                <div class="col-11">
-                                    <p class="preview-studios">{{show.studios}}</p>
-                                    <p class="preview-genres">{{show.genres}}</p>
+                                <div class="col-11 text-margin-bottom-5px">
+                                    <span class="" ng-repeat="studio in show.studios track by $index">
+                                        <span class="text-white text-studio-box">
+                                            <span class="panel-box-padding">{{studio}}</span>
+                                        </span>
+                                    </span>
+                                    <div></div>
+                                    <span class="" ng-repeat="genre in show.genres track by $index">
+                                        <span class="text-white text-genre-box">
+                                            <span class="panel-box-padding">{{genre}}</span>
+                                        </span>
+                                    </span>
                                 </div>
                                 <div class="col-1">
 <!--                                    Add MAL icon here?-->

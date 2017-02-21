@@ -240,9 +240,9 @@ def select_populated(c_u, c_a, max_users = 10000, max_shows = 500):
 def select_random(c_u, c_a, max_users = 10000, max_shows = 500):
     c_u.execute('''SELECT name FROM sqlite_master WHERE type="table" ORDER BY RANDOM() LIMIT (?);''', (max_users,))
 
-    c_a.execute('''SELECT * FROM content_data LIMIT (?);''', (max_shows,))
+    c_a.execute('''SELECT * FROM [content_data] LIMIT (?);''', (max_shows,))
 
-    show_name_list = tuple(set([item[0] for item in c_a.fetchall()]))
+    show_name_list = tuple(set([item[1] for item in c_a.fetchall()]))
     user_ratings_table_list = [item[0] for item in c_u.fetchall()]
 
     return show_name_list, user_ratings_table_list

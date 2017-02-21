@@ -15,8 +15,10 @@
 <div class="stats">
     <div class="container stats-container">
         <div class="row row-centered">
-            <div class="col-sm-8 col-centered">
+            <div class="col-sm-12 col-centered disclaimer">
+                <h5>All data used in Stride has been taken from MyAnimeList. Please visit MyAnimeList.net to see more information.</h5>
                 <div class="row row-centered text-center">
+                    
 <!--
                     {% verbatim %}
                         <h5 class="">Show statistics for {{path_name}}</h5>
@@ -29,40 +31,60 @@
         
         <div class="row row-centered">
             
-            <div class="col-sm-9 col-centered" ng-app="chartApp" ng-controller="chartController">
-                <div id="chart-1-container" class="row row-centered row-chart-main chart-container">
-        <!--            Chart.js scales to parent element size-->
-        <!--            http://stackoverflow.com/questions/28162810/why-is-chart-js-canvas-not-respecting-the-padding-of-the-container-element-->
+            <div class="col-sm-9 col-centered">
+                <div ng-app="chartApp" ng-controller="chartController">
+                    <div id="chart-1-container" class="row row-centered row-chart-main chart-container">
+            <!--            Chart.js scales to parent element size-->
+            <!--            http://stackoverflow.com/questions/28162810/why-is-chart-js-canvas-not-respecting-the-padding-of-the-container-element-->
 
-                    
-                    <canvas class="" id="chart-1"></canvas>
-                </div>
-                <div class="row row-centered">
-                    <div id="idChartSelector" class="col-sm-12 col-centered ">
-                        <div class="chart-selector-container text-center">
-                            <span id="chart-selector-members" class="chart-selector active" ng-click="drawChart(axis_labels['timestamp'],values['members'],'red'); setStatActive('chart-selector-members')">
-                                <h6 class="icon-md-label">Members</h6>
-                                <img class="icon-md" src="{% static 'img/icons/icon-updoot.png' %}">
-                            </span>
-                            <span id="chart-selector-popularity" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['popularity'],'red'); setStatActive('chart-selector-popularity')">
-                                <h6 class="icon-md-label">Popularity</h6>
-                                <img class="icon-md" src="{% static 'img/icons/icon-updoot.png' %}">
-                            </span>
-                            <span id="chart-selector-favorites" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['favorites'],'red'); setStatActive('chart-selector-favorites')">
-                                <h6 class="icon-md-label">Favorites</h6>
-                                <img class="icon-md" src="{% static 'img/icons/icon-heart.png' %}">
-                            </span>
-                            <span id="chart-selector-ranked" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['ranked'],'red'); setStatActive('chart-selector-ranked')">
-                                <h6 class="icon-md-label">Ranked</h6>
-                                <img class="icon-md" src="{% static 'img/icons/icon-updoot.png' %}">
-                            </span>
-                            <span id="chart-selector-score" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['score'],'red'); setStatActive('chart-selector-score')">
-                                <h6 class="icon-md-label">Score</h6>
-                                <img class="icon-md" src="{% static 'img/icons/icon-star.png' %}">
-                            </span>
+
+                        <canvas class="" id="chart-1"></canvas>
+                    </div>
+                    <div class="row row-centered">
+                        <div id="idChartSelector" class="col-sm-12 col-centered ">
+                            <div class="chart-selector-container text-center">
+                                <span id="chart-selector-members" class="chart-selector active" ng-click="drawChart(axis_labels['timestamp'],values['members'],'red'); setStatActive('chart-selector-members')">
+                                    <h6 class="icon-md-label">Members</h6>
+                                    <img class="icon-md" src="{% static 'img/icons/icon-updoot.png' %}">
+                                </span>
+                                <span id="chart-selector-popularity" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['popularity'],'red'); setStatActive('chart-selector-popularity')">
+                                    <h6 class="icon-md-label">Popularity</h6>
+                                    <img class="icon-md" src="{% static 'img/icons/icon-updoot.png' %}">
+                                </span>
+                                <span id="chart-selector-favorites" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['favorites'],'red'); setStatActive('chart-selector-favorites')">
+                                    <h6 class="icon-md-label">Favorites</h6>
+                                    <img class="icon-md" src="{% static 'img/icons/icon-heart.png' %}">
+                                </span>
+                                <span id="chart-selector-ranked" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['ranked'],'red'); setStatActive('chart-selector-ranked')">
+                                    <h6 class="icon-md-label">Ranked</h6>
+                                    <img class="icon-md" src="{% static 'img/icons/icon-updoot.png' %}">
+                                </span>
+                                <span id="chart-selector-score" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['score'],'red'); setStatActive('chart-selector-score')">
+                                    <h6 class="icon-md-label">Score</h6>
+                                    <img class="icon-md" src="{% static 'img/icons/icon-star.png' %}">
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {% verbatim %}
+                <div class="row row-centered">
+                    <div id="idAppDisplay2" ng-app="displayApp" ng-controller="displayController">
+                        <div class="col-sm-12 col-centered">
+                            <div class="stats-side">
+                                <div class="stats-side-header">
+                                    <h6 class="side-name">{{show.name}}</h6>
+                                    <p class="side-jpname">Japanese Name: {{show.japanese_name}}</p>
+                                    <p class="side-synonyms">Synonyms: {{show.synonyms}}</p>
+                                </div>
+                                <div class="stats-side-body">
+                                    <p>{{show.synopsis}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endverbatim %}
             </div>
             {% verbatim %}
             <div id="idAppDisplay" class="col-sm-3 col-centered portrait" ng-app="displayApp" ng-controller="displayController">
@@ -168,6 +190,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row portrait-description-element">
+                                <div class="col-6">
+                                    <div class="portrait-description-attr">
+                                        <p>Duration: </p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="portrait-description-item">
+                                        <p>{{show.duration}}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -175,12 +209,30 @@
             </div>
             {% endverbatim %}
         </div>
-        <div class="row row-centered">
-            
-            
-            
-        </div>
         
+        
+    </div>
+    <div class="container stats-container">
+        <div id="idItemRec" ng-app="itemRecApp" ng-controller="itemRecController">
+            {% verbatim %}
+            <div class="row row-centered">
+                <div class="col-sm-12 col-centered">
+                    <div class="row row-centered text-margin-top-30px">
+                        <h6 class="text-margin-top-10px">If you liked {{api_path_info}}, you may also like: </h6>
+                    </div>
+                    <div class="row row-centered top-bottom-border">
+                        <div class="showcase-container-wrapper" ng-repeat="show in shows">
+                            <div class="showcase-container">
+                                <div class="">
+                                    <a href="{{show.anime_url}}"><img ng-src="{{show.image_url}}"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endverbatim %}
+        </div>
     </div>
 </div>
 

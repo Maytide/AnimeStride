@@ -61,6 +61,8 @@ def recommend(user_ratings_vector, num_shows, num_users, ratings_matrix, shows, 
     show_map = {index: show for show, index in shows.items()}
     user_map = {index: user for user, index in users.items()}
 
+    # print(user_ratings_vector)
+
     corr_vector = pearson_correlation(user_ratings_vector, ratings_matrix)
     mean_ratings = np.zeros(num_shows)
     mean_ratings_count = np.zeros(num_shows)
@@ -138,6 +140,7 @@ def recommend(user_ratings_vector, num_shows, num_users, ratings_matrix, shows, 
         user_corr_weighted = np.zeros(num_shows)
         user_corr_unweighted = np.zeros(num_shows)
         user_corr_unweighted_R = np.zeros(num_shows)
+
 
         # corr_vector: Vector of form (user_index, number of shows in common, pearson correlation, LOBF array: (slope, y-int) )
         # IMPORTANT: LOBF array maps from sample_ratings to user_ratings!

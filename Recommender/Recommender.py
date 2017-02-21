@@ -11,7 +11,7 @@ from .CreateDFFromDB import create_ratings_dataframe, create_ratings_matrix
 class Recommender():
     def __init__(self):
         user_list_db = os.path.dirname(__file__) + '/../data/sample_user_list.db'
-        show_list_db = os.path.dirname(__file__) + '/../data/show_data.db'
+        show_list_db = os.path.dirname(__file__) + '/../data/show_data_aggregated.db'
         conn_u = sqlite3.connect(user_list_db)
         conn_a = sqlite3.connect(show_list_db)
         self.c_u = conn_u.cursor()
@@ -28,6 +28,7 @@ class Recommender():
             # print(show, rating)
             try:
                 user_ratings_vector[shows[show]] = rating
+                # print(show, shows[show], user_ratings_vector[shows[show]])
                 if int(rating) > 0:
                     num_ratings = num_ratings + 1
             except KeyError as ke:
@@ -36,6 +37,8 @@ class Recommender():
             except TypeError:
                 if verbose:
                     print('Type error in building user shows.')
+
+        # print(user_ratings_vector)
 
         return num_ratings, user_ratings_vector
 

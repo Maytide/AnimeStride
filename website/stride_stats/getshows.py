@@ -1,4 +1,5 @@
 import sys
+from random import randint
 
 from django.conf import settings
 sys.path.append(settings.PROJECT_ROOT)
@@ -18,7 +19,7 @@ def get_show(show_name):
         pass
 
     try:
-        show = ContentData.objects.get(pk=string_delimiter_upper(show_name, ' ', exception_list=['no', 'to', 'ni']))
+        show = ContentData.objects.get(pk=string_delimiter_upper(show_name, ' ', exception_list=['no', 'to', 'ni', 'na', 'wa', 'ga']))
         return show
     except Exception as ex:
         pass
@@ -29,6 +30,15 @@ def get_show(show_name):
 
 def get_shows(num_shows=10):
     show_list = [ContentData.objects.all()[i] for i in range(num_shows)]
+    return show_list
+
+def get_shows_random(num_shows=9):
+    try:
+        num_shows_ = int(num_shows)
+    except Exception as ex:
+        num_shows_ = 9
+
+    show_list = [ContentData.objects.all()[randint(0, 1999)] for i in range(num_shows_)]
     return show_list
 
 def get_show_stats(show_name, max_recall=30):

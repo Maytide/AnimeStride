@@ -1,7 +1,7 @@
 import sqlite3
 import urllib.request as urllib
 from collections import OrderedDict, defaultdict
-from time import gmtime, strftime
+import time
 from datetime import datetime
 
 from master import UNMODELED_DATABASES, string_SQL_safe
@@ -53,7 +53,7 @@ class Anime():
 
 
     def parse_info(self, data):
-        type = 'Type:'
+        media = 'Type:'
         episodes = 'Episodes:'
         air_date = 'Aired:'
         broadcast_time = 'Broadcast:'
@@ -64,17 +64,21 @@ class Anime():
         duration = 'Duration:'
         rating = 'Rating:'
 
-        p_data_raw = ((type, ''), (episodes, ''), (air_date, ''), (broadcast_time, ''), (licensors, []),
+        p_data_raw = ((media, ''), (episodes, ''), (air_date, ''), (broadcast_time, ''), (licensors, []),
                       (studios, []), (source, ''), (genres, []), (duration, ''), (rating, ''))
 
         p_data = OrderedDict(p_data_raw, key = lambda t: t[0])
         for i in range(len(data)):
-            data[i] = data[i].strip(' \\n')
-            if data[i] == type:
-                # Yes, type has to be special and use i+2.
-                p_data[type] = data[i+2]
+            # print(data[i], type(data[i]))
+            if isinstance(data[i], str):
+                data[i] = data[i].strip(' \\n')
+
+            if data[i] == media:
+                # data[i+2] is special case for media.
+                p_data[media] = data[i+2]
             elif data[i] == 'Episodes:':
-                if data[i+1] == 'Unknown':
+                data[i + 1] = data[i + 1].strip(' \\n')
+                if 'Unknown' in data[i+1]:
                     data[i+1] = 0
 
                 try:
@@ -84,6 +88,7 @@ class Anime():
 
                 p_data[episodes] = data[i+1]
             elif data[i] == 'Aired:':
+                data[i + 1] = data[i + 1].strip(' \\n')
                 air_datetime = data[i+1]
 
                 if 'to' in air_datetime:
@@ -143,57 +148,69 @@ class Anime():
 
         for i in range(len(data)):
             if data[i] == score:
+                data[i+2] = data[i+2].strip(' \\n')
                 if data[i+2] == 'N/A':
                     data[i+2] = 0
-
-                try:
-                    data[i+2] = float(data[i+2])
-                except Exception as ex:
-                    data[i+2] = 0
+                else:
+                    try:
+                        data[i+2] = float(data[i+2])
+                    except Exception as ex:
+                        print(ex)
+                        data[i+2] = 0
 
                 p_data[score] = data[i+2]
             elif data[i] == rank:
+                data[i+1] = data[i+1].strip(' \\n')
                 if data[i+1] == 'N/A':
                     data[i+1] = 0
-
-                try:
-                    if data[i+1][0] == '#':
-                        data[i+1] = int(data[i+1][1:])
-                except Exception as ex:
-                    data[i+1] = -1
+                else:
+                    try:
+                        if data[i+1][0] == '#':
+                            data[i+1] = int(data[i+1][1:])
+                    except Exception as ex:
+                        print(ex)
+                        data[i+1] = -1
 
                 p_data[rank] = data[i+1]
             elif data[i] == members:
+                data[i+1] = data[i+1].strip(' \\n')
                 data[i+1] = data[i+1].replace(',','')
 
                 try:
                     data[i+1] = int(data[i+1])
                 except Exception as ex:
+                    print(ex)
                     data[i+1] = -1
 
                 p_data[members] = data[i+1]
             elif data[i] == popularity:
+                data[i+1] = data[i+1].strip(' \\n')
                 if data[i+1] == 'N/A':
                     data[i+1] = -1
-
-                try:
-                    if data[i+1][0] == '#':
-                        data[i+1] = int(data[i+1][1:])
-                except Exception as ex:
-                    data[i+1] = -1
+                else:
+                    try:
+                        if data[i+1][0] == '#':
+                            data[i+1] = int(data[i+1][1:])
+                    except Exception as ex:
+                        print(ex)
+                        data[i+1] = -1
 
                 p_data[popularity] = data[i+1]
             elif data[i] == favorites:
+                data[i+1] = data[i+1].strip(' \\n')
                 data[i+1] = data[i+1].replace(',','')
 
                 try:
                     data[i+1] = int(data[i+1])
                 except Exception as ex:
+                    print(ex)
                     data[i+1] = -1
 
                 p_data[favorites] = data[i+1]
 
+        # print(p_data)
         p_data = self.trim_output(p_data)
+        # print(p_data)
 
         return p_data
 
@@ -306,17 +323,19 @@ class Anime():
                 elif type(value) == type(''):
                     value = value.replace('"', '[Quot]')
                     db_list.append(value)
+                else:
+                    db_list.append(value)
 
 
 
         # db_string = db_string.replace('"', '[Quot]')
         return db_list
 
-    def create_db(self, db):
-        conn = sqlite3.connect(db)
-        c = conn.cursor()
-        c.execute('''CREATE TABLE content_data
-                  (name text, image_url text, synposis text)''')
+    # def create_db(self, db):
+    #     conn = sqlite3.connect(db)
+    #     c = conn.cursor()
+    #     c.execute('''CREATE TABLE content_data
+    #               (name text, image_url text, synposis text)''')
 
     # In the future:
     # Port this db stuff to ReadMALShows...
@@ -332,7 +351,9 @@ class Anime():
         # Also the time/date data was accessed.
 
         table_name = '[' + content_data['Name:'] + ']'
-        datetime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+        table_name = table_name.replace('"', '[Quot]')
+        # datetime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+        datetime = int(round(time.time()))
 
         if not self.valid_table_name(table_name):
             raise Exception('Invalid MAL username ' + table_name + '; will cause problems with SQL.')
@@ -341,11 +362,11 @@ class Anime():
         c = conn.cursor()
 
         c.execute('''CREATE TABLE IF NOT EXISTS {}
-                  (score text, ranked text, members text, popularity text, favourites text, datetime text)'''.format(table_name))
+                  (score REAL, ranked INTEGER, members INTEGER, popularity INTEGER, favourites INTEGER, datetime INTEGER)'''.format(table_name))
 
         # statistics_data_list = self.OD_to_db_list(statistics_data)
 
-        c.execute('INSERT INTO {} VALUES (?,?,?,?,?,?)'.format(table_name),
+        c.execute('INSERT OR IGNORE INTO {} VALUES (?,?,?,?,?,?)'.format(table_name),
                   (statistics_data['Score:'], statistics_data['Ranked:'], statistics_data['Members:'], statistics_data['Popularity:'], statistics_data['Favorites:'], datetime))
         conn.commit()
 
@@ -374,6 +395,7 @@ class Anime():
                 # Stats: Score, ranked, popularity, members, favourites
                 # Related: Adaptation, alternative, side-story, spinoff, prequel, sequel, summary
 
+        # print(content_data)
         content_data_list = self.OD_to_db_list(content_data)
         name_data_list = self.OD_to_db_list(name_data)
         info_data_list = self.OD_to_db_list(info_data)
@@ -382,7 +404,6 @@ class Anime():
 
         data_list = [anime_url] + content_data_list + name_data_list + info_data_list + statistics_data_list + related_data_list
         # print(len(data_list))
-        # print(len(content_data_list) + len(name_data_list) + len(info_data_list) + len(statistics_data_list) + len(related_data_list))
         # print(content_data_str)
         # content_data_values = (content_data_list[0][1], content_data[1][1], content_data[0][1])
 
@@ -538,16 +559,16 @@ class Anime():
                 for key, value in self.timestamp.items():
                     self.timestamp[key] = list(self.timestamp[key])
 
-                for index in range(len((self.full_stats['favorites']))):
-                    self.full_stats['score'][index] = float(self.full_stats['score'][index])
-
-                    self.full_stats['favorites'][index] = int(self.full_stats['favorites'][index].replace(',',''))
-                    self.full_stats['members'][index] = int(self.full_stats['members'][index].replace(',', ''))
-
-                    self.full_stats['popularity'][index] = int(self.full_stats['popularity'][index][1:]) if \
-                    self.full_stats['popularity'][index][0] == '#' else int(self.full_stats['popularity'][index])
-                    self.full_stats['ranked'][index] = int(self.full_stats['ranked'][index][1:]) if \
-                    self.full_stats['ranked'][index][0] == '#' else int(self.full_stats['ranked'][index])
+                # for index in range(len((self.full_stats['favorites']))):
+                #     self.full_stats['score'][index] = float(self.full_stats['score'][index])
+                #
+                #     self.full_stats['favorites'][index] = int(self.full_stats['favorites'][index].replace(',',''))
+                #     self.full_stats['members'][index] = int(self.full_stats['members'][index].replace(',', ''))
+                #
+                #     self.full_stats['popularity'][index] = int(self.full_stats['popularity'][index][1:]) if \
+                #     self.full_stats['popularity'][index][0] == '#' else int(self.full_stats['popularity'][index])
+                #     self.full_stats['ranked'][index] = int(self.full_stats['ranked'][index][1:]) if \
+                #     self.full_stats['ranked'][index][0] == '#' else int(self.full_stats['ranked'][index])
 
                 # print(dict(zip(*c.fetchall())))
                 # print(list(zip([tags ,list(zip(*c.fetchall()))])))

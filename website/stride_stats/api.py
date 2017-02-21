@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
 
 from .getshows import get_show_test, get_show_test2, get_show_stats, get_shows_popularity, \
-     get_show
+     get_show, get_shows_random
 from .serializers import StatisticsSerializer, StatisticsListSerializer, ContentDataSerializer
 
 
@@ -42,6 +42,16 @@ def api_get_show_stats(request, show_name):
     return JSONResponse(serializer.data)
     # return JSONResponse(json.dumps({'values': stats_dict, 'axis_labels': timestamp}))
 
+def api_get_shows_random(request, num_shows):
+    show_list = get_shows_random(num_shows=num_shows)
+
+    serializer = ContentDataSerializer(show_list, many=True)
+
+    return JSONResponse(serializer.data)
+
+def api_get_shows_itemrec(request, show_name, num_shows):
+    # Temp
+    return api_get_shows_random(request, num_shows)
 
 def api_get_shows_popularity(request, num_shows):
     show_list = get_shows_popularity(num_shows=num_shows)

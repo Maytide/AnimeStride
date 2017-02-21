@@ -32,7 +32,7 @@ chartApp.controller('chartController', function($scope, $http) {
             $scope.axis_labels = $scope.show_data_stats['axis_labels'];
             $scope.values = $scope.show_data_stats['values'];
             // $scope.axis_labels = [$scope.path_name, 100, 100, 100, 100, 100];
-            $scope.drawChart(dateToDetailedTime($scope.axis_labels['timestamp']), $scope.values['members'], 'red');
+            $scope.drawChart(x1000($scope.axis_labels['timestamp']), $scope.values['members'], 'red');
 
         });
   };
@@ -155,10 +155,40 @@ displayApp.controller('displayController', function($scope, $http) {
 
 });
 
+var itemRecApp = angular.module('itemRecApp', []);
+
+itemRecApp.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+}]);
+
+itemRecApp.controller('itemRecController', function($scope, $http) {
+  $scope.current_href = window.location.href.toString().split('/');
+  $scope.current_href.pop();
+  $scope.current_href.pop();
+  $scope.current_href.pop();
+  // Following convention of /stride_stats/show/(show name here)/
+  $scope.path_name = window.location.pathname.toString().split('/')[3];
+  $scope.api_path_info = $scope.current_href.join('/') + '/api/itemrec/' + $scope.path_name + '/6';
+
+  $scope.getData3 = function () {
+  $http.get($scope.api_path_info).
+      then(function(response) {
+          $scope.shows = response.data;
+
+
+      });
+  }
+
+  $scope.getData3();
+
+});
 
 // MUST include this wrapper, not just angular.bootstrap!:
 // https://blog.mariusschulz.com/2014/10/22/asynchronously-bootstrapping-angularjs-applications-with-server-side-data
 angular.element(document).ready(function() {
   angular.bootstrap(document.getElementById("idAppDisplay"), ['displayApp']);
+  angular.bootstrap(document.getElementById("idAppDisplay2"), ['displayApp']);
+  angular.bootstrap(document.getElementById("idItemRec"), ['itemRecApp']);
   // angular.bootstrap(document.getElementById("idChartSelector"), ['chartApp']);
 });
