@@ -214,7 +214,7 @@ li {
   min-height: 270px;
 }
 
-.row-display:hover .preview-head-wrapper{
+.row-display:hover .preview-head-wrapper .href-colorless {
   color: rgb(49, 176, 213);
 }
 
@@ -224,7 +224,7 @@ li {
 }
 
 .preview-name {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.2rem;
   font-size: 20px;
   line-height: 1;
 }

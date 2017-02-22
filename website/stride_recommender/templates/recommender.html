@@ -64,7 +64,8 @@
                     </div>
                     <div class="col-9">
                         <div class="preview-head-wrapper">
-                            <h6 class="preview-name">{{show.name}}</h6>
+                            <a class="href-colorless" ng-href="{{show.stride_url}}"><h6 class="preview-name">{{show.name}}</h6></a>
+<!--                            {{show.stride_url}}-->
                             <div class="row">
                                 <div class="col-11 text-margin-bottom-5px">
                                     <span class="" ng-repeat="studio in show.studios track by $index">

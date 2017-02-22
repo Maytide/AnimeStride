@@ -34,7 +34,9 @@ def pearson_correlation(user, train_matrix, verbose=False):
         # Handle case of NaN
         if np.sum(row_nonzero) == 0:
             continue
+
         r, p = pearsonr(user_nonzero, row_nonzero)
+
         # WAnt to map from sample rating -> user rating
         # So do np.polyfit row_nonzero, user_nonzero
         l = np.polyfit(row_nonzero, user_nonzero, 1)
@@ -55,13 +57,14 @@ def pearson_correlation(user, train_matrix, verbose=False):
     if verbose:
         print('Correlation Vector:')
         print(corr_vector)
+
+    # print('Correlation Vector:')
+    # print(corr_vector)
     return corr_vector
 
 def recommend(user_ratings_vector, num_shows, num_users, ratings_matrix, shows, users, verbose = False, num_recommendations = 5):
     show_map = {index: show for show, index in shows.items()}
     user_map = {index: user for user, index in users.items()}
-
-    # print(user_ratings_vector)
 
     corr_vector = pearson_correlation(user_ratings_vector, ratings_matrix)
     mean_ratings = np.zeros(num_shows)
@@ -177,9 +180,17 @@ def recommend(user_ratings_vector, num_shows, num_users, ratings_matrix, shows, 
             if user_ratings_vector[i] > 0:
                 control_average = control_average + user_ratings_vector[i]
                 user_count = user_count + 1
-                user_watched.append([show_map[i], i, user_corr_unweighted[i]])
+                if i in show_map:
+                    user_watched.append([show_map[i], i, user_corr_unweighted[i]])
+                else:
+                    if verbose:
+                        print('[RecommenderD] not found: ', i)
             else:
-                user_not_watched.append([show_map[i], i, user_corr_unweighted[i]])
+                if i in show_map:
+                    user_not_watched.append([show_map[i], i, user_corr_unweighted[i]])
+                else:
+                    if verbose:
+                        print('[RecommenderD] not found: ', i)
             # if user_corr_unweighted[i] > 0 and user_show_list[i] > 0:
             #     print('Show: ' + show_map[i])
             #     print(user_corr_unweighted[i], user_show_list[i])
@@ -236,7 +247,8 @@ def recommend(user_ratings_vector, num_shows, num_users, ratings_matrix, shows, 
 
         user_not_watched = user_not_watched[:5]
         max_diff_unwatched = max_diff_unwatched[:5]
-        recommend_flavors = {'top-rated': user_not_watched, 'top-diff': max_diff_unwatched, 'rmse-generic-prediction': rmse, 'ae-generic-prediction': ae}
+        recommend_flavors = {'top-rated': user_not_watched, 'top-diff': max_diff_unwatched, 'rmse-generic-prediction': rmse, 'ae-generic-prediction': ae,
+                             'rmse-generic-control': control_rmse, 'ae-generic-control': control_ae}
 
 
         return recommend_flavors

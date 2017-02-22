@@ -16,8 +16,14 @@ UNMODELED_DATABASES = {
     'show_data_individual': {
         'location': os.path.abspath(os.path.join(PROJECT_ROOT,'data/show_data.db')),
     },
-    'show_data_aggregated':{
-        'location': 'data/show_data_aggregated.db',
+##    'show_data_aggregated': {
+##        'location': 'data/show_data_aggregated.db',
+##    },
+    'user_list_indexed': {
+        'location': 'data/user_list_indexed.sqlite3',
+    },
+    'show_indices': {
+        'location': os.path.abspath(os.path.join(PROJECT_ROOT,'data/show_indices.db')),
     }
 }
 

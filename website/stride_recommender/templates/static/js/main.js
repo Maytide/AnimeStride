@@ -17,15 +17,23 @@ app.controller('recommenderController', function($scope, $http) {
     // $http.get('https://maytide.github.io/').
 	// TODO: Remove hard coded URL
     // Is this function even being used?
+
 	$scope.getData = function () {
 	$http.get('http://127.0.0.1:8000/stride_recommender/api/random/').
         then(function(response) {
             $scope.shows = response.data;
             for (var i = 0; i < $scope.shows.length; i++) {
-              $scope.shows[i]['genres'] = stringToJSON($scope.shows[i]['genres']);
-              $scope.shows[i]['genres'].pop();
-              $scope.shows[i]['studios'] = stringToJSON($scope.shows[i]['studios']);
-              $scope.shows[i]['studios'].pop();
+                $scope.shows[i]['genres'] = stringToJSON($scope.shows[i]['genres']);
+                $scope.shows[i]['genres'].pop();
+                $scope.shows[i]['studios'] = stringToJSON($scope.shows[i]['studios']);
+                $scope.shows[i]['studios'].pop();
+
+                stats_url = window.location.href.toString().split('/');
+                stats_url.pop();
+                stats_url.pop();
+                stats_url = stats_url.join('/') + '/stride_stats/show/' + $scope.shows[i]['name'];
+                $scope.shows[i]['stride_url'] = stats_url;
+
             }
         });
     };

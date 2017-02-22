@@ -93,7 +93,7 @@ def create_ratings_dataframe(c_u, c_a, verbose = False, max_users = 10000):
     # print(shows)
     return (ratings_dataframe,{index: show for show, index in shows.items()} ,{index: user for user, index in users.items()})
 
-def create_ratings_matrix(c_u, c_a, verbose = False, max_users = 10000, max_shows = 500, method = 'generic'):
+def create_ratings_matrix(c_u, c_a, c_n, verbose = False, max_users = 10000, max_shows = 500, method = 'generic'):
 
     if method == 'generic':
         show_name_list, user_ratings_table_list = select_generic(c_u, c_a, max_users = max_users, max_shows = max_shows)
@@ -151,6 +151,11 @@ def create_ratings_matrix(c_u, c_a, verbose = False, max_users = 10000, max_show
     #
     #
     # return (num_shows, num_users, ratings_matrix, shows, users)
+    c_n.execute('''SELECT * FROM show_map
+                        ''')
+    shows_master = {name: index for name, index in c_n.fetchall()}
+    show_map = {index: name for name, index in shows_master.items()}
+
     users = dict()
     shows = dict()
     # Safer to declare number of users as length of user list
@@ -158,7 +163,16 @@ def create_ratings_matrix(c_u, c_a, verbose = False, max_users = 10000, max_show
     num_shows = len(show_name_list)
 
     for index, show in enumerate(show_name_list):
-        shows[show] = index
+        show = show.replace(',','[Comma]')
+        # print('[CreateDFFromDb]', show, show in shows_master)
+
+        if show in shows_master:
+            shows[shows_master[show]] = index
+        else:
+            if verbose:
+                print('[CreateDFFromDB] show not found', show, index)
+
+    # print('[CreateDFFromDb] Shows: ', shows)
 
     ratings_matrix = np.zeros((num_users, num_shows))
     if verbose:
@@ -172,7 +186,7 @@ def create_ratings_matrix(c_u, c_a, verbose = False, max_users = 10000, max_show
         # c_u.execute('''SELECT "{}" AS user'''.format(user_ratings_table, user_ratings_table))
         # print(user_ratings_table)
 
-        c_u.execute('''SELECT "{}" AS user, "anime", "score" FROM "{}"
+        c_u.execute('''SELECT "{}" AS user, "show", "rating" FROM "{}"
                            WHERE ("score" NOT IN ("0","-"))'''.format(user_ratings_table, user_ratings_table))
         if user_ratings_table not in users:
             users[user_ratings_table] = user_index
@@ -197,7 +211,7 @@ def select_generic(c_u, c_a, max_users = 10000, max_shows = 500):
     # Get all shows
     # conn_a = sqlite3.connect(show_list_db)
     # c_a = conn_a.cursor()
-    c_a.execute('''SELECT * FROM content_data''')
+    c_a.execute('''SELECT * FROM content_data ORDER BY popularity''')
 
     # Change to dict to improve performance?
     # There are duplicates somewhere in the database -

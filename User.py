@@ -4,6 +4,8 @@ import sqlite3
 from FetchMALData.ParseUserPage import UserShowGetter, UserShowGetterT2
 from Recommender.Recommender import Recommender
 
+from master import UNMODELED_DATABASES
+
 class User():
 
     def write_to_file_data(self, filename, entry_list_tagged):
@@ -248,6 +250,18 @@ class User():
             raise Exception('User has no MAL URL defined.')
         entry_dict_tagged = dict()
 
+        db_n = UNMODELED_DATABASES['show_indices']['location']
+        print(db_n)
+        conn_n = sqlite3.connect(db_n)
+        c_n = conn_n.cursor()
+
+        c_n.execute('''SELECT * FROM show_map
+                    ''')
+
+        shows_master = {name: index for name, index in c_n.fetchall()}
+        conn_n.close()
+        # print(shows_master)
+
         # print(self.entry_list_tagged)
 
         # filtered_list_tagged = []
@@ -259,13 +273,15 @@ class User():
         # print(self.entry_list_tagged)
 
         for score, anime_title in self.entry_list_tagged:
-            score = score[1] if score[1] != '-' and score[1] != 'N/A' else '0'
+            score = score[1] if score[1] != '-' and score[1] != 'N/A' else 0
             # print(score)
             anime_title = anime_title[1]
-            entry_dict_tagged[anime_title] = int(score)
+            if anime_title in shows_master:
+                anime_title = anime_title.replace(',','[Comma]')
+                entry_dict_tagged[shows_master[anime_title]] = int(score)
             # print(type(score))
 
-        # print(entry_dict_tagged)
+        # print('entry dict tagged ', entry_dict_tagged)
         r = Recommender()
         # if recommender == 'c':
         #     # DOES NOT WORK! Returns list instead of new dict format.
