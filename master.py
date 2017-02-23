@@ -18,9 +18,9 @@ UNMODELED_DATABASES = {
     'show_data_individual': {
         'location': os.path.abspath(os.path.join(PROJECT_ROOT,'data/show_data.db')),
     },
-##    'show_data_aggregated': {
-##        'location': 'data/show_data_aggregated.db',
-##    },
+   'show_data_aggregated': {
+       'location': os.path.abspath(os.path.join(PROJECT_ROOT,'data/show_data_aggregated.db')),
+   },
     'user_list_indexed': {
         'location': 'data/user_list_indexed.sqlite3',
     },
@@ -49,3 +49,10 @@ def string_delimiter_upper(lower_string, delimiter, exception_list = None):
 
     return ' '.join(words)
 
+def escape_db_string(db_string):
+    db_string = db_string.replace(',', '[Comma]')
+    return db_string
+
+def unescape_db_string(db_string):
+    db_string = db_string.replace('[Comma]', ',')
+    return db_string
