@@ -3,6 +3,8 @@
 
 import sys
 import os
+
+
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 # Example of import:
@@ -46,3 +48,4 @@ def string_delimiter_upper(lower_string, delimiter, exception_list = None):
             words[index] = word[0].upper() + word[1:]
 
     return ' '.join(words)
+

@@ -19,7 +19,7 @@ app.controller('recommenderController', function($scope, $http) {
     // Is this function even being used?
 
 	$scope.getData = function () {
-	$http.get('http://127.0.0.1:8000/stride_recommender/api/random/').
+	$http.get(window.location.href + 'api/random/').
         then(function(response) {
             $scope.shows = response.data;
             for (var i = 0; i < $scope.shows.length; i++) {
