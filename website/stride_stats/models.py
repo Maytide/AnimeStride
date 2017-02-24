@@ -40,9 +40,54 @@ class ContentData(models.Model):
     sequel = models.TextField(default='', blank=True, null=True)
     summary = models.TextField(default='', blank=True, null=True)
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         managed = False
         db_table = 'content_data'
+
+    def __str__(self):
+        return self.name
+
+
+class BasicStatistics(models.Model):
+    show_name = models.TextField(primary_key=True, blank=True, null=False)
+    mean = models.FloatField(blank=True, null=True)
+    var = models.FloatField(blank=True, null=True)
+    std = models.FloatField(blank=True, null=True)
+    rating_zero = models.IntegerField(blank=True, null=True)
+    rating_one = models.IntegerField(blank=True, null=True)
+    rating_two = models.IntegerField(blank=True, null=True)
+    rating_three = models.IntegerField(blank=True, null=True)
+    rating_four = models.IntegerField(blank=True, null=True)
+    rating_five = models.IntegerField(blank=True, null=True)
+    rating_six = models.IntegerField(blank=True, null=True)
+    rating_seven = models.IntegerField(blank=True, null=True)
+    rating_eight = models.IntegerField(blank=True, null=True)
+    rating_nine = models.IntegerField(blank=True, null=True)
+    rating_ten = models.IntegerField(blank=True, null=True)
+    extra_1 = models.IntegerField(blank=True, null=True)
+    extra_2 = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'basic_statistics'
+
+    def __str__(self):
+        return self.show_name
+
+
+class ItemRecs(models.Model):
+    show_name = models.TextField(primary_key=True, blank=True, null=False)
+    rec_1 = models.IntegerField(blank=True, null=True)
+    rec_2 = models.IntegerField(blank=True, null=True)
+    rec_3 = models.IntegerField(blank=True, null=True)
+    rec_4 = models.IntegerField(blank=True, null=True)
+    rec_5 = models.IntegerField(blank=True, null=True)
+    rec_6 = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'item_recs'
+
+    def __str__(self):
+        return self.show_name
+

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import ContentData
+from .models import ContentData, BasicStatistics, ItemRecs
 # from ..stride_recommender.serializers import ContentDataSerializer
 
 
@@ -22,4 +22,16 @@ class ContentDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContentData
         # fields = ('anime_url', 'name', 'image_url', 'synopsis', 'studios', 'genres', 'media', 'members', 'aired', 'episodes', 'score')
+        fields = '__all__'
+
+class BasicStatisticsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = BasicStatistics
+        fields = '__all__'
+
+
+class ItemRecsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemRecs
         fields = '__all__'

@@ -169,7 +169,7 @@ itemRecApp.controller('itemRecController', function($scope, $http) {
   $scope.current_href.pop();
   // Following convention of /stride_stats/show/(show name here)/
   $scope.path_name = window.location.pathname.toString().split('/')[3];
-  $scope.api_path_info = $scope.current_href.join('/') + '/api/itemrec/' + $scope.path_name + '/6';
+  $scope.api_path_info = $scope.current_href.join('/') + '/api/itemrec/' + $scope.path_name;
 
   $scope.getData3 = function () {
   $http.get($scope.api_path_info).

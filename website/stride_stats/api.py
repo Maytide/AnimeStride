@@ -4,9 +4,8 @@ from urllib.request import unquote
 from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
 
-from .getshows import get_show_test, get_show_test2, get_show_stats, get_shows_popularity, \
-     get_show, get_shows_random
-from .serializers import StatisticsSerializer, StatisticsListSerializer, ContentDataSerializer
+from .getshows import *
+from .serializers import *
 
 
 class JSONResponse(HttpResponse):
@@ -42,6 +41,36 @@ def api_get_show_stats(request, show_name):
     return JSONResponse(serializer.data)
     # return JSONResponse(json.dumps({'values': stats_dict, 'axis_labels': timestamp}))
 
+
+def api_get_show_basic_stats(request, show_name):
+    show = None
+
+    try:
+        show = get_show_basic_stats(unquote(show_name))
+    except Exception as ex:
+        print('[stride_stats: api_get_show_basic_stats] Could not process show.')
+        show = {}
+
+    serializer = BasicStatisticsSerializer(show)
+
+    return JSONResponse(serializer.data)
+
+# TODO: fetch ContentData of retrieved recs
+def api_get_show_item_rec(request, show_name):
+    show = None
+    print(show_name)
+
+    try:
+        show = get_show_item_rec(unquote(show_name))
+
+    except Exception as ex:
+        print('[stride_stats: api_get_show_basic_stats] Could not process show.')
+        show = {}
+
+    serializer = ItemRecsSerializer(show)
+
+    return JSONResponse(serializer.data)
+
 def api_get_shows_random(request, num_shows):
     show_list = get_shows_random(num_shows=num_shows)
 
@@ -49,9 +78,6 @@ def api_get_shows_random(request, num_shows):
 
     return JSONResponse(serializer.data)
 
-def api_get_shows_itemrec(request, show_name, num_shows):
-    # Temp
-    return api_get_shows_random(request, num_shows)
 
 def api_get_shows_popularity(request, num_shows):
     show_list = get_shows_popularity(num_shows=num_shows)

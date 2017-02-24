@@ -7,7 +7,7 @@ from rest_framework.parsers import JSONParser
 
 from .models import ContentData
 from .serializers import ContentDataSerializer
-from .getshows import get_shows_random, get_shows_url, get_shows_recommendation
+from .getshows import *
 from .forms import URLForm
 
 # class ContentDataViewSet(viewsets.ModelViewSet):
@@ -43,6 +43,10 @@ def api_get_show(request, pk):
     if request.method == 'GET':
         serializer = ContentDataSerializer(show)
         return ContentDataJSONResponse(serializer.data)
+    elif request.method == 'POST':
+        serializer = ContentDataSerializer(show)
+        return ContentDataJSONResponse(serializer.data)
+
 
 def api_get_shows_random(request, num_shows=3):
     show_list = get_shows_random(num_shows=num_shows)

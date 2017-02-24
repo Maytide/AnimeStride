@@ -2,9 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be5fdea8-7c8c-4345-8647-24dc33cd6ba6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/write_extended_stats.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/stride_stats/migrations/0002_basicstatistics_itemrecs.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/write_extended_stats.py" afterPath="$PROJECT_DIR$/data/write_extended_stats.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/master.py" afterPath="$PROJECT_DIR$/master.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride/settings.py" afterPath="$PROJECT_DIR$/website/stride/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride_recommender/api.py" afterPath="$PROJECT_DIR$/website/stride_recommender/api.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride_stats/api.py" afterPath="$PROJECT_DIR$/website/stride_stats/api.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride_stats/getshows.py" afterPath="$PROJECT_DIR$/website/stride_stats/getshows.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride_stats/models.py" afterPath="$PROJECT_DIR$/website/stride_stats/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride_stats/serializers.py" afterPath="$PROJECT_DIR$/website/stride_stats/serializers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride_stats/templates/static/js/show-chart.js" afterPath="$PROJECT_DIR$/website/stride_stats/templates/static/js/show-chart.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride_stats/urls.py" afterPath="$PROJECT_DIR$/website/stride_stats/urls.py" />
     </list>
     <ignored path="Parse MAL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="master.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="master.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/master.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="21" column="93" lean-forward="false" selection-start-line="21" selection-start-column="93" selection-end-line="21" selection-end-column="93" />
+            <state relative-caret-position="467">
+              <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="62" selection-end-column="20" />
               <folding>
                 <element signature="e#110#120#0" expanded="true" />
               </folding>
@@ -36,77 +45,81 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sandbox.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sandbox.py">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/stride/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="106" selection-end-column="38" />
+            <state relative-caret-position="535">
+              <caret line="156" column="0" lean-forward="true" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/stride_stats/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="484">
+              <caret line="35" column="24" lean-forward="false" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
               <folding>
-                <element signature="e#0#14#0" expanded="true" />
+                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create_hist_from_user_ratings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/create_hist_from_user_ratings.py">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/stride_stats/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8">
-              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="108" selection-end-column="11" />
+            <state relative-caret-position="187">
+              <caret line="11" column="67" lean-forward="false" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
               <folding>
-                <element signature="e#0#21#0" expanded="true" />
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calculate_corr_data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/calculate_corr_data.py">
+      <file leaf-file-name="api.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/stride_stats/api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="183" column="29" lean-forward="false" selection-start-line="183" selection-start-column="29" selection-end-line="183" selection-end-column="29" />
+            <state relative-caret-position="204">
+              <caret line="57" column="28" lean-forward="false" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
               <folding>
-                <element signature="e#0#21#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="write_extended_stats.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="getshows.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/stride_stats/getshows.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="201">
+              <caret line="45" column="82" lean-forward="false" selection-start-line="45" selection-start-column="82" selection-end-line="45" selection-end-column="82" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="write_extended_stats.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/write_extended_stats.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="194" column="25" lean-forward="true" selection-start-line="194" selection-start-column="25" selection-end-line="194" selection-end-column="25" />
+            <state relative-caret-position="391">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
-                <element signature="e#0#21#0" expanded="true" />
-                <element signature="e#2572#3193#0" expanded="false" />
-                <element signature="e#8874#8928#0" expanded="false" />
+                <element signature="e#4759#5381#0" expanded="false" />
+                <element signature="e#12145#12199#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RecommenderD.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Recommender/RD/RecommenderD.py">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/stride_stats/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3553">
-              <caret line="250" column="97" lean-forward="false" selection-start-line="250" selection-start-column="97" selection-end-line="250" selection-end-column="97" />
-              <folding>
-                <element signature="e#3455#3826#0" expanded="false" />
-                <element signature="e#3896#4262#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_indexed_rating_db.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/create_indexed_rating_db.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-91">
-              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="35" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="229">
+              <caret line="62" column="44" lean-forward="true" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -137,10 +150,8 @@
       <find>gate</find>
       <find>gate:</find>
       <find>Higurashi no Naku Koro ni</find>
-      <find>gate:</find>
       <find>Vampire Knight</find>
       <find>Re:Zero kara Hajimeru Isekai Seikatsu</find>
-      <find>gate: jieitai</find>
       <find>Mahouka Koukou no Rettousei</find>
       <find>num_rat</find>
       <find>show fate/zero</find>
@@ -152,6 +163,8 @@
       <find>fullmeta</find>
       <find>sword art</find>
       <find>, rating</find>
+      <find>gate: jiei</find>
+      <find>gate: jieitai</find>
     </findStrings>
     <replaceStrings>
       <replace>input</replace>
@@ -190,30 +203,30 @@
         <option value="$PROJECT_DIR$/website/home/views.py" />
         <option value="$PROJECT_DIR$/website/home/urls.py" />
         <option value="$PROJECT_DIR$/website/stride_recommender/getshows.py" />
-        <option value="$PROJECT_DIR$/website/stride/settings.py" />
         <option value="$PROJECT_DIR$/website/stride_recommender/serializers.py" />
         <option value="$PROJECT_DIR$/website/stride_recommender/models.py" />
-        <option value="$PROJECT_DIR$/website/stride_stats/models.py" />
         <option value="$PROJECT_DIR$/website/stride_stats/views.py" />
-        <option value="$PROJECT_DIR$/website/stride_stats/serializers.py" />
         <option value="$PROJECT_DIR$/FetchMALData/ReadMALShows.py" />
         <option value="$PROJECT_DIR$/Anime.py" />
-        <option value="$PROJECT_DIR$/website/stride_stats/getshows.py" />
-        <option value="$PROJECT_DIR$/website/stride_stats/api.py" />
-        <option value="$PROJECT_DIR$/website/stride_stats/urls.py" />
         <option value="$PROJECT_DIR$/data/assign_show_id.py" />
         <option value="$PROJECT_DIR$/data/create_indexed_rating_db.py" />
         <option value="$PROJECT_DIR$/Recommender/CreateDFFromDB.py" />
         <option value="$PROJECT_DIR$/Recommender/RD/RecommenderD.py" />
         <option value="$PROJECT_DIR$/Recommender/Recommender.py" />
         <option value="$PROJECT_DIR$/User.py" />
-        <option value="$PROJECT_DIR$/website/stride_recommender/api.py" />
-        <option value="$PROJECT_DIR$/sandbox.py" />
         <option value="$PROJECT_DIR$/data/calculate_corr_data.py" />
         <option value="$PROJECT_DIR$/data/write_show_stats.py" />
-        <option value="$PROJECT_DIR$/master.py" />
         <option value="$PROJECT_DIR$/data/create_hist_from_user_ratings.py" />
+        <option value="$PROJECT_DIR$/sandbox.py" />
         <option value="$PROJECT_DIR$/data/write_extended_stats.py" />
+        <option value="$PROJECT_DIR$/website/stride_stats/serializers.py" />
+        <option value="$PROJECT_DIR$/master.py" />
+        <option value="$PROJECT_DIR$/website/stride/settings.py" />
+        <option value="$PROJECT_DIR$/website/stride_recommender/api.py" />
+        <option value="$PROJECT_DIR$/website/stride_stats/models.py" />
+        <option value="$PROJECT_DIR$/website/stride_stats/urls.py" />
+        <option value="$PROJECT_DIR$/website/stride_stats/getshows.py" />
+        <option value="$PROJECT_DIR$/website/stride_stats/api.py" />
       </list>
     </option>
   </component>
@@ -239,8 +252,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1081,9 +1094,9 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.write_extended_stats" />
-        <item index="1" class="java.lang.String" itemvalue="Python.create_hist_from_user_ratings" />
-        <item index="2" class="java.lang.String" itemvalue="Python.calculate_corr_data" />
-        <item index="3" class="java.lang.String" itemvalue="Python.sandbox" />
+        <item index="1" class="java.lang.String" itemvalue="Python.sandbox" />
+        <item index="2" class="java.lang.String" itemvalue="Python.create_hist_from_user_ratings" />
+        <item index="3" class="java.lang.String" itemvalue="Python.calculate_corr_data" />
         <item index="4" class="java.lang.String" itemvalue="Python.assign_show_id" />
       </list>
     </recent_temporary>
@@ -1410,7 +1423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487825636589</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Fixing item-based recommender bugs">
+      <created>1487887087477</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1487887087477</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1424,15 +1444,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18440464" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5046875" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17984831" sideWeight="0.4953125" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3163597" sideWeight="0.49479166" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3163597" sideWeight="0.49479166" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1442,6 +1461,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17984831" sideWeight="0.4953125" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1494,7 +1514,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Very basic recommender tested with RMSE ~ 1.4 for MAL's 1-10 rating scale" />
     <MESSAGE value="Cost function recommender working" />
     <MESSAGE value="Restructuring recommender" />
     <MESSAGE value="Initial web files generated" />
@@ -1519,7 +1538,8 @@
     <MESSAGE value="Working on stats page + database restructuring + misc." />
     <MESSAGE value="Major database restructuring for user ratings" />
     <MESSAGE value="Adjusted cosine similarity item-based recommender working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjusted cosine similarity item-based recommender working" />
+    <MESSAGE value="Fixing item-based recommender bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing item-based recommender bugs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1530,19 +1550,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="19" />
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/website/stride_recommender/static/js/main.js" />
-    <entry file="file://$PROJECT_DIR$/website/stride_recommender/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/website/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1669,13 +1681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/website/stride/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2380">
-          <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/website/stride_stats/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1711,52 +1716,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/website/stride_stats/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/stride_stats/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FetchMALData/ReadMALShows.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="592">
           <caret line="49" column="48" lean-forward="false" selection-start-line="49" selection-start-column="48" selection-end-line="49" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/stride_stats/api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="51" column="22" lean-forward="false" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/stride_stats/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="42" lean-forward="false" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/stride_stats/getshows.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Anime.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7191">
-          <caret line="423" column="39" lean-forward="false" selection-start-line="423" selection-start-column="39" selection-end-line="423" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -1795,28 +1758,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/website/stride_recommender/api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1547">
-          <caret line="101" column="43" lean-forward="false" selection-start-line="101" selection-start-column="43" selection-end-line="101" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/stride_recommender/getshows.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/User.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="861">
           <caret line="253" column="18" lean-forward="false" selection-start-line="253" selection-start-column="18" selection-end-line="253" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#31#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1824,9 +1769,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#14#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1834,9 +1776,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#14#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1844,25 +1783,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="952">
           <caret line="227" column="69" lean-forward="false" selection-start-line="227" selection-start-column="69" selection-end-line="227" selection-end-column="97" />
-          <folding>
-            <element signature="e#275#4339#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="106" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Recommender/RD/RecommenderD.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3553">
+        <state relative-caret-position="3604">
           <caret line="250" column="97" lean-forward="false" selection-start-line="250" selection-start-column="97" selection-end-line="250" selection-end-column="97" />
           <folding>
             <element signature="e#3455#3826#0" expanded="false" />
@@ -1871,54 +1797,159 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/create_indexed_rating_db.py">
+    <entry file="file://$PROJECT_DIR$/Anime.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-91">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="35" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="501">
+          <caret line="410" column="105" lean-forward="false" selection-start-line="410" selection-start-column="105" selection-end-line="410" selection-end-column="105" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/master.py">
+    <entry file="file://$PROJECT_DIR$/sandbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="21" column="93" lean-forward="false" selection-start-line="21" selection-start-column="93" selection-end-line="21" selection-end-column="93" />
+        <state relative-caret-position="552">
+          <caret line="147" column="17" lean-forward="false" selection-start-line="147" selection-start-column="17" selection-end-line="147" selection-end-column="17" />
           <folding>
-            <element signature="e#110#120#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/create_hist_from_user_ratings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="108" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/calculate_corr_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
+        <state relative-caret-position="365">
           <caret line="183" column="29" lean-forward="false" selection-start-line="183" selection-start-column="29" selection-end-line="183" selection-end-column="29" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#0#21#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/create_hist_from_user_ratings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="108" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#21#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/stride_recommender/getshows.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/create_indexed_rating_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="35" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#14#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/stride_stats/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/stride_stats/migrations/0002_basicstatistics_itemrecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/stride/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="156" column="0" lean-forward="true" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/stride_recommender/api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/stride_stats/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="62" column="44" lean-forward="true" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/write_extended_stats.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="194" column="25" lean-forward="true" selection-start-line="194" selection-start-column="25" selection-end-line="194" selection-end-column="25" />
+        <state relative-caret-position="391">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
-            <element signature="e#2572#3193#0" expanded="false" />
-            <element signature="e#8874#8928#0" expanded="false" />
+            <element signature="e#4759#5381#0" expanded="false" />
+            <element signature="e#12145#12199#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/stride_stats/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="35" column="24" lean-forward="false" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/stride_stats/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="67" lean-forward="false" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/stride_stats/getshows.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="45" column="82" lean-forward="false" selection-start-line="45" selection-start-column="82" selection-end-line="45" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/stride_stats/api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="57" column="28" lean-forward="false" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="62" selection-end-column="20" />
+          <folding>
+            <element signature="e#110#120#0" expanded="true" />
           </folding>
         </state>
       </provider>

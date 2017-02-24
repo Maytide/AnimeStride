@@ -85,6 +85,9 @@ WSGI_APPLICATION = 'stride.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+# DATABASE_ROUTERS = ['manager.router.DatabaseAppsRouter']
+# DATABASE_APPS_MAPPING = {'show_data_extended_model': 'show_data_extended'}
+
 DATABASES = {
     # Database in external filepath
     # http://stackoverflow.com/questions/39228449/how-to-access-directory-file-outside-django-project
@@ -92,6 +95,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(FILES_DIR, 'show_data_aggregated.db'),
     },
+    # 'show_data_extended': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(FILES_DIR, 'show_data_aggregated.db'),
+    # },
 }
 
 
@@ -146,3 +153,4 @@ STATICFILES_DIRS = [
     'stride_stats/templates/static',
     'home/templates/static',
 ]
+

@@ -38,7 +38,7 @@ def open_db(max_users, max_shows):
 
     ############################################
 
-    db_x = 'user_list_indexed.sqlite3'
+    db_x = UNMODELED_DATABASES['user_list_indexed']['location']
     conn_x = sqlite3.connect(db_x)
     c_x = conn_x.cursor()
 
@@ -51,25 +51,73 @@ def open_db(max_users, max_shows):
     ############################################
 
 
-def write_extended_stats(max_users, max_shows, basic_statistics=True, item_rec=True):
+def write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=False, verbose=False):
     conn_x, master_dict_n, master_map, show_dict, show_map, user_rating_table_list = open_db(max_users, max_shows)
     c_x = conn_x.cursor()
-    master_stat_dict = calculate_basic_statistics(c_x, max_users, max_shows, master_dict_n, master_map, show_dict, show_map, user_rating_table_list)
 
-    calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_map, show_dict, show_map, user_rating_table_list)
+    master_stat_dict = calculate_basic_statistics(c_x, max_users, max_shows, master_dict_n, master_map, show_dict, show_map, user_rating_table_list, verbose=verbose)
+
+    rec_dict = None
+    if item_rec:
+        rec_dict = calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_map, show_dict, show_map, user_rating_table_list, verbose=verbose)
     # print(master_stat_dict[master_dict_n['Rokka no Yuusha']]['rating_hist'])
     # print(master_stat_dict[master_dict_n['Rokka no Yuusha']])
     # print(master_stat_dict[master_dict_n['Sword Art Online']])
     # print(master_stat_dict[master_dict_n['Fullmetal Alchemist: Brotherhood']])
-
-
     # print('Hello')
-
-
     conn_x.close()
 
+    # print(master_stat_dict[master_dict_n['Rokka no Yuusha']]['mean'])
+    #
+    # print(master_stat_dict)
+    # print(rec_dict)
 
-def a_cos_sim(v1, v2, mu, threshold=100, correction_fact=0.98):
+    db_s = UNMODELED_DATABASES['show_data_extended']['location']
+    conn_s = sqlite3.connect(db_s)
+    c_s = conn_s.cursor()
+
+
+    if basic_statistics:
+        if verbose:
+            print('Writing basic statistic data to database...')
+        c_s.execute('''CREATE TABLE IF NOT EXISTS basic_statistics
+                    (show_code INTEGER PRIMARY KEY, mean REAL, var REAL, std REAL,
+                    rating_zero INTEGER, rating_one INTEGER, rating_two INTEGER, rating_three INTEGER, rating_four INTEGER, rating_five INTEGER,
+                    rating_six INTEGER, rating_seven INTEGER, rating_eight INTEGER, rating_nine INTEGER, rating_ten INTEGER,
+                    extra_1 INTEGER, extra_2 INTEGER)''')
+
+        for show_code, info in master_stat_dict.items():
+
+            c_s.execute('''INSERT OR REPLACE INTO basic_statistics VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                        ''', (show_code, info['mean'], info['var'], info['std'],
+                              info['rating_hist'][0], info['rating_hist'][1], info['rating_hist'][2], info['rating_hist'][3],
+                              info['rating_hist'][4], info['rating_hist'][5], info['rating_hist'][6], info['rating_hist'][7],
+                              info['rating_hist'][8], info['rating_hist'][9], info['rating_hist'][10], 0, 0))
+
+    if item_rec:
+        if verbose:
+            print('Writing item recommendation data to database...')
+
+        c_s.execute('''CREATE TABLE IF NOT EXISTS item_recs
+                    (show_code INTEGER PRIMARY KEY,
+                    rec_1 INTEGER, rec_2 INTEGER, rec_3 INTEGER, rec_4 INTEGER, rec_5 INTEGER, rec_6 INTEGER)''')
+
+        for show_code, show_rec_list in rec_dict.items():
+
+            c_s.execute('''INSERT OR REPLACE INTO item_recs VALUES (?,?,?,?,?,?,?)
+                        ''', (show_code,) + tuple(show_rec_list))
+
+        pass
+
+
+    conn_s.commit()
+    conn_s.close()
+
+
+
+
+
+def a_cos_sim(v1, v2, mu, threshold=200, correction_fact=0.995):
 
     num = 0
     den_v1 = 0
@@ -94,7 +142,7 @@ def a_cos_sim(v1, v2, mu, threshold=100, correction_fact=0.98):
         return 0
 
     # threshold = 100
-    if num_common > threshold:
+    if num_common >= threshold:
         correction = 1
     else:
         correction = correction_fact ** (threshold - num_common)
@@ -104,14 +152,15 @@ def a_cos_sim(v1, v2, mu, threshold=100, correction_fact=0.98):
     return a_cos
 
 
-def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_map, show_dict, show_map, user_rating_table_list, num_recs=6):
+def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_map, show_dict, show_map, user_rating_table_list, num_recs=6, verbose=False):
     A = np.zeros((max_shows, max_users))
     user_mean_list = np.zeros(max_users)
 
-
+    if verbose:
+        print('Loading user rating tables into rating matrix...')
     u = 0
     for index_u, user_rating_table_2 in enumerate(user_rating_table_list):
-        print(index_u, 'Reading ratings for: ', user_rating_table_2)
+        # print(index_u, 'Reading ratings for: ', user_rating_table_2)
         c_x.execute('SELECT show, rating FROM [{urt}]'.format(urt=user_rating_table_2))
 
         user_rating_list = c_x.fetchall()
@@ -123,10 +172,11 @@ def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_m
                 user_mean_i += rating
                 num_ratings_i += 1
 
-                # print(show_code)
-                # print(master_map[show_code])
-            if show_code in master_map and master_map[show_code] in show_dict:
-                A[show_dict[master_map[show_code]], u] = rating
+            # if 'Gate: Jieitai' in master_map[show_code]:
+            #     print(show_code)
+            #     print(master_map[show_code])
+            if show_code in master_map and unescape_db_string(master_map[show_code]) in show_dict:
+                A[show_dict[unescape_db_string(master_map[show_code])], u] = rating
                 # if show_code not in show_stat_dict:
                 #     show_stat_dict[show_code] = {'rating_hist': np.zeros(11), 'var': -1, 'mean': -1, 'std': -1}
                 # show_stat_dict[show_code]['rating_hist'][rating] += 1
@@ -138,7 +188,9 @@ def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_m
         # user_rating_list_list.append(user_rating_list)
         u += 1
 
-
+    if verbose:
+        print('Rating matrix built.')
+        print('Calculating cosine similarities between shows...')
 
     C = np.zeros((max_shows, max_shows))
     max_a_cos = np.zeros((max_shows, num_recs)) - 1
@@ -148,6 +200,12 @@ def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_m
         for index_j in range(index_i, max_shows):
             C[index_i, index_j] = a_cos_sim(A[index_i, :], A[index_j, :], user_mean_list)
             C[index_j, index_i] = C[index_i, index_j]
+        if verbose and index_i % 10 == 0:
+            print('Done show', index_i, 'of a possible', max_shows)
+
+    if verbose:
+        print('Done calculating all cosine similarities.')
+        print('Generating recommendations...')
 
     for index_i in range(max_shows):
         for index_j in range(max_shows):
@@ -164,14 +222,18 @@ def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_m
                     else:
                         break
 
+    if verbose:
+        print('Done generating recommendations')
+        print('Packing recommendations for database...')
+
     avg_corr = []
     for index in range(max_shows):
         avg_i = np.mean(C[index])
         avg_corr.append(avg_i)
-        print(index, 'Average correlation for show:', show_map[index], avg_i)
+        # print(index, 'Average correlation for show:', show_map[index], avg_i)
 
     master_rec_dict = {}
-    tl_rec_dict = {}
+    # tl_rec_dict = {}
 
     for index, rec_list in enumerate(max_a_cos_index):
 
@@ -184,10 +246,12 @@ def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_m
             # show_rec.append(master_dict_n[escape_db_string(show_map[rec])])
 
         # master_rec_list.append(show_rec)
-        print(show_map[index])
-        print(master_dict_n[escape_db_string(show_map[index])])
-        master_rec_dict[master_dict_n[escape_db_string(show_map[index])]] = show_rec
-        tl_rec_dict[show_map[index]] = show_rec_tl
+        # print(show_map[index])
+        # print(master_dict_n[escape_db_string(show_map[index])])
+        show_name = escape_db_string(show_map[index])
+        if show_name in master_dict_n:
+            master_rec_dict[master_dict_n[show_name]] = show_rec
+        # tl_rec_dict[show_map[index]] = show_rec_tl
 
 
         # print('Recommendation for show: ' + show_map[index])
@@ -195,18 +259,22 @@ def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_m
         # print(show_rec)
         # print('Corr scores:', max_a_cos[index])
 
-    print(master_rec_dict)
-    print(tl_rec_dict)
+    # print(master_rec_dict)
+    # print(tl_rec_dict)
+    if verbose:
+        print('Done packing recommendations. Returning to write method.\n')
 
-    # return master_rec_list
+    return master_rec_dict
 
 
-def calculate_basic_statistics(c_x, max_users, max_shows, master_dict_n, master_map, show_dict, show_map, user_rating_table_list):
+def calculate_basic_statistics(c_x, max_users, max_shows, master_dict_n, master_map, show_dict, show_map, user_rating_table_list, verbose=False):
     # print(master_stat_dict)
     master_stat_dict = OrderedDict()
 
+    if verbose:
+        print('Loading user rating tables and building histogram...')
     for user_rating_table in user_rating_table_list:
-        print('Reading ratings for: ', user_rating_table)
+        # print('Reading ratings for: ', user_rating_table)
         c_x.execute('SELECT show, rating FROM [{urt}]'.format(urt=user_rating_table))
 
         for show_code, rating in c_x.fetchall():
@@ -217,6 +285,10 @@ def calculate_basic_statistics(c_x, max_users, max_shows, master_dict_n, master_
 
     # print(master_stat_dict[master_dict_n['Sword Art Online']]['rating_hist'])
     # print(master_stat_dict[master_dict_n['Rokka no Yuusha']]['rating_hist'])
+
+    if verbose:
+        print('Done generating histogram.')
+        print('Calculating mean, variance and standard deviation...')
 
     for show_code, info in master_stat_dict.items():
         mean = 0
@@ -255,9 +327,12 @@ def calculate_basic_statistics(c_x, max_users, max_shows, master_dict_n, master_
         # print('Num ratings:', np.sum(master_stat_dict[show_code]['rating_hist'][1:]))
         # print()
 
+    if verbose:
+        print('Done calculations. Returning to write method.\n')
+
     return master_stat_dict
 
-max_users = 1000
-max_shows = 200
+max_users = 10000
+max_shows = 500
 
-write_extended_stats(max_users, max_shows, item_rec=False)
+write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=True, verbose=True)
