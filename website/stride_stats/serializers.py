@@ -8,10 +8,10 @@ class StatisticsSerializer(serializers.Serializer):
     axis_labels = serializers.DictField()
     values = serializers.DictField()
 
-class StatisticsListSerializer(serializers.ListSerializer):
-
-    class Meta:
-        list_serializer_class = StatisticsSerializer
+# class StatisticsListSerializer(serializers.ListSerializer):
+#
+#     class Meta:
+#         list_serializer_class = StatisticsSerializer
 
 class ContentDataSerializer(serializers.ModelSerializer):
     # anime_url = serializers.HyperlinkedIdentityField('ContentData-list')
@@ -25,13 +25,26 @@ class ContentDataSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BasicStatisticsSerializer(serializers.ModelSerializer):
+    # Serialize modified version of model:
+    # http://stackoverflow.com/questions/14583816/django-rest-framework-how-to-add-custom-field-in-modelserializer
+    rating_hist = serializers.ListField(source='get_rating_hist')
 
     class Meta:
         model = BasicStatistics
-        fields = '__all__'
+        # fields = '__all__'
+        fields = ('show_name', 'mean', 'var', 'std', 'rating_hist')
+        read_only_fields = ('rating_hist',)
 
 
 class ItemRecsSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(source='show_name')
+    # rec_1 = ContentDataSerializer()
+    # rec_2 = ContentDataSerializer()
+    # rec_3 = ContentDataSerializer()
+    # rec_4 = ContentDataSerializer()
+    # rec_5 = ContentDataSerializer()
+    # rec_6 = ContentDataSerializer(source='rec_6')
+
     class Meta:
         model = ItemRecs
-        fields = '__all__'
+        fields = ('show_name', 'rec_1', 'rec_2', 'rec_3', 'rec_4', 'rec_5', 'rec_6')

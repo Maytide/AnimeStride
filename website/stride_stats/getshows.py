@@ -50,23 +50,28 @@ def get_show_basic_stats(show_name):
     return show
 
 def get_show_item_rec(show_name):
+    show_list = []
     show = None
     try:
         show = ItemRecs.objects.get(pk=show_name)
         # print(show)
-        return show
     except Exception as ex:
-        pass
+        try:
+            show = ItemRecs.objects.get(pk=string_delimiter_upper(show_name, ' ', exception_list=japanese_particles))
+            # print(show)
+        except Exception as ex:
+            print('[stride_stats: getshows: item rec] Could not process show:', show_name, ex)
+            return get_shows_random(num_shows=6)
 
-    try:
-        show = ItemRecs.objects.get(pk=string_delimiter_upper(show_name, ' ', exception_list=japanese_particles))
-        # print(show)
-        return show
-    except Exception as ex:
-        print('[stride_stats: getshows: item rec] Could not process show.', ex)
-        pass
+    # print('[stride_stats: getshows: item rec] Show:', show)
+    for rec in show.get_recs():
+        try:
+            show_list.append(ContentData.objects.get(pk=rec))
+        except Exception as ex:
+            print('[stride_stats: getshows: item rec] Could not process show:', rec, ex)
+            pass
 
-    return show
+    return show_list
 
 def get_show_stats(show_name, max_recall=30):
     anime = Anime()
@@ -105,7 +110,34 @@ def get_shows_popularity(num_shows=50):
 
     return show_list
 
+def get_shows_search(search_string, genre_bit_sequence, max_shows=50):
+    print(genre_bit_sequence)
+    if search_string == '[Query: Genres]':
+        if '1' not in genre_bit_sequence:
+            return ContentData.objects.order_by('popularity')[:max_shows]
+        else:
+            show_list = ContentData.objects.order_by('popularity')
+            for index, genre_bit in enumerate(genre_bit_sequence):
+                if genre_bit == '1':
+                    show_list = show_list.filter(genres__icontains=ContentData.show_genres[index])
+            num_results = show_list.count() if show_list.count() <= max_shows else max_shows
+            show_list = show_list[:num_results]
 
+    else:
+        if '1' not in genre_bit_sequence:
+            show_list = ContentData.objects.filter(name__icontains=search_string).order_by('popularity')
+            num_results = show_list.count() if show_list.count() <= max_shows else max_shows
+            show_list = show_list[:num_results]
+        else:
+            show_list = ContentData.objects.filter(name__icontains=search_string).order_by('popularity')
+            for index, genre_bit in enumerate(genre_bit_sequence):
+                if genre_bit == '1':
+                    show_list = show_list.filter(genres__icontains=ContentData.show_genres[index])
+            num_results = show_list.count() if show_list.count() <= max_shows else max_shows
+            show_list = show_list[:num_results]
+
+    return show_list
+    pass
 ###################################
 # Test methods
 

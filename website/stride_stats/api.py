@@ -6,6 +6,7 @@ from rest_framework.renderers import JSONRenderer
 
 from .getshows import *
 from .serializers import *
+from .forms import URLForm
 
 
 class JSONResponse(HttpResponse):
@@ -53,21 +54,23 @@ def api_get_show_basic_stats(request, show_name):
 
     serializer = BasicStatisticsSerializer(show)
 
+
     return JSONResponse(serializer.data)
 
 # TODO: fetch ContentData of retrieved recs
 def api_get_show_item_rec(request, show_name):
-    show = None
+    # print('[stride_stats: api_get_show_basic_stats]')
+    show_list = None
     print(show_name)
 
     try:
-        show = get_show_item_rec(unquote(show_name))
+        show_list = get_show_item_rec(unquote(show_name))
 
     except Exception as ex:
         print('[stride_stats: api_get_show_basic_stats] Could not process show.')
-        show = {}
+        show = []
 
-    serializer = ItemRecsSerializer(show)
+    serializer = ContentDataSerializer(show_list, many=True)
 
     return JSONResponse(serializer.data)
 
@@ -83,6 +86,26 @@ def api_get_shows_popularity(request, num_shows):
     show_list = get_shows_popularity(num_shows=num_shows)
 
     serializer = ContentDataSerializer(show_list, many=True)
+
+    return JSONResponse(serializer.data)
+
+
+def api_get_shows_search(request):
+    if request.method == 'POST':
+        form = URLForm(request.POST)
+
+        print('[Stride Stats: api: api_get_shows_search] Check if form is valid:', form.is_valid())
+        print(form.errors)
+        if form.is_valid():
+            cd = form.cleaned_data
+            show_list = get_shows_search(cd.get('search_string'), cd.get('genre_obj'))
+            serializer = ContentDataSerializer(show_list, many=True)
+        else:
+            show_list = get_shows_random(num_shows=2)
+            serializer = ContentDataSerializer(show_list, many=True)
+    else:
+        show_list = get_shows_random(num_shows=3)
+        serializer = ContentDataSerializer(show_list, many=True)
 
     return JSONResponse(serializer.data)
 

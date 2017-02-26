@@ -40,12 +40,20 @@ class ContentData(models.Model):
     sequel = models.TextField(default='', blank=True, null=True)
     summary = models.TextField(default='', blank=True, null=True)
 
+    show_genres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Ecchi', 'Fantasy', 'Game', 'Harem', 'Historical', 'Horror',
+                'Mecha', 'Military', 'Music', 'Mystery', 'Police', 'Psychological', 'Romance', 'School', 'Sci-Fi', 'Seinen',
+                'Shoujo', 'Shounen', 'Slice of Life', 'Space', 'Sports', 'Supernatural']
+
     class Meta:
         managed = False
         db_table = 'content_data'
 
     def __str__(self):
         return self.name
+
+    # @staticmethod
+    # def get_show_genres():
+    #     return show_genresa
 
 
 class BasicStatistics(models.Model):
@@ -74,15 +82,20 @@ class BasicStatistics(models.Model):
     def __str__(self):
         return self.show_name
 
+    def get_rating_hist(self):
+        return [self.rating_zero, self.rating_one, self.rating_two, self.rating_three,
+                self.rating_four, self.rating_five, self.rating_six, self.rating_seven,
+                self.rating_eight, self.rating_nine, self.rating_ten]
+
 
 class ItemRecs(models.Model):
     show_name = models.TextField(primary_key=True, blank=True, null=False)
-    rec_1 = models.IntegerField(blank=True, null=True)
-    rec_2 = models.IntegerField(blank=True, null=True)
-    rec_3 = models.IntegerField(blank=True, null=True)
-    rec_4 = models.IntegerField(blank=True, null=True)
-    rec_5 = models.IntegerField(blank=True, null=True)
-    rec_6 = models.IntegerField(blank=True, null=True)
+    rec_1 = models.TextField(blank=True, null=True)
+    rec_2 = models.TextField(blank=True, null=True)
+    rec_3 = models.TextField(blank=True, null=True)
+    rec_4 = models.TextField(blank=True, null=True)
+    rec_5 = models.TextField(blank=True, null=True)
+    rec_6 = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -90,4 +103,7 @@ class ItemRecs(models.Model):
 
     def __str__(self):
         return self.show_name
+
+    def get_recs(self):
+        return [self.rec_1, self.rec_2, self.rec_3, self.rec_4, self.rec_5, self.rec_6]
 

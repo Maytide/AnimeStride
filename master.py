@@ -18,7 +18,7 @@ japanese_particles = ['no', 'to', 'ni', 'na', 'wa', 'ga']
 
 UNMODELED_DATABASES = {
     'show_data_individual': {
-        'location': os.path.abspath(os.path.join(PROJECT_ROOT,'data/show_data.db')),
+        'location': os.path.abspath(os.path.join(PROJECT_ROOT,'data/show_data_individual.db')),
     },
     'show_data_aggregated': {
         'location': os.path.abspath(os.path.join(PROJECT_ROOT,'data/show_data_aggregated.db')),
@@ -56,8 +56,10 @@ def string_delimiter_upper(lower_string, delimiter, exception_list = None):
 
 def escape_db_string(db_string):
     db_string = db_string.replace(',', '[Comma]')
+    db_string = db_string.replace('"', '[Quot]')
     return db_string
 
 def unescape_db_string(db_string):
     db_string = db_string.replace('[Comma]', ',')
+    db_string = db_string.replace('[Quot]', '"')
     return db_string

@@ -4,7 +4,7 @@ from collections import OrderedDict, defaultdict
 import time
 from datetime import datetime
 
-from master import UNMODELED_DATABASES, string_SQL_safe
+from master import UNMODELED_DATABASES, string_SQL_safe, escape_db_string
 from FetchMALData.ParseShow import ParseShowContentInHTMLTag, ParseShowContentInHTMLElement, ParseShowInformation, ParseShowStatistics, ParseShowRelated
 
 
@@ -350,8 +350,10 @@ class Anime():
         # Only write data which is useful for statistics - score, ranked, members, popularity, favourites.
         # Also the time/date data was accessed.
 
-        table_name = '[' + content_data['Name:'] + ']'
-        table_name = table_name.replace('"', '[Quot]')
+        table_name = content_data['Name:']
+        # table_name = table_name.replace()
+        # table_name = escape_db_string(table_name)
+
         # datetime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
         datetime = int(round(time.time()))
 
@@ -360,18 +362,17 @@ class Anime():
 
         conn = sqlite3.connect(db)
         c = conn.cursor()
-
-        c.execute('''CREATE TABLE IF NOT EXISTS {}
+        # print(table_name)
+        c.execute('''CREATE TABLE IF NOT EXISTS [{}]
                   (score REAL, ranked INTEGER, members INTEGER, popularity INTEGER, favourites INTEGER, datetime INTEGER)'''.format(table_name))
 
         # statistics_data_list = self.OD_to_db_list(statistics_data)
 
-        c.execute('INSERT OR IGNORE INTO {} VALUES (?,?,?,?,?,?)'.format(table_name),
+        c.execute('INSERT OR IGNORE INTO [{}] VALUES (?,?,?,?,?,?)'.format(table_name),
                   (statistics_data['Score:'], statistics_data['Ranked:'], statistics_data['Members:'], statistics_data['Popularity:'], statistics_data['Favorites:'], datetime))
         conn.commit()
 
         conn.close()
-
 
 
 

@@ -217,18 +217,51 @@
             {% verbatim %}
             <div class="row row-centered">
                 <div class="col-sm-12 col-centered">
-                    <div class="row row-centered text-margin-top-30px">
-                        <h6 class="text-margin-top-10px">If you liked {{api_path_info}}, you may also like: </h6>
+                    <div class="row row-centered">
+                        <h6 class="text-margin-top-10px">If you liked this show, you may also like: </h6>
                     </div>
                     <div class="row row-centered top-bottom-border">
                         <div class="showcase-container-wrapper" ng-repeat="show in shows">
                             <div class="showcase-container">
                                 <div class="">
-                                    <a href="{{show.anime_url}}"><img ng-src="{{show.image_url}}"></a>
+                                    <a href="{{show.stride_url}}"><img ng-src="{{show.image_url}}"></a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            {% endverbatim %}
+        </div>
+    </div>
+    
+    <div class="container stats-container">
+        <div id="idBasicStats" ng-app="basicStatsApp" ng-controller="basicStatsController">
+            {% verbatim %}
+            
+<!--
+            <div class="row row-centered text-margin-top-10px text-margin-bottom-15px">
+                <h6 class="side-name">Statistics for show {{show.name}}</h6>
+            </div>
+-->
+            <div class="row row-centered text-margin-top-10px">
+                <div class="col-8 col-centered">
+                    <div id="chart-1-container" class="row row-centered row-chart-main chart-container">
+                    <!--            Chart.js scales to parent element size-->
+                    <!--            http://stackoverflow.com/questions/28162810/why-is-chart-js-canvas-not-respecting-the-padding-of-the-container-element-->
+
+
+                        <canvas class="" id="hist-1"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-centered">
+                <div class="col-6 col-centered">
+                    <h6 id="no-data" style="visibility: hidden;">No data for this show.</h6>
+                    <h6>Mean Rating: {{show.mean}}</h6>
+                    <h6>Variance: {{show.var}}</h6>
+                    <h6>Standard Deviation: {{show.std}}</h6>
+                    <p>(Note that the zero ratings consist of MAL members who have the show in their anime list but have not assigned it a rating. They are not taken into account when calculating statistical properties of the data.)</p>
                 </div>
             </div>
             {% endverbatim %}

@@ -103,7 +103,7 @@ chartApp.controller('chartController', function($scope, $http) {
   	        },
   	      }
   		});
-};
+    };
 
 
 
@@ -155,6 +155,87 @@ displayApp.controller('displayController', function($scope, $http) {
 
 });
 
+////////////////////////////////////////
+
+var basicStatsApp = angular.module('basicStatsApp', []);
+
+basicStatsApp.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+}]);
+
+basicStatsApp.controller('basicStatsController', function($scope, $http) {
+  current_href = window.location.href.toString().split('/');
+  current_href.pop();
+  current_href.pop();
+  // Following convention of /stride_stats/show/(show name here)/
+  path_name = window.location.pathname.toString().split('/')[3];
+  $scope.api_path_info = current_href.join('/') + '/api/3/' + path_name;
+
+  $scope.getData3 = function () {
+    $http.get($scope.api_path_info).
+        then(function(response) {
+          $scope.show = response.data;
+          if ($scope.show['show_name'] === "") {
+            $scope.show['mean'] = 0;
+            $scope.show['var'] = 0;
+            $scope.show['std'] = 0;
+            // $("#no-data").style.visibility = 'visible';
+            return;
+          }
+          $scope.show['name'] = $scope.show['show_name'];
+          $scope.show['mean'] = $scope.show['mean'].toFixed(2);
+          $scope.show['var'] = $scope.show['var'].toFixed(2);
+          $scope.show['std'] = $scope.show['std'].toFixed(2);
+          x_label = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+          $scope.drawHist($scope.show['name'], x_label, $scope.show['rating_hist'], '#FFFFFF');
+        });
+  }
+
+  $scope.getData3();
+
+  $scope.drawHist = function (name, x_label, y_label, color) {
+
+  	var ctx = document.getElementById("hist-1").getContext('2d');
+  	var myChart = new Chart(ctx, {
+  	    type: 'bar',
+  	    data: {
+  	        // labels: [0, 1, 2, 3, 4, 5],
+  	        labels: x_label,
+  	        datasets: [{
+  	            // label: '# of Votes',
+  	            // data: [12, 19, 3, 5, 2, 3],
+  	            data: y_label,
+                backgroundColor: "rgba(217,178,52,0.2)",
+                borderColor: "rgba(249,195,12,0.5)",
+                borderWidth: 1.5,
+  	        }]
+  	    },
+  	    options: {
+            title: {
+                display: true,
+                text: 'Rating histogram for ' + name,
+                fontFamily: "'apple-system','system-ui','BlinkMacSystemFont','Segoe UI','Roboto','Helvetica Neue','Arial','sans-serif'",
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+  	        scales: {
+  	          xAxes: [{
+
+                ticks: {
+                    autoSkip: true,
+                    maxTicksLimit: 20,
+                    maxRotation: 0,
+                    minRotation: 0
+                },
+  	          }],
+  	        },
+  	      }
+  		});
+    };
+});
+////////////////////////////////////////
+
 var itemRecApp = angular.module('itemRecApp', []);
 
 itemRecApp.config(['$httpProvider', function($httpProvider) {
@@ -166,23 +247,30 @@ itemRecApp.controller('itemRecController', function($scope, $http) {
   $scope.current_href = window.location.href.toString().split('/');
   $scope.current_href.pop();
   $scope.current_href.pop();
-  $scope.current_href.pop();
   // Following convention of /stride_stats/show/(show name here)/
   $scope.path_name = window.location.pathname.toString().split('/')[3];
-  $scope.api_path_info = $scope.current_href.join('/') + '/api/itemrec/' + $scope.path_name;
+  $scope.api_path_info = $scope.current_href.join('/') + '/api/4/' + $scope.path_name;
 
-  $scope.getData3 = function () {
+  $scope.getData4 = function () {
   $http.get($scope.api_path_info).
       then(function(response) {
           $scope.shows = response.data;
+          for (var i = 0; i < $scope.shows.length; i++) {
+            show_url = window.location.href.split('/');
+            show_url.pop();
+            show_url.pop();
+            $scope.shows[i]['stride_url'] = show_url.join('/') + '/' + $scope.shows[i]['name'];
 
+          }
 
       });
   }
 
-  $scope.getData3();
+  $scope.getData4();
 
 });
+
+////////////////////////////////////////
 
 // MUST include this wrapper, not just angular.bootstrap!:
 // https://blog.mariusschulz.com/2014/10/22/asynchronously-bootstrapping-angularjs-applications-with-server-side-data
@@ -190,5 +278,6 @@ angular.element(document).ready(function() {
   angular.bootstrap(document.getElementById("idAppDisplay"), ['displayApp']);
   angular.bootstrap(document.getElementById("idAppDisplay2"), ['displayApp']);
   angular.bootstrap(document.getElementById("idItemRec"), ['itemRecApp']);
+  angular.bootstrap(document.getElementById("idBasicStats"), ['basicStatsApp']);
   // angular.bootstrap(document.getElementById("idChartSelector"), ['chartApp']);
 });

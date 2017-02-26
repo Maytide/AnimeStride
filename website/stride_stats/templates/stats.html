@@ -3,31 +3,78 @@
 {% load staticfiles %}
 
 {% block sub-js %} 
+<script>
+    var genreModel = {
+        {% for genre in show_genres %}'{{genre}}' : '0',{% endfor %}
+    }
+    var genreList = [{% for genre in show_genres %}'{{genre}}',{% endfor %}]
+</script>
 <script type="text/javascript" src="{% static 'js/stats.js' %}"></script>
 {% endblock %}
 
 {% block body %}
+<div ng-init="genreList={{show_genres}}"></div>
 
 <div class="container">
     <div ng-app="statsApp" ng-controller="statsController">
         <div class="page-desc">
             <h4>Search for a show</h4>
             <p class="text-muted">Make sure to enter as much of the exact name as you can rememeber!</p>
+<!--            <p>{{show_genres}}</p>-->
         </div>
         <div class="row row-centered">
-
+<!--
+            {% verbatim %}
+            {{testvar}}
+            {% endverbatim %}
+-->
             <div class="col-md-12 col-centered">
                 <div class="search-form">
                     <form method="POST" class="post-form url-bar">
                         <div class="search-bar">
-                            <input type="text" name="url" class="form-control" ng-model="formData.url" placeholder="">
+                            <input type="text" name="search_string" class="form-control" ng-model="formData.search_string" placeholder="">
                             {% csrf_token %} 
                             <button type="submit" class="save btn btn-info" ng-click="postData()">Search</button>
+                        </div>
+                        <div class="genre-checkbox-wrapper">
+<!--                            http://stackoverflow.com/questions/21644493/how-to-split-the-ng-repeat-data-with-three-columns-using-bootstrap-->
+                            {% verbatim %}
+<!--                            {{formData}}-->
+                            
+<!--                            {{partitionedGenreList}}-->
+                            <div class="row row-checkbox">
+                                
+                                
+                                <div class="col-2 col-checkbox" ng-repeat="sublist in partitionedGenreList">{{genres}}
+                                    <div ng-repeat="genre in sublist">
+                                        <label class="checkbox">
+                                            <div class="row no-15px-margin">
+                                                <div class="col-10 no-15px-padding">{{genre}}:</div>
+                                                <div class="col-2 no-15px-padding"><input type="checkbox" ng-model="genreModel[genre]"></div>
+                                            </div>
+                                            
+                                        </label>
+                                    </div>
+                                </div>
+<!--
+                                <div ng-repeat="(genre, state) in genreModel">
+                                        {{genreModel.genre}}
+                                    <label class="checkbox">{{genre}}: 
+                                        <input type="checkbox" ng-model="genreModel[genre]">
+                                    </label>
+                                </div>
+-->
+                                
+                                
+                            </div>
+                            {% endverbatim %}
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+<!--    </div>-->
+    
         {% verbatim %}
         <table class="table-striped table table-panel">
             <thead>
