@@ -24,6 +24,13 @@ class ContentDataSerializer(serializers.ModelSerializer):
         # fields = ('anime_url', 'name', 'image_url', 'synopsis', 'studios', 'genres', 'media', 'members', 'aired', 'episodes', 'score')
         fields = '__all__'
 
+
+class MultipleContentDataSerializer(serializers.Serializer):
+    show_list_random = ContentDataSerializer(many=True)
+    show_list_recent = ContentDataSerializer(many=True)
+    show_list_recent_popular = ContentDataSerializer(many=True)
+
+
 class BasicStatisticsSerializer(serializers.ModelSerializer):
     # Serialize modified version of model:
     # http://stackoverflow.com/questions/14583816/django-rest-framework-how-to-add-custom-field-in-modelserializer

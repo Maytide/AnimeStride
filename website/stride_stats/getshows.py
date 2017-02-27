@@ -1,5 +1,6 @@
 import sys
 from random import randint
+import datetime, time
 
 from django.conf import settings
 sys.path.append(settings.PROJECT_ROOT)
@@ -111,7 +112,7 @@ def get_shows_popularity(num_shows=50):
     return show_list
 
 def get_shows_search(search_string, genre_bit_sequence, max_shows=50):
-    print(genre_bit_sequence)
+    # print(genre_bit_sequence)
     if search_string == '[Query: Genres]':
         if '1' not in genre_bit_sequence:
             return ContentData.objects.order_by('popularity')[:max_shows]
@@ -137,6 +138,43 @@ def get_shows_search(search_string, genre_bit_sequence, max_shows=50):
             show_list = show_list[:num_results]
 
     return show_list
+
+def get_shows_recent(num_shows=5):
+    try:
+        num_shows_ = int(num_shows)
+    except Exception as ex:
+        num_shows_ = 5
+
+    today = datetime.date.today()
+    three_months_ago = today - datetime.timedelta(days=89)
+
+    today = int(time.mktime(datetime.datetime.strptime(str(today), '%Y-%m-%d').timetuple()))
+    three_months_ago = int(time.mktime(datetime.datetime.strptime(str(three_months_ago), '%Y-%m-%d').timetuple()))
+
+    show_list = ContentData.objects.filter(aired__range=(three_months_ago, today)).order_by('-aired')
+    show_list = show_list[:num_shows_]
+
+    return show_list
+
+def get_shows_recent_popular(num_shows=5):
+    try:
+        num_shows_ = int(num_shows)
+    except Exception as ex:
+        num_shows_ = 5
+
+    today = datetime.date.today()
+    three_months_ago = today - datetime.timedelta(days=89)
+
+    today = int(time.mktime(datetime.datetime.strptime(str(today), '%Y-%m-%d').timetuple()))
+    three_months_ago = int(time.mktime(datetime.datetime.strptime(str(three_months_ago), '%Y-%m-%d').timetuple()))
+
+    show_list = ContentData.objects.filter(aired__range=(three_months_ago, today)).order_by('popularity')
+    show_list = show_list[:num_shows_]
+    # print(three_months_ago, today)
+    # print(show_list[0].name, show_list[0].aired)
+
+    return show_list
+
     pass
 ###################################
 # Test methods

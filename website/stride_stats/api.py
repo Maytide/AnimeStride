@@ -20,6 +20,12 @@ class StatisticsContent(object):
         self.axis_labels = axis_labels
         self.values = values
 
+class FrontpageContent(object):
+    def __init__(self, show_list_random, show_list_recent, show_list_recent_popular):
+        self.show_list_random = show_list_random
+        self.show_list_recent = show_list_recent
+        self.show_list_recent_popular = show_list_recent_popular
+
 # All APIs return two lists: One of axis labels, other of data points (such as members, score, popularity etc)
 # Should convert strings to ints
 # Should filter out number symbol on popularity
@@ -91,23 +97,38 @@ def api_get_shows_popularity(request, num_shows):
 
 
 def api_get_shows_search(request):
-    if request.method == 'POST':
-        form = URLForm(request.POST)
+    # if request.method == 'POST':
+    form = URLForm(request.POST)
 
-        print('[Stride Stats: api: api_get_shows_search] Check if form is valid:', form.is_valid())
-        print(form.errors)
-        if form.is_valid():
-            cd = form.cleaned_data
-            show_list = get_shows_search(cd.get('search_string'), cd.get('genre_obj'))
-            serializer = ContentDataSerializer(show_list, many=True)
-        else:
-            show_list = get_shows_random(num_shows=2)
-            serializer = ContentDataSerializer(show_list, many=True)
-    else:
-        show_list = get_shows_random(num_shows=3)
+    print('[Stride Stats: api: api_get_shows_search] Check if form is valid:', form.is_valid())
+
+    if form.is_valid():
+        cd = form.cleaned_data
+        show_list = get_shows_search(cd.get('search_string'), cd.get('genre_obj'))
         serializer = ContentDataSerializer(show_list, many=True)
+    else:
+        print(form.errors)
+        show_list = get_shows_random(num_shows=2)
+        serializer = ContentDataSerializer(show_list, many=True)
+    # else:
+    #     show_list = get_shows_random(num_shows=3)
+    #     serializer = ContentDataSerializer(show_list, many=True)
 
     return JSONResponse(serializer.data)
+
+def api_get_shows_frontpage(request, num_shows=3):
+    show_list_random = get_shows_random(num_shows=num_shows)
+    show_list_recent = get_shows_recent(num_shows=num_shows)
+    show_list_recent_popular = get_shows_recent_popular(num_shows=num_shows)
+
+    frontpage_content = FrontpageContent(show_list_random, show_list_recent, show_list_recent_popular)
+
+    # show_items = {'show_list_recent': show_list_recent, 'show_list_recent_popular': show_list_recent_popular}
+
+    serializer = MultipleContentDataSerializer(frontpage_content)
+
+    return JSONResponse(serializer.data)
+
 
 ###################################
 # Test methods

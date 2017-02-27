@@ -38,26 +38,110 @@
                     <a><img class="icon" src="{% static 'img/icons/icon-updoot.png' %}"></a>
                 </div>
                 <div class="col-9">
-                    <h4 class="category-name">Rising</h4>
+                    <h4 class="category-name">Random</h4>
                 </div>
             </div>
             {% verbatim %}
-            <div ng-repeat="show in shows">
-                <div class="row row-display row-thumbnail">
-                    <div class="col-3 padding-5-px">
-<!--
+            <!--
                         Use ng-src so that django doesn't throw a 404
                         (Note that using src works though - Angular renders it, but
                         doesn't remove the {{show.imageurl}}, so django tries to render
                         as well.)
 -->
+            <div ng-repeat="show in shows_random">
+                <div class="row row-display row-thumbnail">
+                    <div class="col-3 padding-5-px">
+
                         <a href="{{show.anime_url}}" class="thumbnail"><img ng-src="{{show.image_url}}" alt=""></a>
                     </div>
                     <div class="col-9 padding-5-px">
                         <div class="thumbnail-head-wrapper">
                             <h6 class="thumbnail-name">{{show.name}}</h6>
                         </div>
-                        <p class="thumbnail-genres">{{show.genres}}</p>
+<!--                        <p class="thumbnail-genres">{{show.genres}}</p>-->
+                        <span class="" ng-repeat="genre in show.genres track by $index">
+                            <span class="text-white text-genre-box">
+                                <span class="padding-5-px">{{genre}}</span>
+                            </span>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+            {% endverbatim %}
+        </div>
+        
+        <div class="col-lg-4 col-sm-6">
+            <div class="row row-category-name">
+                <div class="col-3">
+                    <a><img class="icon" src="{% static 'img/icons/icon-updoot.png' %}"></a>
+                </div>
+                <div class="col-9">
+                    <h4 class="category-name">Recent</h4>
+                </div>
+            </div>
+            {% verbatim %}
+            <!--
+                        Use ng-src so that django doesn't throw a 404
+                        (Note that using src works though - Angular renders it, but
+                        doesn't remove the {{show.imageurl}}, so django tries to render
+                        as well.)
+-->
+            <div ng-repeat="show in shows_recent">
+                <div class="row row-display row-thumbnail">
+                    <div class="col-3 padding-5-px">
+
+                        <a href="{{show.anime_url}}" class="thumbnail"><img ng-src="{{show.image_url}}" alt=""></a>
+                    </div>
+                    <div class="col-9 padding-5-px">
+                        <div class="thumbnail-head-wrapper">
+                            <h6 class="thumbnail-name">{{show.name}}</h6>
+                        </div>
+<!--                        <p class="thumbnail-genres">{{show.genres}}</p>-->
+                        <span class="" ng-repeat="genre in show.genres track by $index">
+                            <span class="text-white text-genre-box">
+                                <span class="padding-5-px">{{genre}}</span>
+                            </span>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+            {% endverbatim %}
+        </div>
+        
+        <div class="col-lg-4 col-sm-6">
+            <div class="row row-category-name">
+                <div class="col-3">
+                    <a><img class="icon" src="{% static 'img/icons/icon-updoot.png' %}"></a>
+                </div>
+                <div class="col-9">
+                    <h4 class="category-name">Recent &amp; Popular</h4>
+                </div>
+            </div>
+            {% verbatim %}
+            <!--
+                        Use ng-src so that django doesn't throw a 404
+                        (Note that using src works though - Angular renders it, but
+                        doesn't remove the {{show.imageurl}}, so django tries to render
+                        as well.)
+-->
+            <div ng-repeat="show in shows_recent_popular">
+                <div class="row row-display row-thumbnail">
+                    <div class="col-3 padding-5-px">
+
+                        <a href="{{show.anime_url}}" class="thumbnail"><img ng-src="{{show.image_url}}" alt=""></a>
+                    </div>
+                    <div class="col-9 padding-5-px">
+                        <div class="thumbnail-head-wrapper">
+                            <h6 class="thumbnail-name">{{show.name}}</h6>
+                        </div>
+<!--                        <p class="thumbnail-genres">{{show.genres}}</p>-->
+                        <span class="" ng-repeat="genre in show.genres track by $index">
+                            <span class="text-white text-genre-box">
+                                <span class="padding-5-px">{{genre}}</span>
+                            </span>
+                        </span>
                     </div>
 
                 </div>
@@ -65,7 +149,8 @@
             {% endverbatim %}
         </div>
 
-        <div class="col-lg-4 col-sm-6">
+<!--
+        <div class="col-lg-8 col-sm-6">
             <h4>Subheading</h4>
             <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
 
@@ -75,6 +160,7 @@
             <h4>Subheading</h4>
             <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
         </div>
+-->
     </div>
     
 
