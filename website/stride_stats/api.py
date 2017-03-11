@@ -20,6 +20,13 @@ class StatisticsContent(object):
         self.axis_labels = axis_labels
         self.values = values
 
+class StatisticsContentFull(object):
+    def __init__(self, stats_data_month, stats_data_season, stats_data_year, stats_data_all):
+        self.stats_data_month = StatisticsContent(stats_data_month['timestamp'], stats_data_month['stats_dict'])
+        self.stats_data_season = StatisticsContent(stats_data_season['timestamp'], stats_data_season['stats_dict'])
+        self.stats_data_year = StatisticsContent(stats_data_year['timestamp'], stats_data_year['stats_dict'])
+        self.stats_data_all = StatisticsContent(stats_data_all['timestamp'], stats_data_all['stats_dict'])
+
 class FrontpageContent(object):
     def __init__(self, show_list_random, show_list_recent, show_list_recent_popular):
         self.show_list_random = show_list_random
@@ -47,6 +54,20 @@ def api_get_show_stats(request, show_name):
 
     return JSONResponse(serializer.data)
     # return JSONResponse(json.dumps({'values': stats_dict, 'axis_labels': timestamp}))
+
+
+def api_get_show_stats_full(request, show_name):
+
+    stats_dict_month, timestamp_month = get_show_stats_month(unquote(show_name))
+    stats_dict_season, timestamp_season = get_show_stats_season(unquote(show_name))
+    stats_dict_year, timestamp_year = get_show_stats_year(unquote(show_name))
+    stats_dict_all, timestamp_all = get_show_stats_all(unquote(show_name))
+
+    chart_data = StatisticsContentFull({'stats_dict' : stats_dict_month, 'timestamp' : timestamp_month}, {'stats_dict' : stats_dict_season, 'timestamp' : timestamp_season}
+                                   ,{'stats_dict' : stats_dict_year, 'timestamp' : timestamp_year}, {'stats_dict' : stats_dict_all, 'timestamp' : timestamp_all})
+    serializer = StatisticsFullSerializer(chart_data)
+
+    return JSONResponse(serializer.data)
 
 
 def api_get_show_basic_stats(request, show_name):

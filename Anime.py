@@ -383,7 +383,7 @@ class Anime():
     def write_to_db_aggregated(self, db, content_data, name_data, info_data, statistics_data, related_data, anime_url):
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute('''CREATE TABLE IF NOT EXISTS content_data
+        c.execute('''CREATE TABLE IF NOT EXISTS content_data_backup
                   (anime_url text,
                   name text PRIMARY KEY, image_url text, synopsis text,
                   english_name text, synonyms text, japanese_name text,
@@ -409,7 +409,7 @@ class Anime():
         # content_data_values = (content_data_list[0][1], content_data[1][1], content_data[0][1])
 
         # Is this susceptible to SQL injections?
-        c.execute('INSERT OR REPLACE INTO content_data VALUES (' + '?,'*(len(data_list)-1) + '?)', data_list)
+        c.execute('INSERT OR REPLACE INTO content_data_backup VALUES (' + '?,'*(len(data_list)-1) + '?)', data_list)
         conn.commit()
 
 
@@ -520,7 +520,7 @@ class Anime():
             # self.write_data(statistics_data)
             # self.write_data(related_data)
     # Done: Add ability to create anime object from anime name only if anime name in database.
-    def build_stats_from_db(self, show_name, max_recall):
+    def build_stats_from_db(self, show_name, max_recall, nth=1):
         db = UNMODELED_DATABASES['show_data_individual']['location']
         conn = sqlite3.connect(db)
         c = conn.cursor()
@@ -555,10 +555,10 @@ class Anime():
                 self.timestamp = dict(zip(['timestamp'], timestamp))
 
                 for key, value in self.full_stats.items():
-                    self.full_stats[key] = list(self.full_stats[key])
+                    self.full_stats[key] = list(self.full_stats[key])[0::nth]
 
                 for key, value in self.timestamp.items():
-                    self.timestamp[key] = list(self.timestamp[key])
+                    self.timestamp[key] = list(self.timestamp[key])[0::nth]
 
                 # for index in range(len((self.full_stats['favorites']))):
                 #     self.full_stats['score'][index] = float(self.full_stats['score'][index])

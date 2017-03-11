@@ -84,6 +84,58 @@ def get_show_stats(show_name, max_recall=30):
     return stats_dict, timestamp
 
 
+def get_show_stats_month(show_name, max_recall=30):
+    anime = Anime()
+    anime.build_stats_from_db(show_name, max_recall)
+
+    stats_dict = anime.full_stats
+    timestamp = anime.timestamp
+
+    return stats_dict, timestamp
+
+
+def get_show_stats_season(show_name, max_recall=90):
+    anime = Anime()
+    anime.build_stats_from_db(show_name, max_recall, nth=3)
+
+    # stats_dict, timestamp = [zip(stat, time) for index, (stat, time) in enumerate()]
+    stats_dict = anime.full_stats
+    timestamp = anime.timestamp
+    # stats_dict = [stat for index, stat in enumerate(anime.full_stats) if index % 3 == 0]
+    # timestamp = [time for index, time in enumerate(anime.timestamp) if index % 3 == 0 ]
+
+    # print(stats_dict)
+    # print(timestamp)
+
+    return stats_dict, timestamp
+
+
+def get_show_stats_year(show_name, max_recall=365):
+    anime = Anime()
+    anime.build_stats_from_db(show_name, max_recall, nth=12)
+
+    # stats_dict, timestamp = [zip(stat, time) for index, (stat, time) in enumerate()]
+    stats_dict = anime.full_stats
+    timestamp = anime.timestamp
+    # stats_dict = [stat for index, stat in enumerate(anime.full_stats) if index % 30 == 0]
+    # timestamp = [time for index, time in enumerate(anime.timestamp) if index % 30 == 0]
+
+    return stats_dict, timestamp
+
+
+def get_show_stats_all(show_name, max_recall=10000):
+    anime = Anime()
+    anime.build_stats_from_db(show_name, max_recall, nth=30)
+
+    # stats_dict, timestamp = [zip(stat, time) for index, (stat, time) in enumerate()]
+    stats_dict = anime.full_stats
+    timestamp = anime.timestamp
+    # stats_dict = [stat for index, stat in enumerate(anime.full_stats) if index % 120 == 0 and index < 5000]
+    # timestamp = [time for index, time in enumerate(anime.timestamp) if index % 120 == 0 and index < 5000]
+
+    return stats_dict, timestamp
+
+
 def get_shows(num_shows=10):
     show_list = [ContentData.objects.all()[i] for i in range(num_shows)]
     return show_list

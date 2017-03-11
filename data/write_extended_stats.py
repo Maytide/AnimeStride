@@ -98,6 +98,7 @@ def write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=
         if verbose:
             print('Writing item recommendation data to database...')
 
+        # TODO: Change to TEXT field
         c_s.execute('''CREATE TABLE IF NOT EXISTS item_recs
                     (show_code INTEGER PRIMARY KEY,
                     rec_1 INTEGER, rec_2 INTEGER, rec_3 INTEGER, rec_4 INTEGER, rec_5 INTEGER, rec_6 INTEGER)''')
@@ -332,7 +333,7 @@ def calculate_basic_statistics(c_x, max_users, max_shows, master_dict_n, master_
 
     return master_stat_dict
 
-max_users = 10000
-max_shows = 500
-
-write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=True, verbose=True)
+# max_users = 10000
+# max_shows = 500
+#
+# write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=True, verbose=True)

@@ -8,6 +8,11 @@ class StatisticsSerializer(serializers.Serializer):
     axis_labels = serializers.DictField()
     values = serializers.DictField()
 
+class StatisticsFullSerializer(serializers.Serializer):
+    stats_data_month = StatisticsSerializer()
+    stats_data_season = StatisticsSerializer()
+    stats_data_year = StatisticsSerializer()
+    stats_data_all = StatisticsSerializer()
 # class StatisticsListSerializer(serializers.ListSerializer):
 #
 #     class Meta:

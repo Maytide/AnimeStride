@@ -310,5 +310,7 @@ class User():
         # sample_user_data = open('sample_user_data.txt', 'r').read()
         # self.entry_list_tagged = self.create_user_show_list_tagged(sample_user_data)
 
+    def __str__(self):
+        return self.MAL_URL
 
 

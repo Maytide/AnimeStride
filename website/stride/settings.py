@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_cron',
     'home',
     'stride_recommender',
     'stride_stats',
@@ -58,6 +59,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CRON_CLASSES = [
+    'home.crons.RunCronJob',
+    'home.crons.TaskReadMALShowsIndividual',
+    # python manage.py runcrons "home.crons.TaskReadMALShowsIndividual"
+    # ...
 ]
 
 ROOT_URLCONF = 'stride.urls'

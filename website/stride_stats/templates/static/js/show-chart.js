@@ -18,7 +18,7 @@ chartApp.controller('chartController', function($scope, $http) {
     $scope.current_href.pop();
   	// Following convention of /stride_stats/show/(show name here)/
   	$scope.path_name = window.location.pathname.toString().split('/')[3];
-    $scope.api_path_stats = $scope.current_href.join('/') + '/api/1/' + $scope.path_name;
+    $scope.api_path_stats = $scope.current_href.join('/') + '/api/0/' + $scope.path_name;
   	// TODO: Remove hard coded url
   	// http://stackoverflow.com/questions/1034621/get-current-url-in-web-browser
   	// $http.get('http://127.0.0.1:8000/stride_stats/show/api/1/' + $scope.path_name + '/').
@@ -28,11 +28,21 @@ chartApp.controller('chartController', function($scope, $http) {
         	// Inner function variables passed byval;
         	// They do not retain value after exiting function
         	// Fix is to call drawChart() within this function
+            $scope.current_period = 'stats_data_month';
+            $scope.current_stat = 'members';
             $scope.show_data_stats = response.data;
-            $scope.axis_labels = $scope.show_data_stats['axis_labels'];
-            $scope.values = $scope.show_data_stats['values'];
+
+            for (var period in $scope.show_data_stats){
+              if ($scope.show_data_stats.hasOwnProperty(period)){
+                x1000($scope.show_data_stats[period]['axis_labels']['timestamp']);
+              }
+            }
+            $scope.axis_labels = $scope.show_data_stats[$scope.current_period]['axis_labels'];
+            $scope.values = $scope.show_data_stats[$scope.current_period]['values'];
+
+
             // $scope.axis_labels = [$scope.path_name, 100, 100, 100, 100, 100];
-            $scope.drawChart(x1000($scope.axis_labels['timestamp']), $scope.values['members'], 'red');
+            $scope.drawChart($scope.axis_labels['timestamp'], $scope.values['members'], 'rgba(217,178,52,0.2)', 'rgba(249,195,12,0.5)');
 
         });
   };
@@ -40,6 +50,36 @@ chartApp.controller('chartController', function($scope, $http) {
   // Chart.defaults.global.tooltips.enabled = false;
 
   $scope.getData();
+
+  $scope.setPeriodActive = function(stat) {
+    $("#period-selector-month").removeClass('active');
+    $("#period-selector-season").removeClass('active');
+    $("#period-selector-year").removeClass('active');
+    $("#period-selector-all").removeClass('active');
+
+    $("#" + stat).addClass('active');
+    if (stat === 'period-selector-month'){
+      $scope.current_period = 'stats_data_month';
+      $scope.axis_labels = $scope.show_data_stats[$scope.current_period]['axis_labels'];
+      $scope.values = $scope.show_data_stats[$scope.current_period]['values'];
+      $scope.axis_labels['timestamp'] = $scope.axis_labels['timestamp'];
+    }else if (stat === 'period-selector-season'){
+      $scope.current_period = 'stats_data_season';
+      $scope.axis_labels = $scope.show_data_stats[$scope.current_period]['axis_labels'];
+      $scope.values = $scope.show_data_stats[$scope.current_period]['values'];
+      $scope.axis_labels['timestamp'] = $scope.axis_labels['timestamp'];
+    }else if (stat === 'period-selector-year'){
+      $scope.current_period = 'stats_data_year';
+      $scope.axis_labels = $scope.show_data_stats[$scope.current_period]['axis_labels'];
+      $scope.values = $scope.show_data_stats[$scope.current_period]['values'];
+      $scope.axis_labels['timestamp'] = $scope.axis_labels['timestamp'];
+    }else if (stat === 'period-selector-all'){
+      $scope.current_period = 'stats_data_all';
+      $scope.axis_labels = $scope.show_data_stats[$scope.current_period]['axis_labels'];
+      $scope.values = $scope.show_data_stats[$scope.current_period]['values'];
+      $scope.axis_labels['timestamp'] = $scope.axis_labels['timestamp'];
+    }
+  }
 
   $scope.setStatActive = function(stat){
     $("#chart-selector-members").removeClass('active');
@@ -49,9 +89,20 @@ chartApp.controller('chartController', function($scope, $http) {
     $("#chart-selector-score").removeClass('active');
 
     $("#" + stat).addClass('active');
+    if (stat === 'chart-selector-members'){
+      $scope.current_stat = 'members';
+    }else if (stat === 'chart-selector-popularity'){
+      $scope.current_stat = 'popularity';
+    }else if (stat === 'chart-selector-favorites'){
+      $scope.current_stat = 'favorites';
+    }else if (stat === 'chart-selector-ranked'){
+      $scope.current_stat = 'ranked';
+    }else if (stat === 'chart-selector-score'){
+      $scope.current_stat = 'score';
+    }
   }
 
-  $scope.drawChart = function (x_label, y_label, color) {
+  $scope.drawChart = function (x_label, y_label, bgColor, bdColor) {
     // Fix old data showing on hover:
     // http://stackoverflow.com/a/25064035
     $('#chart-1').remove(); // <canvas> element
@@ -68,6 +119,8 @@ chartApp.controller('chartController', function($scope, $http) {
   	            // label: '# of Votes',
   	            // data: [12, 19, 3, 5, 2, 3],
   	            data: y_label,
+                backgroundColor: bgColor,
+                borderColor: bdColor,
   	        }]
   	    },
   	    options: {
@@ -194,7 +247,7 @@ basicStatsApp.controller('basicStatsController', function($scope, $http) {
 
   $scope.getData3();
 
-  $scope.drawHist = function (name, x_label, y_label, color) {
+  $scope.drawHist = function (name, x_label, y_label, bgColor, bdColor) {
 
   	var ctx = document.getElementById("hist-1").getContext('2d');
   	var myChart = new Chart(ctx, {

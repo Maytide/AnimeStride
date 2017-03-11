@@ -116,6 +116,8 @@ li {
 
 .btn-main{
   margin:0px auto;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .col-unpad {
@@ -198,6 +200,11 @@ li {
   border-bottom: .05rem solid #e5e5e5;
 }
 
+.thumbnail-body-wrapper {
+  max-height: 50px;
+  overflow: hidden;
+}
+
 .thumbnail-name {
   font-size: 16px;
   padding-bottom: 5px;
@@ -250,6 +257,16 @@ li {
   color: rgb(49, 176, 213);
 }
 
+.row-preview-link {
+  margin-left: 0px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.col-panel-img {
+  overflow-x: hidden;
+}
+
 .preview-head-wrapper {
   margin-top: 3px;
   border-bottom: .05rem solid #e5e5e5;
@@ -257,7 +274,7 @@ li {
 
 .preview-name {
   margin-bottom: 0.2rem;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1;
 }
 .preview-genres,
@@ -275,6 +292,19 @@ li {
   overflow: auto;
   max-height: 195px;
   color: rgb(108,108,108);
+}
+
+.icon-ext {
+  max-width: 16px;
+  max-height: 16px;
+}
+
+.col-icon-ext {
+  max-width: 4%;
+}
+
+.ext-link {
+  margin-top: 4px;
 }
 
 .preview-synopsis {
@@ -305,7 +335,7 @@ li {
 }
 
 .row-panel:hover {
-  border: 1px solid rgb(91, 192, 222);
+  /*border: 1px solid rgb(91, 192, 222);*/
 }
 
 .panel-head-wrapper {

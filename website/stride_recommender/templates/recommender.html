@@ -87,8 +87,15 @@
                             </div>
                         </div>
                         <div class="preview-body-wrapper">
-                            <p class="preview-synopsis">{{show.synopsis}}</p>
-                        
+                            <div class="row row-preview-link">
+                                <div class="col-1 col-icon-ext no-15px-padding">
+                                    <a class="href-colorless" ng-href="{{show.anime_url}}"><img ng-src="https://myanimelist.cdn-dena.com/img/sp/icon/apple-touch-icon-256.png" alt="" class="icon-ext"></a>
+                                </div>
+                                <div class="col-4 no-15px-padding">
+                                    <a class="href-colorless" ng-href="{{show.anime_url}}"><h6 class="no-15px-padding ext-link">MyAnimeList</h6></a>
+                                </div>
+<!--                            <p class="preview-synopsis">{{show.synopsis}}</p>-->
+                            </div>
                         </div>
                     </div>
 

@@ -16,16 +16,21 @@ show_aggregated_db = os.path.dirname(__file__) + '/../data/show_data_aggregated.
 # print(sj.data)
 
 
-def read_MAL_pages(file_or_db = 'db', write_individual_entry = True, write_aggregated_entry = True, start_page = 0, start_point = 0, verbose = False, test_mode = False):
+def read_MAL_pages(file_or_db = 'db', write_individual_entry = True, write_aggregated_entry = True, start_page = 0, start_point = 0, end_page = 40, verbose = False, test_mode = False):
     showcount = 0
     flag = False
-    for index in range(40)[start_page:]:
+    for index in range(end_page)[start_page:]:
 
         # response = ''
-        if index > 0:
-            response = urllib.urlopen('https://myanimelist.net/topanime.php?type=bypopularity&limit=' + str(50*(index)))
-        elif index == 0:
-            response = urllib.urlopen('https://myanimelist.net/topanime.php?type=bypopularity')
+        try:
+            if index > 0:
+                response = urllib.urlopen('https://myanimelist.net/topanime.php?type=bypopularity&limit=' + str(50*(index)))
+            elif index == 0:
+                response = urllib.urlopen('https://myanimelist.net/topanime.php?type=bypopularity')
+        except Exception as ex:
+            print('Error in function read_MAL_pages in module ReadMALShows: ' + str(ex))
+            print('Could not open top anime page')
+            return
 
         html = str(response.read())
 
@@ -59,7 +64,7 @@ def read_MAL_pages(file_or_db = 'db', write_individual_entry = True, write_aggre
             break
 
 
-read_MAL_pages(write_individual_entry = True, write_aggregated_entry = False, start_page = 0, start_point = 0, verbose = True)
+# read_MAL_pages(write_individual_entry = True, write_aggregated_entry = False, start_page = 8, start_point = 6, end_page = 40, verbose = True)
 # response = urllib.urlopen('https://myanimelist.net/topanime.php?type=tv')
 # html = str(response.read())
 #

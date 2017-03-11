@@ -33,6 +33,34 @@
             
             <div class="col-sm-9 col-centered">
                 <div ng-app="chartApp" ng-controller="chartController">
+                    <div class="row row-centered">
+                        <div id="idPeriodSelector" class="col-sm-12 col-centered ">
+                            <div class="period-selector-container text-center">
+<!--
+                                {% verbatim %}
+                                {{axis_labels}}
+                                {{values}}
+                                {% endverbatim %}
+-->
+                                <span id="period-selector-month" class="period-selector active" ng-click="setPeriodActive('period-selector-month'); drawChart(axis_labels['timestamp'],values[current_stat],'rgba(217,178,52,0.2)', 'rgba(249,195,12,0.5)')">
+                                    <h6 class="period-label">Month</h6>
+                                    
+                                </span>
+                                <span id="period-selector-season" class="period-selector" ng-click="setPeriodActive('period-selector-season'); drawChart(axis_labels['timestamp'],values[current_stat],'rgba(217,178,52,0.2)', 'rgba(249,195,12,0.5)')">
+                                    <h6 class="period-label">Season</h6>
+                                    
+                                </span>
+                                <span id="period-selector-year" class="period-selector" ng-click="setPeriodActive('period-selector-year'); drawChart(axis_labels['timestamp'],values[current_stat],'rgba(217,178,52,0.2)', 'rgba(249,195,12,0.5)')">
+                                    <h6 class="period-label">Year</h6>
+                                    
+                                </span>
+                                <span id="period-selector-all" class="period-selector" ng-click="setPeriodActive('period-selector-all'); drawChart(axis_labels['timestamp'],values[current_stat],'rgba(217,178,52,0.2)', 'rgba(249,195,12,0.5)')">
+                                    <h6 class="period-label">All Time</h6>
+                                    
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                     <div id="chart-1-container" class="row row-centered row-chart-main chart-container">
             <!--            Chart.js scales to parent element size-->
             <!--            http://stackoverflow.com/questions/28162810/why-is-chart-js-canvas-not-respecting-the-padding-of-the-container-element-->
@@ -40,26 +68,27 @@
 
                         <canvas class="" id="chart-1"></canvas>
                     </div>
+                    
                     <div class="row row-centered">
                         <div id="idChartSelector" class="col-sm-12 col-centered ">
                             <div class="chart-selector-container text-center">
-                                <span id="chart-selector-members" class="chart-selector active" ng-click="drawChart(axis_labels['timestamp'],values['members'],'red'); setStatActive('chart-selector-members')">
+                                <span id="chart-selector-members" class="chart-selector active" ng-click="drawChart(axis_labels['timestamp'],values['members'],'rgba(217,178,52,0.2)', 'rgba(249,195,12,0.5)'); setStatActive('chart-selector-members')">
                                     <h6 class="icon-md-label">Members</h6>
                                     <img class="icon-md" src="{% static 'img/icons/icon-updoot.png' %}">
                                 </span>
-                                <span id="chart-selector-popularity" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['popularity'],'red'); setStatActive('chart-selector-popularity')">
+                                <span id="chart-selector-popularity" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['popularity'],'rgba(217,178,52,0.2)', 'rgba(249,195,12,0.5)'); setStatActive('chart-selector-popularity')">
                                     <h6 class="icon-md-label">Popularity</h6>
                                     <img class="icon-md" src="{% static 'img/icons/icon-updoot.png' %}">
                                 </span>
-                                <span id="chart-selector-favorites" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['favorites'],'red'); setStatActive('chart-selector-favorites')">
+                                <span id="chart-selector-favorites" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['favorites'],'rgba(217,178,52,0.2)', 'rgba(249,195,12,0.5)'); setStatActive('chart-selector-favorites')">
                                     <h6 class="icon-md-label">Favorites</h6>
                                     <img class="icon-md" src="{% static 'img/icons/icon-heart.png' %}">
                                 </span>
-                                <span id="chart-selector-ranked" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['ranked'],'red'); setStatActive('chart-selector-ranked')">
+                                <span id="chart-selector-ranked" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['ranked'],'rgba(217,178,52,0.2)', 'rgba(249,195,12,0.5)'); setStatActive('chart-selector-ranked')">
                                     <h6 class="icon-md-label">Ranked</h6>
                                     <img class="icon-md" src="{% static 'img/icons/icon-updoot.png' %}">
                                 </span>
-                                <span id="chart-selector-score" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['score'],'red'); setStatActive('chart-selector-score')">
+                                <span id="chart-selector-score" class="chart-selector" ng-click="drawChart(axis_labels['timestamp'],values['score'],'rgba(217,178,52,0.2)', 'rgba(249,195,12,0.5)'); setStatActive('chart-selector-score')">
                                     <h6 class="icon-md-label">Score</h6>
                                     <img class="icon-md" src="{% static 'img/icons/icon-star.png' %}">
                                 </span>
@@ -68,6 +97,7 @@
                     </div>
                 </div>
                 {% verbatim %}
+<!--
                 <div class="row row-centered">
                     <div id="idAppDisplay2" ng-app="displayApp" ng-controller="displayController">
                         <div class="col-sm-12 col-centered">
@@ -84,6 +114,7 @@
                         </div>
                     </div>
                 </div>
+-->
                 {% endverbatim %}
             </div>
             {% verbatim %}
@@ -116,6 +147,7 @@
                             
                         </p>
                     </div>
+<!--
                     <div class="row row-centered no-15px-margin portrait-description text-margin-bottom-04rem">
                         <div class="col-12">
                             <div class="row portrait-description-element">
@@ -204,6 +236,7 @@
                             </div>
                         </div>
                     </div>
+-->
                 </div>
                 
             </div>
@@ -211,6 +244,49 @@
         </div>
         
         
+    </div>
+    
+    
+    <div class="container stats-container">
+        <div id="idBasicStats" ng-app="basicStatsApp" ng-controller="basicStatsController">
+            {% verbatim %}
+            
+<!--
+            <div class="row row-centered text-margin-top-10px text-margin-bottom-15px">
+                <h6 class="side-name">Statistics for show {{show.name}}</h6>
+            </div>
+-->
+            <div class="row row-centered text-margin-top-10px">
+                <div class="col-9 col-centered">
+                    <div id="chart-1-container" class="row row-centered row-chart-main chart-container">
+                    <!--            Chart.js scales to parent element size-->
+                    <!--            http://stackoverflow.com/questions/28162810/why-is-chart-js-canvas-not-respecting-the-padding-of-the-container-element-->
+
+
+                        <canvas class="" id="hist-1"></canvas>
+                    </div>
+                </div>
+                <div class="col-3 col-centered">
+                    <h5>Statistics:</h5>
+                    <h6>Mean Rating: {{show.mean}}</h6>
+                    <h6>Variance: {{show.var}}</h6>
+                    <h6>Standard Deviation: {{show.std}}</h6>
+                    <p>(Note that the zero ratings consist of MAL members who have the show in their anime list but have not assigned it a rating. They are not taken into account when calculating statistical properties of the data.)</p>
+                </div>
+            </div>
+<!--
+            <div class="row row-centered">
+                <div class="col-6 col-centered">
+                    <h6 id="no-data" style="visibility: hidden;">No data for this show.</h6>
+                    <h6>Mean Rating: {{show.mean}}</h6>
+                    <h6>Variance: {{show.var}}</h6>
+                    <h6>Standard Deviation: {{show.std}}</h6>
+                    <p>(Note that the zero ratings consist of MAL members who have the show in their anime list but have not assigned it a rating. They are not taken into account when calculating statistical properties of the data.)</p>
+                </div>
+            </div>
+-->
+            {% endverbatim %}
+        </div>
     </div>
     <div class="container stats-container">
         <div id="idItemRec" ng-app="itemRecApp" ng-controller="itemRecController">
@@ -229,39 +305,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            {% endverbatim %}
-        </div>
-    </div>
-    
-    <div class="container stats-container">
-        <div id="idBasicStats" ng-app="basicStatsApp" ng-controller="basicStatsController">
-            {% verbatim %}
-            
-<!--
-            <div class="row row-centered text-margin-top-10px text-margin-bottom-15px">
-                <h6 class="side-name">Statistics for show {{show.name}}</h6>
-            </div>
--->
-            <div class="row row-centered text-margin-top-10px">
-                <div class="col-8 col-centered">
-                    <div id="chart-1-container" class="row row-centered row-chart-main chart-container">
-                    <!--            Chart.js scales to parent element size-->
-                    <!--            http://stackoverflow.com/questions/28162810/why-is-chart-js-canvas-not-respecting-the-padding-of-the-container-element-->
-
-
-                        <canvas class="" id="hist-1"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="row row-centered">
-                <div class="col-6 col-centered">
-                    <h6 id="no-data" style="visibility: hidden;">No data for this show.</h6>
-                    <h6>Mean Rating: {{show.mean}}</h6>
-                    <h6>Variance: {{show.var}}</h6>
-                    <h6>Standard Deviation: {{show.std}}</h6>
-                    <p>(Note that the zero ratings consist of MAL members who have the show in their anime list but have not assigned it a rating. They are not taken into account when calculating statistical properties of the data.)</p>
                 </div>
             </div>
             {% endverbatim %}

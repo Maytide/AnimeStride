@@ -21,10 +21,6 @@
   width: 600px;*/
 }
 
-#chart-1-container {
-  width: 100%;
-}
-
 .portrait {
   background-color: rgba(0,0,0,.02);
   border: 1px solid lightgray;
@@ -51,6 +47,7 @@
   background-color: rgba(0,0,0,.05);
   margin-top: 15px;
   margin-bottom: 20px;
+  /*min-height: 160px;*/
 }
 
 .portrait-name-wrapper {
@@ -101,6 +98,16 @@
   text-align: right;
 }
 
+#idChartSelector {
+  padding-left: 0px;
+}
+
+#chart-1-container {
+  padding-top: 10px;
+  width: 100%;
+  /*background-color: rgba(0,0,0,.05);*/
+}
+
 .chart-selector-container {
   min-height: 100px;
   /*width: inherit;*/
@@ -109,14 +116,14 @@
 .chart-selector {
   /*Use display:inline-block to set height*/
   /*http://stackoverflow.com/a/4967633*/
-  margin-top: 5px;
+  /*margin-top: 5px;*/
   display:inline-block;
   min-height: 100px;
   padding-left: 5%;
   padding-right: 5%;
-  border: solid lightgray;
-  border-width: 1px;
-  background-color: rgba(0,0,0,.05);
+  /*border: solid lightgray;
+  border-width: 1px;*/
+  background-color: rgba(0,0,0,.03);
 }
 
 .chart-selector:hover h6{
@@ -125,13 +132,43 @@
 
 .chart-selector.active{
   color: rgb(49, 176, 213);
-  border: solid rgb(91, 192, 222);
-  border-width: 1px;
+  background-color: rgba(0,0,0,.05) !important;
+  /*border: solid rgb(91, 192, 222);*/
+  /*border-width: 1px;*/
 }
 
 .chart-selector .icon-md-label {
   margin-top: 6px;
   margin-bottom: 3px;
+}
+
+.period-selector-container {
+  min-height: 30px;
+  max-height: 50px;
+}
+
+.period-selector {
+  display:inline-block;
+  min-height: 30px;
+  padding-left: 5%;
+  padding-right: 5%;
+  /*border: solid lightgray;
+  border-width: 1px;*/
+  background-color: rgba(0,0,0,.03);
+}
+
+.period-selector.active {
+  color: rgb(49, 176, 213);
+  background-color: rgba(0,0,0,.05) !important;
+}
+
+.period-selector:hover h6{
+  color: rgb(49, 176, 213);
+}
+
+.period-label {
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 #idAppDisplay2 {
@@ -212,6 +249,10 @@
   .portrait-img img {
     height: 175px;
     width: 112px;
+  }
+  .chart-selector {
+    padding-left: 3%;
+    padding-right: 3%;
   }
 }
 
