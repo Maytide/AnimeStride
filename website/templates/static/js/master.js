@@ -1,5 +1,6 @@
 // Numbers:
 // http://stackoverflow.com/questions/8677805/formatting-numbers-decimal-places-thousands-separators-etc-with-css
+// master_hostname = '127.0.0.1:8000'
 
 function numberFormat(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -41,4 +42,38 @@ function stringToJSON(strObj){
   return jsonObj;
   // return str;
   // return ["Action"," Police"," Psychological"," Supernatural"];
+}
+
+function removeNavProperties(navID, css_class) {
+    $('#' + navID).removeClass(css_class);
+    // alert('#' + navID + ':: ' + css_class);
+}
+
+function addNavProperties(navID, css_class) {
+    navID = '#' + navID;
+    $(navID).addClass(css_class);
+    // if (navID === '#nav-home') {
+    //   $(navID).attr('href', current_host);
+    // }else if (navID === '#nav-stats') {
+    //   $(navID).attr('href', current_host + 'stride_stats/');
+    // }else if (navID === '#nav-recommender') {
+    //   $(navID).attr('href', current_host + 'stride_recommender/');
+    // }else if (navID === '#nav-about') {
+    //   $(navID).attr('href', current_host + 'about/');
+    // }
+    // alert('#' + navID + ':: ' + css_class);
+}
+
+function addNavURL(navID){
+  navID = '#' + navID;
+
+  if (navID === '#nav-home') {
+    $(navID).attr('href', current_host);
+  }else if (navID === '#nav-stats') {
+    $(navID).attr('href', current_host + '/stride_stats/');
+  }else if (navID === '#nav-recommender') {
+    $(navID).attr('href', current_host + '/stride_recommender/');
+  }else if (navID === '#nav-about') {
+    $(navID).attr('href', current_host);
+  }
 }

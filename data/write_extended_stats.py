@@ -59,7 +59,7 @@ def write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=
 
     rec_dict = None
     if item_rec:
-        rec_dict = calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_map, show_dict, show_map, user_rating_table_list, verbose=verbose)
+        rec_dict = calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_map, show_dict, show_map, user_rating_table_list, master_stat_dict, verbose=verbose)
     # print(master_stat_dict[master_dict_n['Rokka no Yuusha']]['rating_hist'])
     # print(master_stat_dict[master_dict_n['Rokka no Yuusha']])
     # print(master_stat_dict[master_dict_n['Sword Art Online']])
@@ -72,7 +72,7 @@ def write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=
     # print(master_stat_dict)
     # print(rec_dict)
 
-    db_s = UNMODELED_DATABASES['show_data_extended']['location']
+    db_s = UNMODELED_DATABASES['show_data_aggregated']['location']
     conn_s = sqlite3.connect(db_s)
     c_s = conn_s.cursor()
 
@@ -81,7 +81,7 @@ def write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=
         if verbose:
             print('Writing basic statistic data to database...')
         c_s.execute('''CREATE TABLE IF NOT EXISTS basic_statistics
-                    (show_code INTEGER PRIMARY KEY, mean REAL, var REAL, std REAL,
+                    (show_code TEXT PRIMARY KEY, mean REAL, var REAL, std REAL,
                     rating_zero INTEGER, rating_one INTEGER, rating_two INTEGER, rating_three INTEGER, rating_four INTEGER, rating_five INTEGER,
                     rating_six INTEGER, rating_seven INTEGER, rating_eight INTEGER, rating_nine INTEGER, rating_ten INTEGER,
                     extra_1 INTEGER, extra_2 INTEGER)''')
@@ -89,7 +89,7 @@ def write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=
         for show_code, info in master_stat_dict.items():
 
             c_s.execute('''INSERT OR REPLACE INTO basic_statistics VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-                        ''', (show_code, info['mean'], info['var'], info['std'],
+                        ''', (unescape_db_string(master_map[show_code]), info['mean'], info['var'], info['std'],
                               info['rating_hist'][0], info['rating_hist'][1], info['rating_hist'][2], info['rating_hist'][3],
                               info['rating_hist'][4], info['rating_hist'][5], info['rating_hist'][6], info['rating_hist'][7],
                               info['rating_hist'][8], info['rating_hist'][9], info['rating_hist'][10], 0, 0))
@@ -98,15 +98,14 @@ def write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=
         if verbose:
             print('Writing item recommendation data to database...')
 
-        # TODO: Change to TEXT field
         c_s.execute('''CREATE TABLE IF NOT EXISTS item_recs
-                    (show_code INTEGER PRIMARY KEY,
-                    rec_1 INTEGER, rec_2 INTEGER, rec_3 INTEGER, rec_4 INTEGER, rec_5 INTEGER, rec_6 INTEGER)''')
+                    (show_code TEXT PRIMARY KEY,
+                    rec_1 TEXT, rec_2 TEXT, rec_3 TEXT, rec_4 TEXT, rec_5 TEXT, rec_6 TEXT)''')
 
         for show_code, show_rec_list in rec_dict.items():
 
             c_s.execute('''INSERT OR REPLACE INTO item_recs VALUES (?,?,?,?,?,?,?)
-                        ''', (show_code,) + tuple(show_rec_list))
+                        ''', (unescape_db_string(master_map[show_code]),) + tuple([unescape_db_string(master_map[show]) for show in show_rec_list]))
 
         pass
 
@@ -115,10 +114,7 @@ def write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=
     conn_s.close()
 
 
-
-
-
-def a_cos_sim(v1, v2, mu, threshold=200, correction_fact=0.995):
+def a_cos_sim(v1, v2, mu, threshold=200, correction_fact=0.995, mean1=-1, mean2=-1, var1=-1, var2=-1):
 
     num = 0
     den_v1 = 0
@@ -148,12 +144,18 @@ def a_cos_sim(v1, v2, mu, threshold=200, correction_fact=0.995):
     else:
         correction = correction_fact ** (threshold - num_common)
 
+    if mean1 > 8.3 and mean2 > 8.3 and var1 > 0 and var2 > 0:
+        # correction *= 0.2 + 0.8/(1 + 2.7182818 ** (-abs((mean1 - mean2)*(var1 - var2))*20))
+        correction = 0
+    elif mean2 > 8.3:
+        correction *= 0.2
+
     a_cos = correction * num / sqrt(den_v1 * den_v2)
 
     return a_cos
 
 
-def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_map, show_dict, show_map, user_rating_table_list, num_recs=6, verbose=False):
+def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_map, show_dict, show_map, user_rating_table_list, master_stat_dict, num_recs=6, verbose=False):
     A = np.zeros((max_shows, max_users))
     user_mean_list = np.zeros(max_users)
 
@@ -198,11 +200,38 @@ def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_m
     max_a_cos_index = np.zeros((max_shows, num_recs))
 
     for index_i, row in enumerate(A):
+        i_show_mean, i_show_var = -1, -1
+        if index_i in show_map and show_map[index_i] in master_dict_n:
+            i_show = master_dict_n[show_map[index_i]]
+            if i_show in master_stat_dict:
+                i_show_mean = master_stat_dict[i_show]['mean']
+                i_show_var = master_stat_dict[i_show]['var']
+
         for index_j in range(index_i, max_shows):
-            C[index_i, index_j] = a_cos_sim(A[index_i, :], A[index_j, :], user_mean_list)
+            j_show_mean, j_show_var = -1, -1
+            if index_j in show_map and show_map[index_j] in master_dict_n:
+                j_show = master_dict_n[show_map[index_j]]
+                if j_show in master_stat_dict:
+                    j_show_mean = master_stat_dict[j_show]['mean']
+                    j_show_var = master_stat_dict[j_show]['var']
+
+            C[index_i, index_j] = a_cos_sim(A[index_i, :], A[index_j, :], user_mean_list, mean1 = i_show_mean, mean2 = j_show_mean, var1 = i_show_var, var2 = j_show_var)
             C[index_j, index_i] = C[index_i, index_j]
+
+            # if i_show_mean > 8.3 and j_show_mean > 8.3:
+            #     print(show_map[index_i], show_map[index_j])
+            #     print(C[index_i, index_j])
+            #     print()
+
         if verbose and index_i % 10 == 0:
             print('Done show', index_i, 'of a possible', max_shows)
+            print(i_show, master_map[i_show])
+
+    # for index, row in enumerate(C):
+    #     print(index, show_map[index])
+    #     # for index, sim in enumerate(C[index]):
+    #     #     print(show_map[index], sim, end=', ')
+    #     print(row)
 
     if verbose:
         print('Done calculating all cosine similarities.')
@@ -336,4 +365,4 @@ def calculate_basic_statistics(c_x, max_users, max_shows, master_dict_n, master_
 # max_users = 10000
 # max_shows = 500
 #
-# write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=True, verbose=True)
+# write_extended_stats(max_users, max_shows, basic_statistics=True, item_rec=True, verbose=True)

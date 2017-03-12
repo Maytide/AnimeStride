@@ -2,9 +2,10 @@ from time import gmtime, strftime
 
 from django_cron import CronJobBase, Schedule
 
-from .scripts import script_read_MAL_shows
+from .scripts import *
 
 
+# Explanation: http://stackoverflow.com/a/17649098
 class RunCronJob(CronJobBase):
     RUN_EVERY_MINS = 1
 
@@ -36,5 +37,38 @@ class TaskReadMALShowsIndividual(CronJobBase):
     code = 'home.task_read_MAL_shows_individual'
 
     def do(self):
-        print('Running task to read invidual show data')
+        print('Running task to read individual show data')
         script_read_MAL_shows(write_individual_entry=True, write_aggregated_entry=False)
+
+
+class TaskReadMALShowsAggregated(CronJobBase):
+    RUN_EVERY_MINS = 60 * 24 * 7
+
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+    code = 'home.task_read_MAL_shows_aggregated'
+
+    def do(self):
+        print('Running task to read aggregated show data')
+        script_read_MAL_shows(write_individual_entry=False, write_aggregated_entry=True)
+
+
+class TaskUpdateUserData(CronJobBase):
+    RUN_EVERY_MINS = 60 * 24 * 7
+
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+    code = 'home.task_read_update_user_data'
+
+    def do(self):
+        print('Running task to update user data')
+        script_update_user_data()
+
+
+class TaskWriteExtendedStats(CronJobBase):
+    RUN_EVERY_MINS = 60 * 24 * 7
+
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+    code = 'home.task_write_extended_stats'
+
+    def do(self):
+        print('Running task to write extended stats')
+        script_write_extended_stats()

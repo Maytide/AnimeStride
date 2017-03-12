@@ -27,12 +27,19 @@
     <script src="{% static 'js/master.js' %}"></script>
     
     <script> 
+//        $("#navbar").load("{% static 'html/navbar.html' %}"); 
+        current_href_partition = window.location.href.toString().split('/');
+        current_host = 'http://127.0.0.1:8000';
+        nav_items = ['nav-home', 'nav-recommender', 'nav-stats', 'nav-about']
+        
         $(function(){
           $("#navbar").load("{% static 'html/navbar.html' %}"); 
         });
+        
         $(function(){
           $("#footer").load("{% static 'html/footer.html' %}"); 
         });
+        
     </script> 
     {% block app-js %}
     {% endblock %}
@@ -41,6 +48,7 @@
 <body>
     <div class="container stats-container" id="navbar-container">
         <div id="navbar"></div>
+        
     </div>
 <!--    TODO: Move ng declarations to a file that extends this and parents recommender  -->
 <!--    Done                                                                            -->

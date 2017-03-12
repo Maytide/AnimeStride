@@ -1,10 +1,16 @@
 import math
+import sys
 
 from sklearn.metrics import mean_squared_error
 from scipy.stats import pearsonr
 from scipy.spatial.distance import cosine
-
 import numpy as np
+
+from django.conf import settings
+
+sys.path.append(settings.PROJECT_ROOT)
+from master import SHOW_LIST_TYPES
+sys.path.remove(settings.PROJECT_ROOT)
 
 
 def pearson_correlation(user, train_matrix, verbose=False):
@@ -82,6 +88,13 @@ def recommend(user_ratings_vector, num_shows, num_users, ratings_matrix, shows, 
             # http://stackoverflow.com/a/34652053
             num_ratings += 1
     mean_ratings = np.divide(mean_ratings, mean_ratings_count)
+
+    # # DoneTODO: Remove
+    # print(corr_vector)
+    # print(ratings_matrix)
+    if len(corr_vector) < 5:
+        recommend_flavors = {'empty': SHOW_LIST_TYPES['empty']}
+        return recommend_flavors
 
     # Helper functions that calculate errors
     #########################
@@ -248,7 +261,7 @@ def recommend(user_ratings_vector, num_shows, num_users, ratings_matrix, shows, 
         user_not_watched = user_not_watched[:5]
         max_diff_unwatched = max_diff_unwatched[:5]
         recommend_flavors = {'top-rated': user_not_watched, 'top-diff': max_diff_unwatched, 'rmse-generic-prediction': rmse, 'ae-generic-prediction': ae,
-                             'rmse-generic-control': control_rmse, 'ae-generic-control': control_ae}
+                             'rmse-generic-control': control_rmse, 'ae-generic-control': control_ae, 'empty': SHOW_LIST_TYPES['nonempty']}
 
 
         return recommend_flavors

@@ -245,7 +245,7 @@ class User():
 
     # Enforce that recommendations must be made from entering a new user from the web:
     # User data cannot be taken from database for this purpose.
-    def get_user_recommendation(self, recommender = 'c', verbose = False, num_recommendations = 5, max_users=100, max_shows=500, method='generic'):
+    def get_user_recommendation(self, recommender = 'c', verbose = False, num_recommendations = 5, max_users=500, max_shows=500, method='generic'):
         if self.MAL_URL == '':
             raise Exception('User has no MAL URL defined.')
         entry_dict_tagged = dict()

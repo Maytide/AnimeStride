@@ -48,7 +48,13 @@
 {% block showdisplay %}
 
 {% verbatim %}
+<!--{{all}}-->
 <div class="container">
+    <div class="row row-centered disclaimer-wrapper">
+        <div class="col-sm-12 col-centered disclaimer">
+            <h5>{{rec_type}}</h5>
+        </div>
+    </div>
     <div class="row display">
         <div class="col-lg-12">
             <div ng-repeat="show in shows">

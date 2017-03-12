@@ -14,7 +14,7 @@ def script_read_MAL_shows(write_individual_entry = True, write_aggregated_entry 
 
 
 def script_update_user_data():
-    update_user_data(verbose=True, start_point=4660)
+    update_user_data(verbose=True, start_point=0)
 
 
 def script_write_extended_stats():

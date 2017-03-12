@@ -11,3 +11,8 @@ class ContentDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContentData
         fields = ('anime_url', 'name', 'image_url', 'synopsis', 'studios', 'genres')
+
+
+class RecommenderSerializer(serializers.Serializer):
+    rec_type = serializers.CharField()
+    rec_list = ContentDataSerializer(many=True)

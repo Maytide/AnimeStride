@@ -101,9 +101,6 @@ li {
   margin-bottom: 10px;
 }
 
-.display{
-
-}
 .description{
   padding-right: 0.5rem;
   padding-left: 0.5rem;
@@ -112,6 +109,10 @@ li {
 .display,
 .description {
   padding-bottom: 2rem;
+}
+
+.display{
+
 }
 
 .btn-main{
@@ -174,7 +175,7 @@ li {
 
 /* Supporting marketing content */
 .display {
-  margin: 3rem 0;
+  margin-top: 1rem;
 }
 .display p + h4 + li{
   margin-top: 1.5rem;

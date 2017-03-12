@@ -2,6 +2,13 @@
 
 {% load staticfiles %}
 
+{% block app-css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/recommender-css.css' %}"/>
+
+{% endblock %}
+
+
 {% block app-js %}
 
 <script src="{% static 'js/main.js' %}"></script>

@@ -29,14 +29,18 @@ UNMODELED_DATABASES = {
     'show_indices': {
         'location': os.path.abspath(os.path.join(PROJECT_ROOT,'data/show_indices.db')),
     },
-    # 'show_data_extended': {
-    #     'location': os.path.abspath(os.path.join(PROJECT_ROOT,'data/show_data_extended.db')),
-    # }
+    # for testing only
+    'show_data_extended': {
+        'location': os.path.abspath(os.path.join(PROJECT_ROOT,'data/show_data_extended.db')),
+    }
 }
 
 SHOW_LIST_TYPES = {
     'empty' : 'empty',
-    'nonempty' : 'nonempty'
+    'nonempty' : 'nonempty',
+    'random' : 'random',
+    'random-popular' : 'random-popular',
+    'popular' : 'popular',
 }
 
 # Make this a lot better

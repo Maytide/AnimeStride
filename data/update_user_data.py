@@ -91,8 +91,8 @@ def update_user_data(verbose=False, start_point=0):
 
                 # IF loop is executed unto completion, success is true
                 pass
-            item_dict['conn_x'].commit()
             item_dict['conn_n'].commit()
+            item_dict['conn_x'].commit()
 
         except ValueError as ve:
             print('ValueError for user ' + str(user), ve)

@@ -2,15 +2,39 @@
     <nav>
         <ul class="nav nav-pills float-right">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a id="nav-home" class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a id="nav-stats" class="nav-link" href="#">Stats</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+                <a id="nav-recommender" class="nav-link" href="#">Recommender</a>
+            </li>
+            <li class="nav-item">
+                <a id="nav-about" class="nav-link" href="#">About</a>
             </li>
         </ul>
     </nav>
     <h3 class="text-muted">Stride</h3>
 </div>
+<script>
+    $(document).ready(function() {
+        for (var i = 0; i < nav_items.length; i++){
+            removeNavProperties(nav_items[i], 'active');
+            addNavURL(nav_items[i]);
+        }
+//        for (var i = 0; i < current_href_partition.length; i++) {
+//            alert(current_href_partition[i])
+//        }
+        if (current_href_partition.length === 4) {
+            addNavProperties('nav-home', 'active');
+        }else if (current_href_partition[3] === 'stride_stats') {
+            addNavProperties('nav-stats', 'active');
+        }else if (current_href_partition[3] === 'stride_recommender') {
+            addNavProperties('nav-recommender', 'active');
+        }else if (current_href_partition[3] === 'about') {
+//            TODO: Add about section
+//            addNavProperties('nav-stats', 'active');
+        }
+    });
+</script>

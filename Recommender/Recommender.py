@@ -52,6 +52,7 @@ class Recommender():
         self.recommendation_c = recommend_c(user_ratings, num_shows, ratings_matrix, shows, users, verbose = verbose, num_recommendations = num_recommendations)
         return self.recommendation_c
 
+
     def get_recommendation_d(self, user_ratings, verbose = False, num_recommendations=5, max_users=100, max_shows=500, method='generic'):
         self.c_n.execute('''SELECT * FROM show_map''')
         master_map = {index: name for name, index in self.c_n.fetchall()}
@@ -70,11 +71,13 @@ class Recommender():
         self.recommendation_d = recommend_d(user_rating_vector, num_shows, num_users, ratings_matrix, shows, users, verbose=verbose,
                                             num_recommendations=num_recommendations)
 
-        for index, (show, count, rating) in enumerate(self.recommendation_d['top-rated']):
-            self.recommendation_d['top-rated'][index] = (master_map[show], count, rating)
+        if 'top-rated' in self.recommendation_d:
+            for index, (show, count, rating) in enumerate(self.recommendation_d['top-rated']):
+                self.recommendation_d['top-rated'][index] = (master_map[show], count, rating)
 
-        for index, (show, count, rating, mean) in enumerate(self.recommendation_d['top-diff']):
-            self.recommendation_d['top-diff'][index] = (master_map[show], count, rating, mean)
+        if 'top-diff' in self.recommendation_d:
+            for index, (show, count, rating, mean) in enumerate(self.recommendation_d['top-diff']):
+                self.recommendation_d['top-diff'][index] = (master_map[show], count, rating, mean)
 
         return self.recommendation_d
 
