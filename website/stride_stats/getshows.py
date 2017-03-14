@@ -5,13 +5,15 @@ import datetime, time
 from django.conf import settings
 sys.path.append(settings.PROJECT_ROOT)
 from Anime import Anime
-from master import string_delimiter_upper, japanese_particles
+from master import string_delimiter_upper, japanese_particles, EMPTY_STATS_DICT, EMPTY_CONTENT_DATA, \
+    unescape_url_chars
 sys.path.remove(settings.PROJECT_ROOT)
 
 from .models import ContentData, BasicStatistics, ItemRecs
 
 
 def get_show(show_name):
+
     show = None
     try:
         show = ContentData.objects.get(pk=show_name)
@@ -23,14 +25,16 @@ def get_show(show_name):
         show = ContentData.objects.get(pk=string_delimiter_upper(show_name, ' ', exception_list=japanese_particles))
         return show
     except Exception as ex:
+        show = ContentData.objects.get(pk=EMPTY_CONTENT_DATA)
         pass
 
-        pass
+
 
     return show
 
 
 def get_show_basic_stats(show_name):
+    # print('[stride_stats: getshows: basic_stats] show name:', show_name)
     show = None
     # print(show_name)
     try:
@@ -45,6 +49,7 @@ def get_show_basic_stats(show_name):
         return show
     except Exception as ex:
         print('[stride_stats: getshows: basic_stats] Could not process show.', ex)
+        show = get_show_basic_stats(EMPTY_CONTENT_DATA)
         pass
 
 
@@ -81,6 +86,10 @@ def get_show_stats(show_name, max_recall=30):
     stats_dict = anime.full_stats
     timestamp = anime.timestamp
 
+    if isinstance(stats_dict, list):
+        stats_dict = EMPTY_STATS_DICT['values']
+        timestamp = EMPTY_STATS_DICT['axis_labels']
+
     return stats_dict, timestamp
 
 
@@ -90,6 +99,10 @@ def get_show_stats_month(show_name, max_recall=30):
 
     stats_dict = anime.full_stats
     timestamp = anime.timestamp
+
+    if isinstance(stats_dict, list):
+        stats_dict = EMPTY_STATS_DICT['values']
+        timestamp = EMPTY_STATS_DICT['axis_labels']
 
     return stats_dict, timestamp
 
@@ -101,6 +114,10 @@ def get_show_stats_season(show_name, max_recall=90):
     # stats_dict, timestamp = [zip(stat, time) for index, (stat, time) in enumerate()]
     stats_dict = anime.full_stats
     timestamp = anime.timestamp
+
+    if isinstance(stats_dict, list):
+        stats_dict = EMPTY_STATS_DICT['values']
+        timestamp = EMPTY_STATS_DICT['axis_labels']
     # stats_dict = [stat for index, stat in enumerate(anime.full_stats) if index % 3 == 0]
     # timestamp = [time for index, time in enumerate(anime.timestamp) if index % 3 == 0 ]
 
@@ -117,6 +134,10 @@ def get_show_stats_year(show_name, max_recall=365):
     # stats_dict, timestamp = [zip(stat, time) for index, (stat, time) in enumerate()]
     stats_dict = anime.full_stats
     timestamp = anime.timestamp
+
+    if isinstance(stats_dict, list):
+        stats_dict = EMPTY_STATS_DICT['values']
+        timestamp = EMPTY_STATS_DICT['axis_labels']
     # stats_dict = [stat for index, stat in enumerate(anime.full_stats) if index % 30 == 0]
     # timestamp = [time for index, time in enumerate(anime.timestamp) if index % 30 == 0]
 
@@ -130,6 +151,10 @@ def get_show_stats_all(show_name, max_recall=10000):
     # stats_dict, timestamp = [zip(stat, time) for index, (stat, time) in enumerate()]
     stats_dict = anime.full_stats
     timestamp = anime.timestamp
+
+    if isinstance(stats_dict, list):
+        stats_dict = EMPTY_STATS_DICT['values']
+        timestamp = EMPTY_STATS_DICT['axis_labels']
     # stats_dict = [stat for index, stat in enumerate(anime.full_stats) if index % 120 == 0 and index < 5000]
     # timestamp = [time for index, time in enumerate(anime.timestamp) if index % 120 == 0 and index < 5000]
 
@@ -159,6 +184,11 @@ def get_shows_popularity(num_shows=50):
         num_shows_ = 50
 
     show_list = ContentData.objects.order_by('popularity')[:num_shows_]
+
+    #Evaluates Queryset?
+    # for index in range(show_list):
+    #     show_list[index].decode_name()
+    #     pass
     # print(show_list)
 
     return show_list

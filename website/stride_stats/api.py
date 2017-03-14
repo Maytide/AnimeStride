@@ -8,17 +8,24 @@ from .getshows import *
 from .serializers import *
 from .forms import URLForm
 
+sys.path.append(settings.PROJECT_ROOT)
+from master import unescape_url_chars, decode_hex_string, EMPTY_CONTENT_DATA
+sys.path.remove(settings.PROJECT_ROOT)
+
 
 class JSONResponse(HttpResponse):
     def __init__(self, data, **kwargs):
+        # print('Stats API JSONResponse:', data)
         content = JSONRenderer().render(data)
         kwargs['content_type'] = 'application/json'
         super(JSONResponse, self).__init__(content, **kwargs)
+
 
 class StatisticsContent(object):
     def __init__(self, axis_labels, values):
         self.axis_labels = axis_labels
         self.values = values
+
 
 class StatisticsContentFull(object):
     def __init__(self, stats_data_month, stats_data_season, stats_data_year, stats_data_all):
@@ -26,6 +33,7 @@ class StatisticsContentFull(object):
         self.stats_data_season = StatisticsContent(stats_data_season['timestamp'], stats_data_season['stats_dict'])
         self.stats_data_year = StatisticsContent(stats_data_year['timestamp'], stats_data_year['stats_dict'])
         self.stats_data_all = StatisticsContent(stats_data_all['timestamp'], stats_data_all['stats_dict'])
+
 
 class FrontpageContent(object):
     def __init__(self, show_list_random, show_list_recent, show_list_recent_popular):
@@ -38,16 +46,21 @@ class FrontpageContent(object):
 # Should filter out number symbol on popularity
 # e.g. '#5' -> 5
 
+
 def api_get_show_info(request, show_name):
-    show = get_show(show_name)
+    show_name_ = unescape_url_chars(show_name)
+    show = get_show(show_name_)
 
     serializer = ContentDataSerializer(show)
+
+    decode_hex_string(serializer.data)
     return JSONResponse(serializer.data)
 
 def api_get_show_stats(request, show_name):
     # test_list = get_show_test()
     # Use unquote to handle special URL characters
-    stats_dict, timestamp = get_show_stats(unquote(show_name))
+    show_name_ = unescape_url_chars(show_name)
+    stats_dict, timestamp = get_show_stats(unquote(show_name_))
 
     chart_data = StatisticsContent(timestamp, stats_dict)
     serializer = StatisticsSerializer(chart_data)
@@ -57,49 +70,66 @@ def api_get_show_stats(request, show_name):
 
 
 def api_get_show_stats_full(request, show_name):
+    show_name_ = unescape_url_chars(show_name)
+    try:
+        stats_dict_month, timestamp_month = get_show_stats_month(unquote(show_name_))
+        stats_dict_season, timestamp_season = get_show_stats_season(unquote(show_name_))
+        stats_dict_year, timestamp_year = get_show_stats_year(unquote(show_name_))
+        stats_dict_all, timestamp_all = get_show_stats_all(unquote(show_name_))
+        # if isinstance(stats_dict_all, list):
 
-    stats_dict_month, timestamp_month = get_show_stats_month(unquote(show_name))
-    stats_dict_season, timestamp_season = get_show_stats_season(unquote(show_name))
-    stats_dict_year, timestamp_year = get_show_stats_year(unquote(show_name))
-    stats_dict_all, timestamp_all = get_show_stats_all(unquote(show_name))
+    except Exception as ex:
+        print('[stride_stats: api_get_show_basic_stats] Could not process show.')
+        stats_dict_month, timestamp_month = EMPTY_STATS_DICT['values'], EMPTY_STATS_DICT['axis_labels']
+        stats_dict_season, timestamp_season = EMPTY_STATS_DICT['values'], EMPTY_STATS_DICT['axis_labels']
+        stats_dict_year, timestamp_year = EMPTY_STATS_DICT['values'], EMPTY_STATS_DICT['axis_labels']
+        stats_dict_all, timestamp_all = EMPTY_STATS_DICT['values'], EMPTY_STATS_DICT['axis_labels']
+
+
 
     chart_data = StatisticsContentFull({'stats_dict' : stats_dict_month, 'timestamp' : timestamp_month}, {'stats_dict' : stats_dict_season, 'timestamp' : timestamp_season}
                                    ,{'stats_dict' : stats_dict_year, 'timestamp' : timestamp_year}, {'stats_dict' : stats_dict_all, 'timestamp' : timestamp_all})
     serializer = StatisticsFullSerializer(chart_data)
+
 
     return JSONResponse(serializer.data)
 
 
 def api_get_show_basic_stats(request, show_name):
     show = None
+    show_name_ = unescape_url_chars(show_name)
 
     try:
-        show = get_show_basic_stats(unquote(show_name))
+        show = get_show_basic_stats(unquote(show_name_))
     except Exception as ex:
         print('[stride_stats: api_get_show_basic_stats] Could not process show.')
-        show = {}
+        show = get_show_basic_stats(EMPTY_CONTENT_DATA)
 
     serializer = BasicStatisticsSerializer(show)
 
 
     return JSONResponse(serializer.data)
 
+
 # TODO: fetch ContentData of retrieved recs
 def api_get_show_item_rec(request, show_name):
     # print('[stride_stats: api_get_show_basic_stats]')
     show_list = None
-    print(show_name)
+    show_name_ = unescape_url_chars(show_name)
+    # print(show_name)
 
     try:
-        show_list = get_show_item_rec(unquote(show_name))
+        show_list = get_show_item_rec(unquote(show_name_))
 
     except Exception as ex:
         print('[stride_stats: api_get_show_basic_stats] Could not process show.')
-        show = []
 
     serializer = ContentDataSerializer(show_list, many=True)
-
+    # decode_hex_string(serializer.data, only_fields=('name'))
+    # print(decode_hex_string(serializer.data))
+    decode_hex_string(serializer.data)
     return JSONResponse(serializer.data)
+
 
 def api_get_shows_random(request, num_shows):
     show_list = get_shows_random(num_shows=num_shows)
@@ -114,6 +144,7 @@ def api_get_shows_popularity(request, num_shows):
 
     serializer = ContentDataSerializer(show_list, many=True)
 
+    decode_hex_string(serializer.data)
     return JSONResponse(serializer.data)
 
 
@@ -125,16 +156,18 @@ def api_get_shows_search(request):
 
     if form.is_valid():
         cd = form.cleaned_data
-        show_list = get_shows_search(cd.get('search_string'), cd.get('genre_obj'))
+        # print(cd.get('search_string'))
+        show_list = get_shows_search(unescape_url_chars(cd.get('search_string')), cd.get('genre_obj'))
         serializer = ContentDataSerializer(show_list, many=True)
     else:
+        print('[Stats API api_get_shows_search] error:')
         print(form.errors)
         show_list = get_shows_random(num_shows=2)
         serializer = ContentDataSerializer(show_list, many=True)
     # else:
     #     show_list = get_shows_random(num_shows=3)
     #     serializer = ContentDataSerializer(show_list, many=True)
-
+    decode_hex_string(serializer.data)
     return JSONResponse(serializer.data)
 
 def api_get_shows_frontpage(request, num_shows=3):
@@ -148,6 +181,7 @@ def api_get_shows_frontpage(request, num_shows=3):
 
     serializer = MultipleContentDataSerializer(frontpage_content)
 
+    decode_hex_string(serializer.data)
     return JSONResponse(serializer.data)
 
 
@@ -163,4 +197,5 @@ def api_get_show_test(request, show_name):
     chart_data = StatisticsContent(axis_labels, test_list)
     serializer = StatisticsSerializer(chart_data)
 
+    decode_hex_string(serializer.data)
     return JSONResponse(serializer.data)

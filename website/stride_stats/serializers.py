@@ -23,6 +23,11 @@ class ContentDataSerializer(serializers.ModelSerializer):
     # name = serializers.CharField()
     # image_url = serializers.HyperlinkedIdentityField('ContentData-list')
     # synopsis = serializers.CharField()
+    def __init__(self, *args, **kwargs):
+        # print(*args)
+
+        super(ContentDataSerializer, self).__init__(*args, **kwargs)
+
 
     class Meta:
         model = ContentData

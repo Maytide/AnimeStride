@@ -77,3 +77,21 @@ function addNavURL(navID){
     $(navID).attr('href', current_host);
   }
 }
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
+
+String.prototype.decodeEscapeSequence = function() {
+    return this.replace(/\\x([0-9A-Fa-f]{2})/g, function() {
+        return String.fromCharCode(parseInt(arguments[1], 16));
+    });
+};
+
+function makeURLCompatible(url_string){
+  url_string = url_string.decodeEscapeSequence();
+  url_string = url_string.replaceAll('/', '[[fsl]]');
+  url_string = url_string.replaceAll('\\', '[[fsl]]');
+  return url_string;
+}

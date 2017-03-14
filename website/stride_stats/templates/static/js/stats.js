@@ -35,9 +35,10 @@ app.controller('statsController', function($scope, $http) {
               $scope.shows[i]['aired'] = dateToMMYYYY($scope.shows[i]['aired']);
               // Add commas in number
               $scope.shows[i]['members'] = numberFormat($scope.shows[i]['members']);
+              // $scope.shows[i]['name'] = makeURLCompatible($scope.shows[i]['name']);
               // Link to show's stats page.
-              $scope.shows[i]['stride_url'] = window.location.href +'show/' + $scope.shows[i]['name'];
-
+              $scope.shows[i]['stride_url'] = window.location.href +'show/' + makeURLCompatible($scope.shows[i]['name']);
+              // alert($scope.shows[i]['name'].replace('/', '&#47'));
               // Genres and studios contain multiple elements stored in string;
               // Convert to list and pop last element, because it is empty.
               $scope.shows[i]['genres'] = stringToJSON($scope.shows[i]['genres']);
@@ -96,8 +97,11 @@ app.controller('statsController', function($scope, $http) {
             $scope.shows[i]['aired'] = dateToMMYYYY($scope.shows[i]['aired']);
             // Add commas in number
             $scope.shows[i]['members'] = numberFormat($scope.shows[i]['members']);
+            // $scope.shows[i]['name'] = makeURLCompatible($scope.shows[i]['name']);
             // Link to show's stats page.
-            $scope.shows[i]['stride_url'] = window.location.href +'show/' + $scope.shows[i]['name'];
+            $scope.shows[i]['stride_url'] = window.location.href +'show/' + makeURLCompatible($scope.shows[i]['name']);
+
+            // $scope.shows[i]['stride_url'] = $scope.shows[i]['stride_url'].replace('/', '&#47');
 
             // Genres and studios contain multiple elements stored in string;
             // Convert to list and pop last element, because it is empty.

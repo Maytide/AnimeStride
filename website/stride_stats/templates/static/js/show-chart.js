@@ -312,8 +312,9 @@ itemRecApp.controller('itemRecController', function($scope, $http) {
             show_url = window.location.href.split('/');
             show_url.pop();
             show_url.pop();
-            $scope.shows[i]['stride_url'] = show_url.join('/') + '/' + $scope.shows[i]['name'];
 
+            $scope.shows[i]['stride_url'] = show_url.join('/') + '/' + makeURLCompatible($scope.shows[i]['name']);
+            // alert($scope.shows[i]['stride_url']);
           }
 
       });

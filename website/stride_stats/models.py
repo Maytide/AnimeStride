@@ -48,9 +48,13 @@ class ContentData(models.Model):
         managed = False
         db_table = 'content_data'
 
+
     def __str__(self):
         return self.name
 
+
+    def decode_name(self):
+        self.name = self.name.decode('utf-8', 'strict')
     # @staticmethod
     # def get_show_genres():
     #     return show_genresa

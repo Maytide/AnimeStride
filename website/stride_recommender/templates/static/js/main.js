@@ -37,7 +37,7 @@ app.controller('recommenderController', function($scope, $http) {
                 stats_url = window.location.href.toString().split('/');
                 stats_url.pop();
                 stats_url.pop();
-                stats_url = stats_url.join('/') + '/stride_stats/show/' + $scope.shows[i]['name'];
+                stats_url = stats_url.join('/') + '/stride_stats/show/' + makeURLCompatible($scope.shows[i]['name']);
                 $scope.shows[i]['stride_url'] = stats_url;
 
             }
@@ -65,7 +65,7 @@ app.controller('recommenderController', function($scope, $http) {
               stats_url = window.location.href.toString().split('/');
               stats_url.pop();
               stats_url.pop();
-              stats_url = stats_url.join('/') + '/stride_stats/show/' + $scope.shows[i]['name'];
+              stats_url = stats_url.join('/') + '/stride_stats/show/' + makeURLCompatible($scope.shows[i]['name']);
               $scope.shows[i]['stride_url'] = stats_url;
             }
 

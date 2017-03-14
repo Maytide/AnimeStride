@@ -214,6 +214,7 @@ class Anime():
 
         return p_data
 
+
     def parse_related(self, data):
         data = [item for item in data if item != ', ']
         adaptation = 'Adaptation:'
@@ -271,6 +272,7 @@ class Anime():
                     j = j + 1
         return p_data
 
+
     def write_data(self, *data_list):
         for data in data_list:
             self.data.append(self.return_data(data))
@@ -303,9 +305,11 @@ class Anime():
             file.write('\n')
             #List
 
+
     def valid_table_name(self, table_name):
         # Prevent injections
         return not ('drop table' in table_name.lower())
+
 
     #OrderedDict to SQL-compatible string
     def OD_to_db_list(self, data):
@@ -345,6 +349,7 @@ class Anime():
             self.write_to_db_aggregated(aggregated_db, self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data, anime_url)
         if write_individual_entry == True:
             self.write_to_db_individual(individual_db, self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
+
 
     def write_to_db_individual(self, db, content_data, name_data, info_data, statistics_data, related_data):
         # Only write data which is useful for statistics - score, ranked, members, popularity, favourites.
