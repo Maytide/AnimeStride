@@ -65,6 +65,10 @@ CRON_CLASSES = [
     'home.crons.RunCronJob',
     'home.crons.TaskReadMALShowsIndividual',
     # python manage.py runcrons "home.crons.TaskReadMALShowsIndividual"
+    'home.crons.TaskReadMALShowsMaster',
+    # python manage.py runcrons "home.crons.TaskReadMALShowsMaster"
+    'home.crons.TaskUpdateUserData',
+    # python manage.py runcrons "home.crons.TaskUpdateUserData"
     # ...
 ]
 

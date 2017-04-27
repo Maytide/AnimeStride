@@ -42,7 +42,7 @@ chartApp.controller('chartController', function($scope, $http) {
 
 
             // $scope.axis_labels = [$scope.path_name, 100, 100, 100, 100, 100];
-            $scope.drawChart($scope.axis_labels['timestamp'], $scope.values['members'], 'rgba(217,178,52,0.2)', 'rgba(249,195,12,0.5)');
+            $scope.drawChart($scope.axis_labels['timestamp'], $scope.values['score'], 'rgba(217,178,52,0.2)', 'rgba(249,195,12,0.5)');
 
         });
   };

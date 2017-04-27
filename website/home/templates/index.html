@@ -15,10 +15,21 @@
     </div>
     
     <div class="row description text-center">
-        <div class="btn-group">
+<!--        <div class="btn-group">-->
+        <div class="col-4 stride-selector">
+            <div class="row text-center"><img class="icon-lg img-center" src="{% static 'img/icons/icon-stats.png' %}"></div>
             <a href="/stride_stats"><button type="button" id="btn-stats" class="btn btn-lg btn-info btn-main">Anime Statistics</button></a>
+        </div>
+        <div class="col-4 stride-selector">
+            <div class="row"><img class="icon-lg img-center" src="{% static 'img/icons/icon-recommender.png' %}"></div>
+            
             <a href="/stride_recommender"><button type="button" id="btn-recommender" class="btn btn-lg btn-info btn-main">Recommender</button></a>
         </div>
+        <div class="col-4 stride-selector">
+            <div class="row"><img class="icon-lg img-center" src="{% static 'img/icons/icon-about.png' %}"></div>
+            <a href="#"><button type="button" id="btn-recommender" class="btn btn-lg btn-info btn-main">About</button></a>
+        </div>
+<!--        </div>-->
     </div>
     
     <div class="row description">

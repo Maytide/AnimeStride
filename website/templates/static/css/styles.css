@@ -11,10 +11,10 @@ li {
 }
 
 .btn-group {
-  margin: 0 auto;
-  text-align: center;
-  width: inherit;
-  display: inline-block;
+  /*margin: 0 auto;*/
+  /*text-align: center;*/
+  /*width: inherit;*/
+  /*display: inline-block;*/
 }
 
 .top-bottom-border {
@@ -151,6 +151,14 @@ li {
   font-size: 1.5rem;
 }
 
+.stride-selector {
+  text-align: center;
+}
+
+.img-center {
+  margin: auto;
+}
+
 .icon {
   max-height: 50px;
   max-width: 50px;
@@ -159,6 +167,11 @@ li {
 .icon-md {
   max-height: 65px;
   max-width: 65px;
+}
+
+.icon-lg {
+  max-height: 128px;
+  max-width: 128px;
 }
 
 .page-desc {

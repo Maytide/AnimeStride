@@ -52,6 +52,16 @@ class TaskReadMALShowsAggregated(CronJobBase):
         script_read_MAL_shows(write_individual_entry=False, write_aggregated_entry=True)
 
 
+class TaskReadMALShowsMaster(CronJobBase):
+    RUN_EVERY_MINS = 60 * 24 * 7
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+    code = 'home.task_read_MAL_shows_master'
+
+    def do(self):
+        print('Running task to read aggregated and individual show data')
+        script_read_MAL_shows(write_individual_entry=True, write_aggregated_entry=True)
+
+
 class TaskUpdateUserData(CronJobBase):
     RUN_EVERY_MINS = 60 * 24 * 7
 
