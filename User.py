@@ -4,7 +4,7 @@ import sqlite3
 from FetchMALData.ParseUserPage import UserShowGetter, UserShowGetterT2
 from Recommender.Recommender import Recommender
 
-from master import UNMODELED_DATABASES
+from master import UNMODELED_DATABASES, prepare_for_db, decode_hex_string, old_profile_convert_string
 
 class User():
 
@@ -150,7 +150,8 @@ class User():
             current_char = entry[str_index]
             if entry[str_index] == ',' and in_string == True:
                 #Special value for comma character
-                current_char = '[Comma]'
+                # current_char = '[Comma]'
+                pass
             if entry[str_index] == '"' and in_string == False:
                 in_string = True
             elif entry[str_index] == '"' and in_string == True:
@@ -177,13 +178,19 @@ class User():
         response = urllib.urlopen(self.MAL_URL)
         html = str(response.read())
 
+        # Type 0: Hex escape. Type 1: Unicode escape.
+        MAL_type = 0
+
         if '<div id="list_surround">' in html:
+            MAL_type = 0
             usg = UserShowGetterT2()
             usg.feed(html)
             usg.reformat_data()
             sample_user_data = usg.reformatted_data
         else:
+            MAL_type = 1
             usg = UserShowGetter()
+            html = old_profile_convert_string(html)
             usg.feed(html)
             usg.reformat_data()
             # user_data = usg.reformatted_data
@@ -230,6 +237,12 @@ class User():
 
                 tagged_entry[1] = tagged_entry[1][:-1] if tagged_entry[1].endswith('"') else tagged_entry[1]
                 tagged_entry[1] = tagged_entry[1][1:] if tagged_entry[1].startswith('"') else tagged_entry[1]
+
+                if attribute == '"anime_title"' or attribute == 'anime_title':
+                    if MAL_type == 0:
+                        tagged_entry[1] = prepare_for_db(decode_hex_string(tagged_entry[1]))
+                    elif MAL_type == 1:
+                        tagged_entry[1] = prepare_for_db(tagged_entry[1])
                 # print('attribute; ' + tagged_entry[0] + ' ; ' + tagged_entry[1])
                 # print(tagged_entry)
                 attribute_list_tagged.append((tagged_entry[0], tagged_entry[1]))
@@ -277,7 +290,7 @@ class User():
             # print(score)
             anime_title = anime_title[1]
             if anime_title in shows_master:
-                anime_title = anime_title.replace(',','[Comma]')
+                # anime_title = anime_title.replace(',','[Comma]')
                 entry_dict_tagged[shows_master[anime_title]] = int(score)
             # print(type(score))
 

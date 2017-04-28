@@ -11,8 +11,8 @@ from User import User
 # master_dict_n, master_map, show_map, user_rating_table_list
 
 # 169
-def update_user_data(verbose=False, start_point=0):
-    item_dict = open_db(10000, 10, open_show_indices=True, open_show_data_aggregated=False, open_user_list_indexed=True, get_conn_n=True, get_conn_x=True)
+def update_user_data(verbose=False, start_point=0, max_users=10000):
+    item_dict = open_db(max_users, 1, open_show_indices=True, open_show_data_aggregated=False, open_user_list_indexed=True, get_conn_n=True, get_conn_x=True)
     print('Update_user_data: length of master_map', len(item_dict['master_map']))
     # print(item_dict['user_rating_table_list'])
     init_show_map_len = item_dict['master_map_max']
@@ -80,10 +80,10 @@ def update_user_data(verbose=False, start_point=0):
                         # print(title_data, score_data)
                         # print(title_index, score_data)
                         print('Assigning show', title_data, 'to master_dict id', item_dict['master_dict_n'][title_data])
-                        c_n.execute('''INSERT OR REPLACE INTO show_map
-                                                    VALUES (?,?)''',
-                                    (item_dict['master_map'][curr_len], curr_len))
+
                         print()
+                    c_n.execute('''INSERT OR REPLACE INTO show_map VALUES (?,?)''',
+                                (item_dict['master_map'][curr_len], curr_len))
 
 
                 c_x.execute('''INSERT OR REPLACE INTO [{}]

@@ -2,6 +2,7 @@ import sqlite3
 import urllib.request as urllib
 import sys, os
 import os.path
+import traceback
 
 from Anime import Anime
 from FetchMALData.GetAnimePage import AnimePageGetter
@@ -50,12 +51,22 @@ def read_MAL_pages(file_or_db = 'db', write_individual_entry = True, write_aggre
                         # Same db for individual and aggregated - for now.
                         anime.write_to_db(anime_URL, show_individual_db, show_aggregated_db, write_individual_entry, write_aggregated_entry)
                     if verbose:
-                        print(str(showcount) + ' : ' + anime.content_data['Name:'])
+                        # try:
+                        #     print(str(showcount) + ' : ' + anime.content_data['Name:'])
+                        # except UnicodeEncodeError:
+                        #     content_data_name = anime.content_data['Name:'].encode('utf-8')
+                        #     sys.stdout.buffer.write(content_data_name)
+                        print(str(showcount) + ': ')
+                        content_data_name = anime.content_data['Name:'].encode('utf-8')
+                        sys.stdout.buffer.write(content_data_name)
+                        print()
                 except Exception as ex:
                     print('Error in function read_MAL_pages in module ReadMALShows: ' + str(ex))
                     exc_type, exc_obj, exc_tb = sys.exc_info()
                     fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
                     print(exc_type, fname, exc_tb.tb_lineno)
+                    print('Traceback: ')
+                    traceback.print_exc()
             showcount = showcount + 1
             if test_mode:
                 flag = True

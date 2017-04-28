@@ -83,30 +83,37 @@ EMPTY_CONTENT_DATA = 'Show not found'
 
 
 # See comment above decode_url
-def decode_hex_string(item, only_fields=None):
+def decode_hex_string(item):
     if isinstance(item, dict):
         for key, value in item.items():
             item[key] = decode_hex_string(item[key])
     elif isinstance(item, list):
         for i in range(len(item)):
             item[i] = decode_hex_string(item[i])
+    elif isinstance(item, tuple):
+        item = list(item)
+        for i in range(len(item)):
+            item[i] = decode_hex_string(item[i])
     elif isinstance(item, str):
-        try:
-            item = literal_eval("b'{}'".format(item)).decode('utf-8')
-        except SyntaxError as se:
-            # print('[Master decode_hex_string] exception trying to do literal eval', se)
-            try:
-                item = item.encode('latin-1')
-                # print(item)
-                item = item.decode('utf-8', 'strict')
-            except Exception as ex:
-                print('[Master decode_hex_string] exception trying to decode unicode characters')
-                print(ex)
-                pass
-        except Exception as ex:
-            pass
-        # Printing does not work for special chars?
+        # item = literal_eval("b'{}'".format(item)).decode('utf-8')
         # print(item)
+        try:
+            item = literal_eval("b'''{}'''".format(item)).decode('utf-8')
+        except SyntaxError as se:
+            # print('[Master decode_hex_string] exception trying to do literal eval:', se)
+
+            try:
+                item = literal_eval('b"""{}"""'.format(item)).decode('utf-8')
+            except:
+                try:
+                    item = item.encode('latin-1')
+                    # print(item)
+                    item = item.decode('utf-8', 'strict')
+                    print(item)
+                except Exception as ex:
+                    print('[Master decode_hex_string] exception trying to decode unicode characters', se)
+                    print(ex)
+                    pass
     else:
         return item
 
@@ -171,5 +178,23 @@ def unescape_db_string(db_string):
     db_string = db_string.replace('[Comma]', ',')
     db_string = db_string.replace('[Quot]', '"')
     return db_string
+
+
+def underscore_for_db(db_string):
+    db_string_ = '__' + db_string + '__'
+    return db_string_
+
+
+def prepare_for_db(db_string):
+    db_string_ = escape_db_string(db_string)
+    db_string_ = underscore_for_db(db_string_)
+    return db_string_
+
+
+def old_profile_convert_string(db_string):
+    db_string_ = db_string.replace('\\\\u','\\u')
+    db_string_ = bytes(db_string_, 'utf-8').decode('unicode-escape')
+    db_string_ = db_string_.replace('\\/', '/')
+    return db_string_
 
 # TODO: Unquote

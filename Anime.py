@@ -4,7 +4,7 @@ from collections import OrderedDict, defaultdict
 import time
 from datetime import datetime
 
-from master import UNMODELED_DATABASES, string_SQL_safe, escape_db_string
+from master import UNMODELED_DATABASES, string_SQL_safe, decode_hex_string, prepare_for_db
 from FetchMALData.ParseShow import ParseShowContentInHTMLTag, ParseShowContentInHTMLElement, ParseShowInformation, ParseShowStatistics, ParseShowRelated
 
 
@@ -33,6 +33,8 @@ class Anime():
     def parse_content(self, data):
         # print(data)
         key = ['Name:', 'Image:', 'Synopsis']
+        data[0] = prepare_for_db(data[0])
+        # print('Anime: Parse_content: Name:', data[0])
         return OrderedDict(zip(key, data), key = lambda t: t[0])
 
     def parse_titles(self, data):
@@ -388,7 +390,7 @@ class Anime():
     def write_to_db_aggregated(self, db, content_data, name_data, info_data, statistics_data, related_data, anime_url):
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute('''CREATE TABLE IF NOT EXISTS content_data_backup
+        c.execute('''CREATE TABLE IF NOT EXISTS content_data
                   (anime_url text,
                   name text PRIMARY KEY, image_url text, synopsis text,
                   english_name text, synonyms text, japanese_name text,
@@ -402,19 +404,21 @@ class Anime():
                 # Related: Adaptation, alternative, side-story, spinoff, prequel, sequel, summary
 
         # print(content_data)
+        anime_url_ = decode_hex_string(anime_url)
+
         content_data_list = self.OD_to_db_list(content_data)
         name_data_list = self.OD_to_db_list(name_data)
         info_data_list = self.OD_to_db_list(info_data)
         statistics_data_list = self.OD_to_db_list(statistics_data)
         related_data_list = self.OD_to_db_list(related_data)
 
-        data_list = [anime_url] + content_data_list + name_data_list + info_data_list + statistics_data_list + related_data_list
+        data_list = [anime_url_] + content_data_list + name_data_list + info_data_list + statistics_data_list + related_data_list
         # print(len(data_list))
         # print(content_data_str)
         # content_data_values = (content_data_list[0][1], content_data[1][1], content_data[0][1])
 
         # Is this susceptible to SQL injections?
-        c.execute('INSERT OR REPLACE INTO content_data_backup VALUES (' + '?,'*(len(data_list)-1) + '?)', data_list)
+        c.execute('INSERT OR REPLACE INTO content_data VALUES (' + '?,'*(len(data_list)-1) + '?)', data_list)
         conn.commit()
 
 
@@ -459,7 +463,7 @@ class Anime():
         # pst.close()
         ########################################
         pst = ParseShowContentInHTMLTag()
-        self.content_data = self.parse_data(html, pst, self.parse_content)
+        self.content_data = decode_hex_string(self.parse_data(html, pst, self.parse_content))
         pst.close()
         ########################################
         # pse = ParseShowContentInHTMLElement()
@@ -470,7 +474,7 @@ class Anime():
         # pse.close()
         #########################################
         pse = ParseShowContentInHTMLElement()
-        self.name_data = self.parse_data(html, pse, self.parse_titles)
+        self.name_data = decode_hex_string(self.parse_data(html, pse, self.parse_titles))
         pse.close()
         #########################################
         # psi = ParseShowInformation()
@@ -481,7 +485,7 @@ class Anime():
         # psi.close()
         #########################################
         psi = ParseShowInformation()
-        self.info_data = self.parse_data(html, psi, self.parse_info)
+        self.info_data = decode_hex_string(self.parse_data(html, psi, self.parse_info))
         psi.close()
         #########################################
         # pss = ParseShowStatistics()
@@ -493,7 +497,7 @@ class Anime():
         # pss.close()
         #########################################
         pss = ParseShowStatistics()
-        self.statistics_data = self.parse_data(html, pss, self.parse_statistics)
+        self.statistics_data = decode_hex_string(self.parse_data(html, pss, self.parse_statistics))
         pss.close()
         #########################################
         #########################################
@@ -506,12 +510,12 @@ class Anime():
         #########################################
         if '<table class="anime_detail_related_anime" style="border-spacing:0px;">' in html:
             psr = ParseShowRelated()
-            self.related_data = self.parse_data(html, psr, self.parse_related)
+            self.related_data = decode_hex_string(self.parse_data(html, psr, self.parse_related))
             psr.close()
         else:
-            self.related_data = OrderedDict([['Adaptation: ', ''], ['Alternative: ', ''], ['Side Story: ', ''],
-                                             ['Spinoff: ', ''], ['Prequel: ', ''], ['Sequel: ', ''], ['Summary: ', '']],
-                                            key=lambda t: t[0])
+            self.related_data = decode_hex_string(OrderedDict([['Adaptation: ', ''], ['Alternative: ', ''], ['Side Story: ', ''],
+                                                 ['Spinoff: ', ''], ['Prequel: ', ''], ['Sequel: ', ''], ['Summary: ', '']],
+                                                  key=lambda t: t[0]))
             #########################################
 
             # print(info_data)

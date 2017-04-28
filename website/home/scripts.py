@@ -13,8 +13,8 @@ def script_read_MAL_shows(write_individual_entry = True, write_aggregated_entry 
     read_MAL_pages(write_individual_entry = write_individual_entry, write_aggregated_entry = write_aggregated_entry, start_page = start_page, start_point = start_point, end_page = end_page, verbose = True)
 
 
-def script_update_user_data():
-    update_user_data(verbose=True, start_point=0)
+def script_update_user_data(verbose=True, start_point=0, max_users=10000):
+    update_user_data(verbose=verbose, start_point=start_point, max_users=max_users)
 
 
 def script_write_extended_stats():

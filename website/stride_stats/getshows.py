@@ -86,6 +86,7 @@ def get_show_stats(show_name, max_recall=30):
     stats_dict = anime.full_stats
     timestamp = anime.timestamp
 
+    # If show not found in database
     if isinstance(stats_dict, list):
         stats_dict = EMPTY_STATS_DICT['values']
         timestamp = EMPTY_STATS_DICT['axis_labels']
