@@ -141,35 +141,36 @@ def string_delimiter_upper(lower_string, delimiter, exception_list = None):
 # Now I have to resort to this hack to get my URLs working.
 # Take the time to learn urls and encodings properly - it's worth it.
 def unescape_url_chars(url):
-    url = url.encode('utf-8')
-    # print('---------------------------------URL3:', url3)
-    url_ = ''
-
-    # for char in url:
-    #     if ord(char) > 127:
-    #         udata = char.encode('utf-8').decode('latin-1')
-    #         for c in udata:
-    #             url_ += '\\x' + hex(ord(c))[2:]
-    #     else:
-    #         url_ += char
+    url_ = url
+    # url = url.encode('utf-8')
+    # # print('---------------------------------URL3:', url3)
+    # url_ = ''
     #
-    #     # print(char)
-    for char in url:
-        if char <= 127:
-            try:
-                url_ += chr(char)
-            except Exception as ex:
-                pass
-        elif char > 127:
-            url_ += '\\x' + hex(char)[2:]
-
-    url_ = unquote(url_.replace('[[fsl]]', '/'))
+    # # for char in url:
+    # #     if ord(char) > 127:
+    # #         udata = char.encode('utf-8').decode('latin-1')
+    # #         for c in udata:
+    # #             url_ += '\\x' + hex(ord(c))[2:]
+    # #     else:
+    # #         url_ += char
+    # #
+    # #     # print(char)
+    # for char in url:
+    #     if char <= 127:
+    #         try:
+    #             url_ += chr(char)
+    #         except Exception as ex:
+    #             pass
+    #     elif char > 127:
+    #         url_ += '\\x' + hex(char)[2:]
+    #
+    # url_ = unquote(url_.replace('[[fsl]]', '/'))
 
     return url_
 
 
 def escape_db_string(db_string):
-    db_string = db_string.replace(',', '[Comma]')
+    # db_string = db_string.replace(',', '[Comma]')
     db_string = db_string.replace('"', '[Quot]')
     return db_string
 
@@ -196,5 +197,27 @@ def old_profile_convert_string(db_string):
     db_string_ = bytes(db_string_, 'utf-8').decode('unicode-escape')
     db_string_ = db_string_.replace('\\/', '/')
     return db_string_
+
+
+def split_outside_quot(entry):
+    split_list = []
+    in_quot = False
+
+    attribute = ''
+    for character in entry:
+
+        if character == '"' and not in_quot:
+            in_quot = True
+        elif character == '"' and in_quot:
+            in_quot = False
+
+        if character != ',' or (character == ',' and in_quot):
+            attribute += character
+
+        if not in_quot:
+            if character == ',':
+                split_list.append(attribute)
+                attribute = ''
+    return split_list
 
 # TODO: Unquote

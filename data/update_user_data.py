@@ -67,23 +67,24 @@ def update_user_data(verbose=False, start_point=0, max_users=10000):
                     'master_dict_n']:
                     title_index = item_dict['master_dict_n'][title_data]
                 else:
-                    curr_len = item_dict['master_map_max']
-                    item_dict['master_dict_n'][title_data] = curr_len
-                    item_dict['master_map'][curr_len] = title_data
-                    item_dict['master_map_max'] = item_dict['master_map_max'] + 1
-
-                    title_index = item_dict['master_dict_n'][title_data]
-                    if verbose:
-                        print('Added show', title_data, 'to master_map and master_dict')
-                        # print('Master Dict now has size', len(item_dict['master_dict_n']))
-                        # print('Master Map now has size', len(item_dict['master_map']))
-                        # print(title_data, score_data)
-                        # print(title_index, score_data)
-                        print('Assigning show', title_data, 'to master_dict id', item_dict['master_dict_n'][title_data])
-
-                        print()
-                    c_n.execute('''INSERT OR REPLACE INTO show_map VALUES (?,?)''',
-                                (item_dict['master_map'][curr_len], curr_len))
+                    # curr_len = item_dict['master_map_max']
+                    # item_dict['master_dict_n'][title_data] = curr_len
+                    # item_dict['master_map'][curr_len] = title_data
+                    # item_dict['master_map_max'] = item_dict['master_map_max'] + 1
+                    #
+                    # title_index = item_dict['master_dict_n'][title_data]
+                    # if verbose:
+                    #     print('Added show', title_data, 'to master_map and master_dict')
+                    #     # print('Master Dict now has size', len(item_dict['master_dict_n']))
+                    #     # print('Master Map now has size', len(item_dict['master_map']))
+                    #     # print(title_data, score_data)
+                    #     # print(title_index, score_data)
+                    #     print('Assigning show', title_data, 'to master_dict id', item_dict['master_dict_n'][title_data])
+                    #
+                    #     print()
+                    # c_n.execute('''INSERT OR REPLACE INTO show_map VALUES (?,?)''',
+                    #             (item_dict['master_map'][curr_len], curr_len))
+                    pass
 
 
                 c_x.execute('''INSERT OR REPLACE INTO [{}]

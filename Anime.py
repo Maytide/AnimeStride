@@ -346,12 +346,23 @@ class Anime():
     # In the future:
     # Port this db stuff to ReadMALShows...
 
-    def write_to_db(self, anime_url, individual_db, aggregated_db, write_individual_entry = True, write_aggregated_entry = False):
+    def write_to_db(self, anime_url, item_dict, individual_db, aggregated_db, write_individual_entry = True, write_aggregated_entry = False):
         if write_aggregated_entry == True:
             self.write_to_db_aggregated(aggregated_db, self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data, anime_url)
         if write_individual_entry == True:
             self.write_to_db_individual(individual_db, self.content_data, self.name_data, self.info_data, self.statistics_data, self.related_data)
 
+        if self.content_data['Name:'] not in item_dict['master_dict_n']:
+            print('[Anime: write_to_db] Adding show: ', self.content_data['Name:'], ' to show_indices db.')
+            curr_len = item_dict['master_map_max']
+            item_dict['master_dict_n'][self.content_data['Name:']] = curr_len
+            item_dict['master_map'][curr_len] = self.content_data['Name:']
+            item_dict['master_map_max'] = item_dict['master_map_max'] + 1
+
+            c_n = item_dict['conn_n'].cursor()
+            c_n.execute('''INSERT OR REPLACE INTO show_map VALUES (?,?)''',
+                        (item_dict['master_map'][curr_len], curr_len))
+            item_dict['conn_n'].commit()
 
     def write_to_db_individual(self, db, content_data, name_data, info_data, statistics_data, related_data):
         # Only write data which is useful for statistics - score, ranked, members, popularity, favourites.

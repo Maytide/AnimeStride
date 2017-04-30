@@ -63,22 +63,23 @@ class TaskReadMALShowsMaster(CronJobBase):
 
 
 class TaskUpdateUserData(CronJobBase):
-    RUN_EVERY_MINS = 0
+    RUN_EVERY_MINS = 60 * 24 * 7
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'home.task_read_update_user_data'
 
     def do(self):
         print('Running task to update user data')
-        script_update_user_data(verbose=True,max_users=20)
+        script_update_user_data(verbose=True,max_users=10000, start_point=0)
 
 
 class TaskWriteExtendedStats(CronJobBase):
-    RUN_EVERY_MINS = 60 * 24 * 7
+    RUN_EVERY_MINS = 1
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'home.task_write_extended_stats'
 
     def do(self):
         print('Running task to write extended stats')
-        script_write_extended_stats()
+        script_write_extended_stats(verbose=True, max_users=10000, max_shows=500)
+

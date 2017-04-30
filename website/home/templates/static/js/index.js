@@ -22,6 +22,7 @@ app.controller('displayController', function($scope, $http) {
           for (var key in shows_all){
             if (shows_all.hasOwnProperty(key)) {
               for (var i = 0; i < shows_all[key].length; i++) {
+                shows_all[key][i]['display_name'] = shows_all[key][i]['name'].slice(2,-2);
                 shows_all[key][i]['genres'] = stringToJSON(shows_all[key][i]['genres']);
                 shows_all[key][i]['genres'].pop();
               }

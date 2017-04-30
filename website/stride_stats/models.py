@@ -54,7 +54,8 @@ class ContentData(models.Model):
 
 
     def decode_name(self):
-        self.name = self.name.decode('utf-8', 'strict')
+        pass
+        # self.name = self.name.decode('utf-8', 'strict')
     # @staticmethod
     # def get_show_genres():
     #     return show_genresa
@@ -93,7 +94,7 @@ class BasicStatistics(models.Model):
 
 
 class ItemRecs(models.Model):
-    show_name = models.TextField(primary_key=True, blank=True, null=False)
+    show_code = models.TextField(primary_key=True, blank=True, null=False)
     rec_1 = models.TextField(blank=True, null=True)
     rec_2 = models.TextField(blank=True, null=True)
     rec_3 = models.TextField(blank=True, null=True)

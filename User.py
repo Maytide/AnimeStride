@@ -4,7 +4,7 @@ import sqlite3
 from FetchMALData.ParseUserPage import UserShowGetter, UserShowGetterT2
 from Recommender.Recommender import Recommender
 
-from master import UNMODELED_DATABASES, prepare_for_db, decode_hex_string, old_profile_convert_string
+from master import UNMODELED_DATABASES, prepare_for_db, decode_hex_string, old_profile_convert_string, split_outside_quot
 
 class User():
 
@@ -160,8 +160,17 @@ class User():
             str_index += 1
         return commaless_entry_str
 
-    def get_attributes(self, entry):
+
+    def get_attributes_type_0(self, entry):
         user_show_data_list = entry.split(',')
+
+        return [user_show_data for user_show_data in user_show_data_list if user_show_data != '']
+
+
+    def get_attributes(self, entry):
+        # print(entry)
+        # user_show_data_list = entry.split(',')
+        user_show_data_list = split_outside_quot(entry)
         # User page with additional comments: https://myanimelist.net/animelist/AnimaticLunatic
         # Breaks because comma inside quote inside comment :/
         # Possible solution: If comma is not beside a quot, remove it?
@@ -175,20 +184,22 @@ class User():
 
     def create_user_show_list_tagged(self, MAL_URL, minimal = False):
         self.MAL_URL = MAL_URL
+        self.MAL_type = 0
         response = urllib.urlopen(self.MAL_URL)
         html = str(response.read())
 
         # Type 0: Hex escape. Type 1: Unicode escape.
-        MAL_type = 0
 
         if '<div id="list_surround">' in html:
-            MAL_type = 0
+            # print('[User: create_user_show_list_tagged]: type 0', MAL_URL)
+            self.MAL_type = 0
             usg = UserShowGetterT2()
             usg.feed(html)
             usg.reformat_data()
             sample_user_data = usg.reformatted_data
         else:
-            MAL_type = 1
+            # print('[User: create_user_show_list_tagged]: type 1', MAL_URL)
+            self.MAL_type = 1
             usg = UserShowGetter()
             html = old_profile_convert_string(html)
             usg.feed(html)
@@ -200,14 +211,17 @@ class User():
 
         table_entry = sample_user_data
         entry_list = self.get_text_between_bracket(table_entry)
-        # print(len(entry_list))
+        print(len(entry_list))
         self.entry_list_tagged = []
         for entry in entry_list:
             attribute_list_tagged = []
             # print('create_user_show_list_tagged: ' + entry)
             entry = self.replace_comma_between_quote(entry)
             # attribute_list = self.get_text_between_quot(entry)
-            attribute_list = self.get_attributes(entry)
+            if self.MAL_type == 1:
+                attribute_list = self.get_attributes(entry)
+            else:
+                attribute_list = self.get_attributes_type_0(entry)
             tagged_entry = ['', '']
             # for index, attribute in enumerate(attribute_list):
             #     if index % 2 == 1:
@@ -223,10 +237,11 @@ class User():
                 try:
                     (attribute, value) = attribute_item.split(':', 1)
                 except ValueError as e:
-                    print('Unable to parse user MAL page html!')
+                    print('[User: create_user_show_list_tagged] Unable to parse user MAL page html!')
                     print('attribute; ' + attribute_item)
                     print(e)
-                    return []
+                    # return []
+                    continue
                     # print('Error: ' + attribute)
                 if minimal:
                     # print(attribute)
@@ -239,9 +254,9 @@ class User():
                 tagged_entry[1] = tagged_entry[1][1:] if tagged_entry[1].startswith('"') else tagged_entry[1]
 
                 if attribute == '"anime_title"' or attribute == 'anime_title':
-                    if MAL_type == 0:
+                    if self.MAL_type == 0:
                         tagged_entry[1] = prepare_for_db(decode_hex_string(tagged_entry[1]))
-                    elif MAL_type == 1:
+                    elif self.MAL_type == 1:
                         tagged_entry[1] = prepare_for_db(tagged_entry[1])
                 # print('attribute; ' + tagged_entry[0] + ' ; ' + tagged_entry[1])
                 # print(tagged_entry)

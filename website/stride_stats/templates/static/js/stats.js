@@ -31,6 +31,8 @@ app.controller('statsController', function($scope, $http) {
           $scope.shows = response.data;
           for (var i = 0; i < $scope.shows.length; i++) {
 
+              // Trim underscores
+              $scope.shows[i]['display_name'] = $scope.shows[i]['name'].slice(2,-2);
               // Aired is stored as a unix datetime. Display as "mon-year"
               $scope.shows[i]['aired'] = dateToMMYYYY($scope.shows[i]['aired']);
               // Add commas in number
@@ -93,6 +95,8 @@ app.controller('statsController', function($scope, $http) {
         $scope.shows = response.data;
         for (var i = 0; i < $scope.shows.length; i++) {
 
+            // Trim underscores
+            $scope.shows[i]['display_name'] = $scope.shows[i]['name'].slice(2,-2);
             // Aired is stored as a unix datetime. Display as "mon-year"
             $scope.shows[i]['aired'] = dateToMMYYYY($scope.shows[i]['aired']);
             // Add commas in number

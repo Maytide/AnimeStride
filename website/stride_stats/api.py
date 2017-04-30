@@ -53,7 +53,7 @@ def api_get_show_info(request, show_name):
 
     serializer = ContentDataSerializer(show)
 
-    decode_hex_string(serializer.data)
+    # decode_hex_string(serializer.data)
     return JSONResponse(serializer.data)
 
 def api_get_show_stats(request, show_name):
@@ -127,7 +127,7 @@ def api_get_show_item_rec(request, show_name):
     serializer = ContentDataSerializer(show_list, many=True)
     # decode_hex_string(serializer.data, only_fields=('name'))
     # print(decode_hex_string(serializer.data))
-    decode_hex_string(serializer.data)
+    # decode_hex_string(serializer.data)
     return JSONResponse(serializer.data)
 
 
@@ -144,7 +144,7 @@ def api_get_shows_popularity(request, num_shows):
 
     serializer = ContentDataSerializer(show_list, many=True)
 
-    decode_hex_string(serializer.data)
+    # decode_hex_string(serializer.data)
     return JSONResponse(serializer.data)
 
 
@@ -167,7 +167,7 @@ def api_get_shows_search(request):
     # else:
     #     show_list = get_shows_random(num_shows=3)
     #     serializer = ContentDataSerializer(show_list, many=True)
-    decode_hex_string(serializer.data)
+    # decode_hex_string(serializer.data)
     return JSONResponse(serializer.data)
 
 def api_get_shows_frontpage(request, num_shows=3):
@@ -181,7 +181,7 @@ def api_get_shows_frontpage(request, num_shows=3):
 
     serializer = MultipleContentDataSerializer(frontpage_content)
 
-    decode_hex_string(serializer.data)
+    # decode_hex_string(serializer.data)
     return JSONResponse(serializer.data)
 
 
@@ -197,5 +197,5 @@ def api_get_show_test(request, show_name):
     chart_data = StatisticsContent(axis_labels, test_list)
     serializer = StatisticsSerializer(chart_data)
 
-    decode_hex_string(serializer.data)
+    # decode_hex_string(serializer.data)
     return JSONResponse(serializer.data)

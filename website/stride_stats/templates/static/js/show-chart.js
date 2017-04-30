@@ -64,7 +64,7 @@ chartApp.controller('chartController', function($scope, $http) {
       $scope.values = $scope.show_data_stats[$scope.current_period]['values'];
       $scope.axis_labels['timestamp'] = $scope.axis_labels['timestamp'];
     }else if (stat === 'period-selector-season'){
-      $scope.current_period = 'stats_data_season';
+      $scope.current_period = '   stats_data_season';
       $scope.axis_labels = $scope.show_data_stats[$scope.current_period]['axis_labels'];
       $scope.values = $scope.show_data_stats[$scope.current_period]['values'];
       $scope.axis_labels['timestamp'] = $scope.axis_labels['timestamp'];
@@ -186,7 +186,8 @@ displayApp.controller('displayController', function($scope, $http) {
       then(function(response) {
           $scope.show = response.data;
 
-
+          // Trim underscores
+          $scope.show['display_name'] = $scope.show['name'].slice(2,-2);
               // Aired is stored as a unix datetime. Display as "mon-year"
           $scope.show['aired'] = dateToMMYYYY($scope.show['aired']);
           // Add commas in number
@@ -236,12 +237,12 @@ basicStatsApp.controller('basicStatsController', function($scope, $http) {
             // $("#no-data").style.visibility = 'visible';
             return;
           }
-          $scope.show['name'] = $scope.show['show_name'];
+          $scope.show['display_name'] = $scope.show['show_name'].slice(2,-2);
           $scope.show['mean'] = $scope.show['mean'].toFixed(2);
           $scope.show['var'] = $scope.show['var'].toFixed(2);
           $scope.show['std'] = $scope.show['std'].toFixed(2);
           x_label = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-          $scope.drawHist($scope.show['name'], x_label, $scope.show['rating_hist'], '#FFFFFF');
+          $scope.drawHist($scope.show['display_name'], x_label, $scope.show['rating_hist'], '#FFFFFF');
         });
   }
 

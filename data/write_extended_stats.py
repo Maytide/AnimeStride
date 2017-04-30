@@ -1,3 +1,5 @@
+import sys
+
 from math import sqrt
 from collections import OrderedDict
 
@@ -225,7 +227,10 @@ def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_m
 
         if verbose and index_i % 10 == 0:
             print('Done show', index_i, 'of a possible', max_shows)
-            print(i_show, master_map[i_show])
+            # Must use this to print utf-8 characters, or else program will unexpectedly abort (no error message)
+            sys.stdout.buffer.write(master_map[i_show].encode('utf-8'))
+            print(i_show)
+            # print(i_show, master_map[i_show])
 
     # for index, row in enumerate(C):
     #     print(index, show_map[index])

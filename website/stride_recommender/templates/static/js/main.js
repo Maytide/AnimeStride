@@ -29,6 +29,9 @@ app.controller('recommenderController', function($scope, $http) {
             $scope.shows = $scope.all['rec_list'];
             $scope.rec_type = rec_type_msg[$scope.all['rec_type']];
             for (var i = 0; i < $scope.shows.length; i++) {
+                // Trim underscores
+                $scope.shows[i]['display_name'] = $scope.shows[i]['name'].slice(2,-2);
+
                 $scope.shows[i]['genres'] = stringToJSON($scope.shows[i]['genres']);
                 $scope.shows[i]['genres'].pop();
                 $scope.shows[i]['studios'] = stringToJSON($scope.shows[i]['studios']);
@@ -57,6 +60,9 @@ app.controller('recommenderController', function($scope, $http) {
             $scope.rec_type = rec_type_msg[$scope.all['rec_type']];
 
             for (var i = 0; i < $scope.shows.length; i++) {
+              // Trim underscores
+              $scope.shows[i]['display_name'] = $scope.shows[i]['name'].slice(2,-2);
+
               $scope.shows[i]['genres'] = stringToJSON($scope.shows[i]['genres']);
               $scope.shows[i]['genres'].pop();
               $scope.shows[i]['studios'] = stringToJSON($scope.shows[i]['studios']);
