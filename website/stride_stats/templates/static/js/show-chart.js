@@ -64,7 +64,7 @@ chartApp.controller('chartController', function($scope, $http) {
       $scope.values = $scope.show_data_stats[$scope.current_period]['values'];
       $scope.axis_labels['timestamp'] = $scope.axis_labels['timestamp'];
     }else if (stat === 'period-selector-season'){
-      $scope.current_period = '   stats_data_season';
+      $scope.current_period = 'stats_data_season';
       $scope.axis_labels = $scope.show_data_stats[$scope.current_period]['axis_labels'];
       $scope.values = $scope.show_data_stats[$scope.current_period]['values'];
       $scope.axis_labels['timestamp'] = $scope.axis_labels['timestamp'];
@@ -330,7 +330,8 @@ itemRecApp.controller('itemRecController', function($scope, $http) {
 // MUST include this wrapper, not just angular.bootstrap!:
 // https://blog.mariusschulz.com/2014/10/22/asynchronously-bootstrapping-angularjs-applications-with-server-side-data
 angular.element(document).ready(function() {
-  angular.bootstrap(document.getElementById("idAppDisplay"), ['displayApp']);
+  angular.bootstrap(document.getElementById("idChartApp"), ['chartApp']);
+  // angular.bootstrap(document.getElementById("idAppDisplay"), ['displayApp']);
   angular.bootstrap(document.getElementById("idAppDisplay2"), ['displayApp']);
   angular.bootstrap(document.getElementById("idItemRec"), ['itemRecApp']);
   angular.bootstrap(document.getElementById("idBasicStats"), ['basicStatsApp']);

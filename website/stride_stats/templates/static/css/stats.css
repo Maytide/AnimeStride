@@ -21,9 +21,29 @@
   width: 600px;*/
 }
 
+.row-app-display {
+  max-height: 550px;
+}
+
+#idAppDisplay {
+  min-height: 600px;
+}
+
 .portrait {
-  background-color: rgba(0,0,0,.02);
+  background-color: rgb(250,250,250);
   border: 1px solid lightgray;
+}
+
+.portrait.portrait-top {
+  border-bottom-color: rgb(250,250,250);
+  border-bottom-style: solid;
+  border-bottom-width: 0px;
+}
+
+.portrait.portrait-stats {
+  border-top-color: rgb(250,250,250);
+  border-top-style: solid;
+  border-top-width: 0px;
 }
 
 .portrait-container {
@@ -47,7 +67,7 @@
   background-color: rgba(0,0,0,.05);
   margin-top: 15px;
   margin-bottom: 20px;
-  /*min-height: 160px;*/
+  min-height: 360px;
 }
 
 .portrait-name-wrapper {
@@ -96,6 +116,10 @@
 
 .portrait-description-item {
   text-align: right;
+}
+
+.col-icon-portrait {
+  min-width: 35px;
 }
 
 #idChartSelector {

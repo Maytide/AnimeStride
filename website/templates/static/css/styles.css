@@ -10,6 +10,10 @@ li {
   display: inline-block;
 }
 
+.nav-item .nav-link {
+  border-radius: 0px;
+}
+
 .btn-group {
   /*margin: 0 auto;*/
   /*text-align: center;*/
@@ -119,6 +123,11 @@ li {
   margin:0px auto;
   margin-left: 50px;
   margin-right: 50px;
+  border-radius: 0px;
+}
+
+.btn-info {
+  border-radius: 0px;
 }
 
 .col-unpad {

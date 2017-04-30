@@ -59,6 +59,10 @@ app.controller('recommenderController', function($scope, $http) {
             $scope.shows = $scope.all['rec_list'];
             $scope.rec_type = rec_type_msg[$scope.all['rec_type']];
 
+            stats_url = window.location.href.toString().split('/');
+            stats_url.pop();
+            stats_url.pop();
+
             for (var i = 0; i < $scope.shows.length; i++) {
               // Trim underscores
               $scope.shows[i]['display_name'] = $scope.shows[i]['name'].slice(2,-2);
@@ -68,11 +72,9 @@ app.controller('recommenderController', function($scope, $http) {
               $scope.shows[i]['studios'] = stringToJSON($scope.shows[i]['studios']);
               $scope.shows[i]['studios'].pop();
 
-              stats_url = window.location.href.toString().split('/');
-              stats_url.pop();
-              stats_url.pop();
-              stats_url = stats_url.join('/') + '/stride_stats/show/' + makeURLCompatible($scope.shows[i]['name']);
-              $scope.shows[i]['stride_url'] = stats_url;
+
+              stats_url_ = stats_url.join('/') + '/stride_stats/show/' + makeURLCompatible($scope.shows[i]['name']);
+              $scope.shows[i]['stride_url'] = stats_url_;
             }
 
 

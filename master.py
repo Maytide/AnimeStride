@@ -79,7 +79,7 @@ EMPTY_BASIC_STATS_DICT = {
     'extra_2': 1,
 }
 
-EMPTY_CONTENT_DATA = 'Show not found'
+EMPTY_CONTENT_DATA = '__Show not found__'
 
 
 # See comment above decode_url
@@ -164,7 +164,7 @@ def unescape_url_chars(url):
     #     elif char > 127:
     #         url_ += '\\x' + hex(char)[2:]
     #
-    # url_ = unquote(url_.replace('[[fsl]]', '/'))
+    url_ = unquote(url_.replace('[[fsl]]', '/'))
 
     return url_
 
