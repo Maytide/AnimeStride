@@ -1,0 +1,18 @@
+.disclaimer-wrapper {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.disclaimer {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  background-color: lightgrey;
+  /*padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;*/
+}
+
+.disclaimer h5 {
+  margin-top: 6px;
+}
