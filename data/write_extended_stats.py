@@ -8,6 +8,7 @@ import numpy as np
 
 from master import UNMODELED_DATABASES, escape_db_string, unescape_db_string
 
+
 def open_db(max_users, max_shows):
     db_n = UNMODELED_DATABASES['show_indices']['location']
     conn_n = sqlite3.connect(db_n)

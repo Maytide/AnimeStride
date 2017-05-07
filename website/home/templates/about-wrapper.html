@@ -1,0 +1,22 @@
+{% extends 'website.html' %}
+
+{% load staticfiles %}
+
+{% block app-html %}
+
+
+<div class="main">
+    {% block about %}
+    {% endblock %}
+</div>
+    
+{% endblock %}
+
+{% block app-css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/narrow-jumbotron.css' %}"/>
+{% endblock %}
+
+<!--
+{% block app-js %}
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}-->

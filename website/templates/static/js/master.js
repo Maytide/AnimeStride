@@ -74,7 +74,7 @@ function addNavURL(navID){
   }else if (navID === '#nav-recommender') {
     $(navID).attr('href', current_host + '/stride_recommender/');
   }else if (navID === '#nav-about') {
-    $(navID).attr('href', current_host);
+    $(navID).attr('href', current_host + '/about/');
   }
 }
 
