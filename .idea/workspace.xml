@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be5fdea8-7c8c-4345-8647-24dc33cd6ba6" name="Default" comment="">
+    <list default="true" id="be5fdea8-7c8c-4345-8647-24dc33cd6ba6" name="Default" comment="Misc.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/home/templates/about.html" afterPath="$PROJECT_DIR$/website/home/templates/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/home/templates/static/js/index.js" afterPath="$PROJECT_DIR$/website/home/templates/static/js/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride/settings.py" afterPath="$PROJECT_DIR$/website/stride/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/stride_stats/templates/static/js/show-chart.js" afterPath="$PROJECT_DIR$/website/stride_stats/templates/static/js/show-chart.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/templates/website.html" afterPath="$PROJECT_DIR$/website/templates/website.html" />
     </list>
     <ignored path="Parse MAL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,8 +75,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/website/stride/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+            <state relative-caret-position="759">
+              <caret line="47" column="18" lean-forward="true" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -141,6 +140,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="live" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -648,13 +652,6 @@
       <option name="presentableId" value="Default" />
       <updated>1481430563889</updated>
     </task>
-    <task id="LOCAL-00009" summary="Working on recommender">
-      <created>1483333721400</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1483333721400</updated>
-    </task>
     <task id="LOCAL-00010" summary="Very basic recommender tested with RMSE ~ 1.4 for MAL's 1-10 rating scale">
       <created>1483486909698</created>
       <option name="number" value="00010" />
@@ -991,7 +988,14 @@
       <option name="project" value="LOCAL" />
       <updated>1494128787063</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Misc.">
+      <created>1494466922598</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1494466922599</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1075,7 +1079,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improved URL handling, and charts now display dated data points properly" />
     <MESSAGE value="Build subrec using kNN instead of collaborative filtering" />
     <MESSAGE value="kNN rec working for website now" />
     <MESSAGE value="Added generic bootstrap mainpage" />
@@ -1100,7 +1103,8 @@
     <MESSAGE value="Site improvements + restructuring" />
     <MESSAGE value="Added Jumbotron" />
     <MESSAGE value="Added about section of website + misc." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added about section of website + misc." />
+    <MESSAGE value="Misc." />
+    <option name="LAST_COMMIT_MESSAGE" value="Misc." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1481,8 +1485,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/website/stride/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+        <state relative-caret-position="759">
+          <caret line="47" column="18" lean-forward="true" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
           <folding />
         </state>
       </provider>

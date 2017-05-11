@@ -17,7 +17,12 @@ chartApp.controller('chartController', function($scope, $http) {
     $scope.current_href.pop();
     $scope.current_href.pop();
   	// Following convention of /stride_stats/show/(show name here)/
-  	$scope.path_name = window.location.pathname.toString().split('/')[3];
+    url_components = window.location.pathname.toString().split('/');
+    i = url_components.length - 1;
+    while (url_components[i] === "") {
+      i--;
+    }
+  	$scope.path_name = url_components[i];
     $scope.api_path_stats = $scope.current_href.join('/') + '/api/0/' + $scope.path_name;
   	// TODO: Remove hard coded url
   	// http://stackoverflow.com/questions/1034621/get-current-url-in-web-browser
@@ -178,7 +183,13 @@ displayApp.controller('displayController', function($scope, $http) {
   $scope.current_href.pop();
   $scope.current_href.pop();
   // Following convention of /stride_stats/show/(show name here)/
-  $scope.path_name = window.location.pathname.toString().split('/')[3];
+  // $scope.path_name = window.location.pathname.toString().split('/')[3];
+  url_components = window.location.pathname.toString().split('/');
+  i = url_components.length - 1;
+  while (url_components[i] === "") {
+    i--;
+  }
+  $scope.path_name = url_components[i];
   $scope.api_path_info = $scope.current_href.join('/') + '/api/2/' + $scope.path_name;
 
   $scope.getData2 = function () {
@@ -223,7 +234,13 @@ basicStatsApp.controller('basicStatsController', function($scope, $http) {
   current_href.pop();
   current_href.pop();
   // Following convention of /stride_stats/show/(show name here)/
-  path_name = window.location.pathname.toString().split('/')[3];
+  // path_name = window.location.pathname.toString().split('/')[3];
+  url_components = window.location.pathname.toString().split('/');
+  i = url_components.length - 1;
+  while (url_components[i] === "") {
+    i--;
+  }
+  path_name = url_components[i];
   $scope.api_path_info = current_href.join('/') + '/api/3/' + path_name;
 
   $scope.getData3 = function () {
@@ -302,7 +319,12 @@ itemRecApp.controller('itemRecController', function($scope, $http) {
   $scope.current_href.pop();
   $scope.current_href.pop();
   // Following convention of /stride_stats/show/(show name here)/
-  $scope.path_name = window.location.pathname.toString().split('/')[3];
+  url_components = window.location.pathname.toString().split('/');
+  i = url_components.length - 1;
+  while (url_components[i] === "") {
+    i--;
+  }
+  $scope.path_name = url_components[i];
   $scope.api_path_info = $scope.current_href.join('/') + '/api/4/' + $scope.path_name;
 
   $scope.getData4 = function () {
