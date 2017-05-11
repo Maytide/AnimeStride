@@ -11,7 +11,7 @@ app.config(['$httpProvider', function($httpProvider) {
 }]);
 
 app.controller('displayController', function($scope, $http) {
-  $scope.testvar = window.location.protocol + '//' + window.location.hostname + '/stride_recommender/api/random/' + ' ' + window.location.href;
+  // $scope.testvar = window.location.protocol + '//' + window.location.hostname + '/stride_recommender/api/random/' + ' ' + window.location.href;
 
 	$scope.getData = function () {
   $http.get(window.location.href + 'stride_stats/api/frontpage/').
