@@ -32,7 +32,7 @@ SECRET_KEY = '=nqdei0*$&k&n^qgiqkk8djxvpe=b#n$6xz8o7&0)cg_94h4-k'
 DEBUG = True
 
 # TODO: Allow eventual web host
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'maystride']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'maystride', '45.55.74.52']
 
 
 # Application definition
