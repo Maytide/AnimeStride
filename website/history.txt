@@ -1,0 +1,43 @@
+Performing scheduled task on: 2017-05-12 20:04:44
+Performing scheduled task on: 2017-05-12 20:35:59
+Performing scheduled task on: 2017-05-12 22:31:55
+Performing scheduled task on: 2017-05-13 01:30:12
+Performing scheduled task on: 2017-05-13 01:57:09
+Performing scheduled task on: 2017-05-13 02:16:02
+Performing scheduled task on: 2017-05-13 02:28:33
+Performing scheduled task on: 2017-05-13 02:41:24
+Performing scheduled task on: 2017-05-13 03:10:35
+Performing scheduled task on: 2017-05-13 03:39:19
+Performing scheduled task on: 2017-05-13 15:45:07
+Performing scheduled task on: 2017-05-13 16:03:52
+Performing scheduled task on: 2017-05-13 17:33:07
+Performing scheduled task on: 2017-05-13 18:49:28
+Performing scheduled task on: 2017-05-13 18:51:50
+Performing scheduled task on: 2017-05-13 19:19:07
+Performing scheduled task on: 2017-05-13 19:24:04
+Performing scheduled task on: 2017-05-13 19:26:01
+Performing scheduled task on: 2017-05-13 22:17:33
+Performing scheduled task on: 2017-05-13 22:51:43
+Performing scheduled task on: 2017-05-14 00:49:12
+Performing scheduled task on: 2017-05-14 01:19:08
+Performing scheduled task on: 2017-05-14 04:08:35
+Performing scheduled task on: 2017-05-14 15:16:02
+Performing scheduled task on: 2017-05-14 15:17:21
+Performing scheduled task on: 2017-05-14 15:20:47
+Performing scheduled task on: 2017-05-14 15:36:03
+Performing scheduled task on: 2017-05-14 15:37:04
+Performing scheduled task on: 2017-05-14 15:38:05
+Performing scheduled task on: 2017-05-14 15:40:04
+Performing scheduled task on: 2017-05-14 15:42:03
+Performing scheduled task on: 2017-05-14 15:43:04
+Performing scheduled task on: 2017-05-14 16:14:37
+Performing scheduled task on: 2017-05-14 16:17:05
+python TaskReadMALShowsIndividual success
+python TaskReadMALShowsIndividual success Sun May 14 13:05:57 EDT 2017
+Performing scheduled task on: 2017-05-14 17:15:05
+python RunCronJob success Sun May 14 13:15:05 EDT 2017
+Performing scheduled task on: 2017-05-14 17:21:04
+python RunCronJob success Sun May 14 13:21:04 EDT 2017
+python TaskReadMALShowsIndividual success Sun May 14 20:43:45 EDT 2017
+Performing scheduled task on: 2017-05-15 01:21:04
+python RunCronJob success Sun May 14 21:21:04 EDT 2017

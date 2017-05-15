@@ -1,0 +1,12 @@
+Path at terminal when executing this file
+/maytide/stride/AnimeStride/website
+
+Running scheduled cron task
+Path at terminal when executing this file
+/maytide/stride/AnimeStride/website
+
+Running scheduled cron task
+Path at terminal when executing this file
+/maytide/stride/AnimeStride/website
+
+Running scheduled cron task

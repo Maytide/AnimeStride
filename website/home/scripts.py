@@ -17,8 +17,9 @@ def script_update_user_data(verbose=True, start_point=0, max_users=10000):
     update_user_data(verbose=verbose, start_point=start_point, max_users=max_users)
 
 
-def script_write_extended_stats(verbose=False, max_users=1000, max_shows=500):
+def script_write_extended_stats(verbose=False, max_users=1000, max_shows=500, basic_statistics=True, item_rec=True):
     # max_users = 1000
     # max_shows = 500
 
-    write_extended_stats(max_users, max_shows, basic_statistics=True, item_rec=True, verbose=verbose)
+    write_extended_stats(max_users, max_shows, basic_statistics=basic_statistics, item_rec=item_rec, verbose=verbose)
+    

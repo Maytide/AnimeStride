@@ -1,0 +1,31 @@
+python test_bash_output failed
+0
+test_cron_2 command success
+python test_bash_output failed
+0
+test_cron_2 command success
+python test_bash_output failed
+0
+test_cron_2 command success
+Hello World!!!
+Hello World!!! command success
+python .../website/manage.py success
+python .../website/test_bash_output success
+test_cron_2 command success
+python root_bash_output failed
+Hello World!!!
+Hello World!!! command success
+python .../website/manage.py success
+python .../website/test_bash_output success
+test_cron_2 command success
+python root_bash_output failed
+Hello World!!!
+Hello World!!! command success
+python .../website/manage.py success
+python .../website/test_bash_output success
+test_cron_2 command success
+Hello World!!!
+Hello World!!! command success
+python .../website/manage.py success
+python .../website/test_bash_output success
+test_cron_2 command success

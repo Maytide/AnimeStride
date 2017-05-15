@@ -1,0 +1,17 @@
+#!
+echo Hello World!!! >> script_one_output.txt
+if [ $? -eq 0 ]; then
+    echo Hello World!!! command success >> script_one_output.txt
+else
+    echo Hello World!!! command failed >> script_one_output.txt
+fi
+
+python3 /maytide/stride/AnimeStride/website/manage.py runcrons home.crons.RunCronJob >> pythonlog.txt
+if [ $? -eq 0 ]; then
+    echo python command success >> script_one_output.txt
+else
+    echo python command failed >> script_one_output.txt
+fi
+
+source /maytide/stride/AnimeStride/website/test_cron_2.sh
+

@@ -29,7 +29,7 @@ FILES_DIR = os.path.abspath(os.path.join(BASE_DIR, '../data'))
 SECRET_KEY = '=nqdei0*$&k&n^qgiqkk8djxvpe=b#n$6xz8o7&0)cg_94h4-k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # TODO: Allow eventual web host
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'maystride', '45.55.74.52']
@@ -71,6 +71,8 @@ CRON_CLASSES = [
     # python manage.py runcrons "home.crons.TaskReadMALShowsMaster"
     'home.crons.TaskUpdateUserData',
     # python manage.py runcrons "home.crons.TaskUpdateUserData"
+    'home.crons.TaskWriteBasicStats',
+    # python manage.py runcrons "home.crons.TaskWriteBasicStats"
     'home.crons.TaskWriteExtendedStats',
     # python manage.py runcrons "home.crons.TaskWriteExtendedStats"
     # ...
@@ -161,9 +163,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    # os.path.join(BASE_DIR, 'static/'),
     'templates/static/',
     'stride_recommender/templates/static',
     'stride_stats/templates/static',

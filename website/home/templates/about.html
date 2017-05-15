@@ -28,7 +28,7 @@
                     <h6>Overview</h6>
                     <p>Based on the statistics data from the user show ratings for the top 500 shows, Stride performs item-based collaborative filtering to determine the similarity between shows. For each given show, the six most similar shows are displayed as recommendations in the show's statistics page.</p>
                     
-                    <p>The algorithm used is a modified version of Adjusted Cosine Similarity; extra checks are performed to filter out shows that are exceptionally high rated or popular, as these tend to me recommended quite frequently. It is hoped that lesser known shows can be discovered this way.</p>
+                    <p>The algorithm used is a modified version of Adjusted Cosine Similarity; extra checks are performed to filter out shows that are exceptionally high rated or popular, as these tend to be recommended quite frequently. It is hoped that lesser known shows can be discovered this way.</p>
                     
 <!--                    <p></p>-->
                     
@@ -42,9 +42,9 @@
                     <h6>Overview</h6>
                     
                     
-                    <p>For the user-based recommender, a user enters their MAL profile then stride takes a random sample of 1000 RedditAnimeList users and finds the few most similar to the given MAL. (Indeed, there is an element of randomness to this. I decided this would make things interesting.) Recommendations are based off what the similar users liked that the given user has not yet watched.</p>
+                    <p>For the user-based recommender, a user enters their MAL profile then Stride takes a random sample of 1000 RedditAnimeList users and finds the few most similar to the given MAL (there is an element of randomness to this.) Recommendations are based off what the similar users liked that the given user has not yet watched.</p>
                     
-                    <p>The algorithm used is a modified version of k-nearest neighbors (kNN). First, cosine similarity is used to determine the users in the random sample that are most similar. Then a rating map scheme is constructed between the most similar users and the given user (to adjust for the fact that people tend to use the 1-10 scale subjectively). The highest of the average of the shows in the rating map are selected and displayed to the recommender.</p>
+                    <p>The algorithm used is a modified version of k-nearest neighbors (kNN). First, cosine similarity is used to determine the users in the random sample that are most similar. Then a rating map scheme is constructed between the most similar users and the given user (to adjust for the fact that people use the 1-10 scale subjectively). The highest of the average of the shows in the rating map are selected and displayed to the recommender.</p>
                     
 <!--                    <p></p>-->
                     
@@ -68,8 +68,9 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <h4>Extra notes:</h4>
-                    <p>This was my first large project. I was learning everything as I went along and unfortunately, I didn't have a good organization scheme - so the code for Stride is very messy. If you're curious, you view it <a href="https://github.com/Maytide/AnimeStride">here</a> (don't say I didn't warn you though!) I hope to learn more about good practices in coding, web design and machine learning in the future.</p>
+                    <h4>Final notes:</h4>
+                    <p>This was my first large project. I was learning everything as I went along and unfortunately, I didn't have a good organization scheme - so the code for Stride is very messy. If you're curious, you view it <a href="https://github.com/Maytide/AnimeStride">here</a> (don't say I didn't warn you though!)</p>
+                    <p>Nothing I've implemented is particularily new - there are already sites out there that have stat-tracking and recommender systems. I just figured I'd try my hand at it as well, and I've already learned a lot in doing so. I hope to learn more about good practices in coding, web design and machine learning in the future.</p>
                     
                     <p>George Zhang (zhanggq@mcmaster.ca)</p>
                 </div>

@@ -116,13 +116,23 @@ def write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=
     conn_s.commit()
     conn_s.close()
 
+    if verbose:
+        print('Success!')
 
-def a_cos_sim(v1, v2, mu, threshold=200, correction_fact=0.995, mean1=-1, mean2=-1, var1=-1, var2=-1):
+
+def a_cos_sim(v1, v2, mu, threshold=200, correction_fact=0.983, mean1=-1, mean2=-1, var1=-1, var2=-1):
 
     num = 0
     den_v1 = 0
     den_v2 = 0
     num_common = 0
+
+    if mean1 > 8.3 and mean2 > 8.3 and var1 > 0 and var2 > 0:
+        # correction *= 0.2 + 0.8/(1 + 2.7182818 ** (-abs((mean1 - mean2)*(var1 - var2))*20))
+        return -1
+    elif mean2 > 8.3:
+        # print('[write_extended_stats: a cos sim]', mean2)
+        return -1
 
     i = 0
     for r1, r2 in zip(v1, v2):
@@ -147,13 +157,9 @@ def a_cos_sim(v1, v2, mu, threshold=200, correction_fact=0.995, mean1=-1, mean2=
     else:
         correction = correction_fact ** (threshold - num_common)
 
-    if mean1 > 8.3 and mean2 > 8.3 and var1 > 0 and var2 > 0:
-        # correction *= 0.2 + 0.8/(1 + 2.7182818 ** (-abs((mean1 - mean2)*(var1 - var2))*20))
-        correction = 0
-    elif mean2 > 8.3:
-        correction *= 0.2
-
-    a_cos = correction * num / sqrt(den_v1 * den_v2)
+    a_cos = num / sqrt(den_v1 * den_v2)
+    if a_cos > 0:
+        a_cos = correction * num / sqrt(den_v1 * den_v2)
 
     return a_cos
 
