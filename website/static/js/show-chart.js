@@ -149,7 +149,8 @@ chartApp.controller('chartController', function($scope, $http) {
   	                'month': 'MMM DD',
   	                'quarter': 'MMM DD',
   	                'year': 'MMM DD',
-  	              }
+  	              },
+                  tooltipFormat: 'll HH:mm'
   	            },
                 ticks: {
                     autoSkip: true,

@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic import RedirectView
 from stride_recommender import api
 from rest_framework import routers
 
@@ -27,6 +28,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^stride_recommender/', include('stride_recommender.urls')),
     url(r'^stride_stats/', include('stride_stats.urls')),
+    # Place redirects after everything else, or else
+    # Everything matched as redirect
+    url(r'^$', RedirectView.as_view(url='/stride_stats/')),
+    url(r'^.*/$', RedirectView.as_view(url='/stride_stats/')),
     # url(r'^about/', include(None)),
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

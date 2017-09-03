@@ -29,10 +29,10 @@ FILES_DIR = os.path.abspath(os.path.join(BASE_DIR, '../data'))
 SECRET_KEY = '=nqdei0*$&k&n^qgiqkk8djxvpe=b#n$6xz8o7&0)cg_94h4-k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # TODO: Allow eventual web host
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'maystride', '45.55.74.52']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'maystride.com', 'www.maystride.com', '45.55.74.52']
 
 
 # Application definition

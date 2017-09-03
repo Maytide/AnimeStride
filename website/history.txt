@@ -41,3 +41,495 @@ python RunCronJob success Sun May 14 13:21:04 EDT 2017
 python TaskReadMALShowsIndividual success Sun May 14 20:43:45 EDT 2017
 Performing scheduled task on: 2017-05-15 01:21:04
 python RunCronJob success Sun May 14 21:21:04 EDT 2017
+python TaskWriteBasicStats success Mon May 15 03:00:16 EDT 2017
+python TaskReadMALShowsIndividual success Mon May 15 20:41:42 EDT 2017
+Performing scheduled task on: 2017-05-16 01:21:03
+python RunCronJob success Mon May 15 21:21:04 EDT 2017
+python TaskWriteExtendedStats success Mon May 15 22:42:08 EDT 2017
+python TaskWriteBasicStats success Tue May 16 03:00:16 EDT 2017
+python TaskReadMALShowsIndividual success Tue May 16 20:45:35 EDT 2017
+Performing scheduled task on: 2017-05-17 01:21:04
+python RunCronJob success Tue May 16 21:21:04 EDT 2017
+python TaskWriteBasicStats success Wed May 17 03:00:14 EDT 2017
+python TaskReadMALShowsIndividual success Wed May 17 20:43:11 EDT 2017
+Performing scheduled task on: 2017-05-18 01:21:04
+python RunCronJob success Wed May 17 21:21:04 EDT 2017
+python TaskWriteBasicStats success Thu May 18 03:00:14 EDT 2017
+python TaskReadMALShowsIndividual success Thu May 18 20:41:43 EDT 2017
+Performing scheduled task on: 2017-05-19 01:21:04
+python RunCronJob success Thu May 18 21:21:04 EDT 2017
+python TaskWriteBasicStats success Fri May 19 03:00:16 EDT 2017
+python TaskReadMALShowsAggregated success Fri May 19 04:44:58 EDT 2017
+python TaskReadMALShowsIndividual success Fri May 19 20:41:29 EDT 2017
+Performing scheduled task on: 2017-05-20 01:21:04
+python RunCronJob success Fri May 19 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sat May 20 03:00:14 EDT 2017
+python TaskUpdateUserData success Sat May 20 07:40:35 EDT 2017
+python TaskReadMALShowsIndividual success Sat May 20 20:41:37 EDT 2017
+Performing scheduled task on: 2017-05-21 01:21:04
+python RunCronJob success Sat May 20 21:21:04 EDT 2017
+python TaskWriteBasicStats success Sun May 21 03:00:18 EDT 2017
+python TaskWriteExtendedStats success Sun May 21 04:00:08 EDT 2017
+python TaskReadMALShowsIndividual success Sun May 21 20:46:59 EDT 2017
+Performing scheduled task on: 2017-05-22 01:21:04
+python RunCronJob success Sun May 21 21:21:04 EDT 2017
+python TaskWriteBasicStats success Mon May 22 03:00:21 EDT 2017
+python TaskReadMALShowsIndividual success Mon May 22 20:41:46 EDT 2017
+Performing scheduled task on: 2017-05-23 01:21:04
+python RunCronJob success Mon May 22 21:21:04 EDT 2017
+python TaskWriteBasicStats success Tue May 23 03:00:17 EDT 2017
+python TaskReadMALShowsIndividual success Tue May 23 20:13:01 EDT 2017
+Performing scheduled task on: 2017-05-24 01:21:05
+python RunCronJob success Tue May 23 21:21:05 EDT 2017
+python TaskWriteBasicStats success Wed May 24 03:00:14 EDT 2017
+python TaskReadMALShowsIndividual success Wed May 24 20:44:53 EDT 2017
+Performing scheduled task on: 2017-05-25 01:21:05
+python RunCronJob success Wed May 24 21:21:05 EDT 2017
+python TaskWriteBasicStats success Thu May 25 03:00:16 EDT 2017
+python TaskReadMALShowsIndividual success Thu May 25 20:41:27 EDT 2017
+Performing scheduled task on: 2017-05-26 01:21:04
+python RunCronJob success Thu May 25 21:21:04 EDT 2017
+python TaskWriteBasicStats success Fri May 26 03:00:16 EDT 2017
+python TaskReadMALShowsAggregated success Fri May 26 04:36:46 EDT 2017
+python TaskReadMALShowsIndividual success Fri May 26 20:01:20 EDT 2017
+Performing scheduled task on: 2017-05-27 01:21:04
+python RunCronJob success Fri May 26 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sat May 27 03:00:18 EDT 2017
+python TaskUpdateUserData success Sat May 27 07:56:54 EDT 2017
+python TaskReadMALShowsIndividual success Sat May 27 20:40:39 EDT 2017
+Performing scheduled task on: 2017-05-28 01:21:04
+python RunCronJob success Sat May 27 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sun May 28 03:00:15 EDT 2017
+python TaskWriteExtendedStats success Sun May 28 04:00:06 EDT 2017
+python TaskReadMALShowsIndividual success Sun May 28 20:41:01 EDT 2017
+Performing scheduled task on: 2017-05-29 01:21:03
+python RunCronJob success Sun May 28 21:21:04 EDT 2017
+python TaskWriteBasicStats success Mon May 29 03:00:19 EDT 2017
+python TaskReadMALShowsIndividual success Mon May 29 20:40:46 EDT 2017
+Performing scheduled task on: 2017-05-30 01:21:04
+python RunCronJob success Mon May 29 21:21:05 EDT 2017
+python TaskWriteExtendedStats success Mon May 29 23:43:22 EDT 2017
+python TaskWriteBasicStats success Tue May 30 03:00:06 EDT 2017
+python TaskReadMALShowsIndividual success Tue May 30 20:40:27 EDT 2017
+Performing scheduled task on: 2017-05-31 01:21:04
+python RunCronJob success Tue May 30 21:21:04 EDT 2017
+python TaskWriteBasicStats success Wed May 31 03:00:15 EDT 2017
+python TaskReadMALShowsIndividual success Wed May 31 20:49:07 EDT 2017
+Performing scheduled task on: 2017-06-01 01:21:07
+python RunCronJob success Wed May 31 21:21:07 EDT 2017
+python TaskWriteBasicStats success Thu Jun 1 03:00:15 EDT 2017
+python TaskReadMALShowsIndividual success Thu Jun 1 20:44:35 EDT 2017
+Performing scheduled task on: 2017-06-02 01:21:05
+python RunCronJob success Thu Jun 1 21:21:05 EDT 2017
+python TaskWriteBasicStats success Fri Jun 2 03:00:14 EDT 2017
+python TaskReadMALShowsAggregated success Fri Jun 2 04:33:25 EDT 2017
+python TaskReadMALShowsIndividual success Fri Jun 2 20:15:38 EDT 2017
+Performing scheduled task on: 2017-06-03 01:21:05
+python RunCronJob success Fri Jun 2 21:21:06 EDT 2017
+python TaskWriteBasicStats success Sat Jun 3 03:00:16 EDT 2017
+python TaskUpdateUserData success Sat Jun 3 07:58:28 EDT 2017
+python TaskReadMALShowsIndividual success Sat Jun 3 20:15:59 EDT 2017
+Performing scheduled task on: 2017-06-04 01:21:06
+python RunCronJob success Sat Jun 3 21:21:07 EDT 2017
+python TaskWriteBasicStats success Sun Jun 4 03:00:19 EDT 2017
+python TaskWriteExtendedStats success Sun Jun 4 04:13:14 EDT 2017
+python TaskReadMALShowsIndividual success Sun Jun 4 20:45:12 EDT 2017
+Performing scheduled task on: 2017-06-05 01:21:06
+python RunCronJob success Sun Jun 4 21:21:06 EDT 2017
+python TaskWriteBasicStats success Mon Jun 5 03:00:07 EDT 2017
+python TaskReadMALShowsIndividual success Mon Jun 5 20:48:13 EDT 2017
+Performing scheduled task on: 2017-06-06 01:21:05
+python RunCronJob success Mon Jun 5 21:21:05 EDT 2017
+python TaskWriteBasicStats success Tue Jun 6 03:00:24 EDT 2017
+python TaskReadMALShowsIndividual success Tue Jun 6 20:48:16 EDT 2017
+Performing scheduled task on: 2017-06-07 01:21:04
+python RunCronJob success Tue Jun 6 21:21:04 EDT 2017
+python TaskWriteBasicStats success Wed Jun 7 03:00:21 EDT 2017
+python TaskReadMALShowsIndividual success Wed Jun 7 20:45:33 EDT 2017
+Performing scheduled task on: 2017-06-08 01:21:04
+python RunCronJob success Wed Jun 7 21:21:05 EDT 2017
+python TaskWriteBasicStats success Thu Jun 8 03:00:17 EDT 2017
+python TaskReadMALShowsIndividual success Thu Jun 8 20:41:26 EDT 2017
+Performing scheduled task on: 2017-06-09 01:21:04
+python RunCronJob success Thu Jun 8 21:21:05 EDT 2017
+python TaskWriteBasicStats success Fri Jun 9 03:00:18 EDT 2017
+python TaskReadMALShowsAggregated success Fri Jun 9 04:40:36 EDT 2017
+python TaskReadMALShowsIndividual success Fri Jun 9 20:42:10 EDT 2017
+Performing scheduled task on: 2017-06-10 01:21:04
+python RunCronJob success Fri Jun 9 21:21:04 EDT 2017
+python TaskWriteBasicStats success Sat Jun 10 03:00:17 EDT 2017
+python TaskUpdateUserData success Sat Jun 10 07:42:45 EDT 2017
+python TaskReadMALShowsIndividual success Sat Jun 10 20:41:24 EDT 2017
+Performing scheduled task on: 2017-06-11 01:21:03
+python RunCronJob success Sat Jun 10 21:21:04 EDT 2017
+python TaskWriteBasicStats success Sun Jun 11 03:00:16 EDT 2017
+python TaskWriteExtendedStats success Sun Jun 11 04:12:40 EDT 2017
+python TaskReadMALShowsIndividual success Sun Jun 11 20:41:43 EDT 2017
+Performing scheduled task on: 2017-06-12 01:21:04
+python RunCronJob success Sun Jun 11 21:21:04 EDT 2017
+python TaskWriteBasicStats success Mon Jun 12 03:00:05 EDT 2017
+python TaskReadMALShowsIndividual success Mon Jun 12 20:41:18 EDT 2017
+Performing scheduled task on: 2017-06-13 01:21:04
+python RunCronJob success Mon Jun 12 21:21:05 EDT 2017
+python TaskWriteBasicStats success Tue Jun 13 03:00:17 EDT 2017
+python TaskReadMALShowsIndividual success Tue Jun 13 20:18:19 EDT 2017
+Performing scheduled task on: 2017-06-14 01:21:04
+python RunCronJob success Tue Jun 13 21:21:05 EDT 2017
+python TaskWriteBasicStats success Wed Jun 14 03:00:17 EDT 2017
+python TaskReadMALShowsIndividual success Wed Jun 14 20:42:22 EDT 2017
+Performing scheduled task on: 2017-06-15 01:21:04
+python RunCronJob success Wed Jun 14 21:21:05 EDT 2017
+python TaskWriteBasicStats success Thu Jun 15 03:00:18 EDT 2017
+python TaskReadMALShowsIndividual success Thu Jun 15 20:24:03 EDT 2017
+Performing scheduled task on: 2017-06-16 01:21:04
+python RunCronJob success Thu Jun 15 21:21:04 EDT 2017
+python TaskWriteBasicStats success Fri Jun 16 03:00:20 EDT 2017
+python TaskReadMALShowsAggregated success Fri Jun 16 04:40:16 EDT 2017
+python TaskReadMALShowsIndividual success Fri Jun 16 20:45:49 EDT 2017
+Performing scheduled task on: 2017-06-17 01:21:04
+python RunCronJob success Fri Jun 16 21:21:04 EDT 2017
+python TaskWriteBasicStats success Sat Jun 17 03:00:17 EDT 2017
+python TaskUpdateUserData success Sat Jun 17 07:43:46 EDT 2017
+python TaskReadMALShowsIndividual success Sat Jun 17 20:41:47 EDT 2017
+Performing scheduled task on: 2017-06-18 01:21:04
+python RunCronJob success Sat Jun 17 21:21:04 EDT 2017
+python TaskWriteBasicStats success Sun Jun 18 03:00:16 EDT 2017
+python TaskWriteExtendedStats success Sun Jun 18 04:12:12 EDT 2017
+python TaskReadMALShowsIndividual success Sun Jun 18 20:41:14 EDT 2017
+Performing scheduled task on: 2017-06-19 01:21:04
+python RunCronJob success Sun Jun 18 21:21:04 EDT 2017
+python TaskWriteBasicStats success Mon Jun 19 03:00:05 EDT 2017
+python TaskReadMALShowsIndividual success Mon Jun 19 20:42:03 EDT 2017
+Performing scheduled task on: 2017-06-20 01:21:04
+python RunCronJob success Mon Jun 19 21:21:04 EDT 2017
+python TaskWriteBasicStats success Tue Jun 20 03:00:16 EDT 2017
+python TaskReadMALShowsIndividual success Tue Jun 20 20:40:23 EDT 2017
+Performing scheduled task on: 2017-06-21 01:21:04
+python RunCronJob success Tue Jun 20 21:21:04 EDT 2017
+python TaskWriteBasicStats success Wed Jun 21 03:00:16 EDT 2017
+python TaskReadMALShowsIndividual success Wed Jun 21 20:40:29 EDT 2017
+Performing scheduled task on: 2017-06-22 01:21:04
+python RunCronJob success Wed Jun 21 21:21:04 EDT 2017
+python TaskWriteBasicStats success Thu Jun 22 03:00:15 EDT 2017
+python TaskReadMALShowsIndividual success Thu Jun 22 20:41:43 EDT 2017
+Performing scheduled task on: 2017-06-23 01:21:04
+python RunCronJob success Thu Jun 22 21:21:05 EDT 2017
+python TaskWriteBasicStats success Fri Jun 23 03:00:15 EDT 2017
+python TaskReadMALShowsAggregated success Fri Jun 23 04:41:54 EDT 2017
+python TaskReadMALShowsIndividual success Fri Jun 23 20:27:30 EDT 2017
+Performing scheduled task on: 2017-06-24 01:21:04
+python RunCronJob success Fri Jun 23 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sat Jun 24 03:00:16 EDT 2017
+python TaskUpdateUserData success Sat Jun 24 07:40:35 EDT 2017
+python TaskReadMALShowsIndividual success Sat Jun 24 20:42:09 EDT 2017
+Performing scheduled task on: 2017-06-25 01:21:05
+python RunCronJob success Sat Jun 24 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sun Jun 25 03:00:16 EDT 2017
+python TaskWriteExtendedStats success Sun Jun 25 04:12:34 EDT 2017
+python TaskReadMALShowsIndividual success Sun Jun 25 20:07:05 EDT 2017
+Performing scheduled task on: 2017-06-26 01:21:04
+python RunCronJob success Sun Jun 25 21:21:05 EDT 2017
+python TaskWriteBasicStats success Mon Jun 26 03:00:06 EDT 2017
+python TaskReadMALShowsIndividual success Mon Jun 26 20:43:20 EDT 2017
+Performing scheduled task on: 2017-06-27 01:21:04
+python RunCronJob success Mon Jun 26 21:21:05 EDT 2017
+python TaskWriteBasicStats success Tue Jun 27 03:00:16 EDT 2017
+python TaskReadMALShowsIndividual success Tue Jun 27 20:42:55 EDT 2017
+Performing scheduled task on: 2017-06-28 01:21:04
+python RunCronJob success Tue Jun 27 21:21:04 EDT 2017
+python TaskWriteBasicStats success Wed Jun 28 03:00:15 EDT 2017
+python TaskReadMALShowsIndividual success Wed Jun 28 20:42:46 EDT 2017
+Performing scheduled task on: 2017-06-29 01:21:04
+python RunCronJob success Wed Jun 28 21:21:05 EDT 2017
+python TaskWriteBasicStats success Thu Jun 29 03:00:16 EDT 2017
+python TaskReadMALShowsIndividual success Thu Jun 29 20:42:08 EDT 2017
+Performing scheduled task on: 2017-06-30 01:21:04
+python RunCronJob success Thu Jun 29 21:21:05 EDT 2017
+python TaskWriteBasicStats success Fri Jun 30 03:00:16 EDT 2017
+python TaskReadMALShowsAggregated success Fri Jun 30 04:41:11 EDT 2017
+python TaskReadMALShowsIndividual success Fri Jun 30 20:39:56 EDT 2017
+Performing scheduled task on: 2017-07-01 01:21:04
+python RunCronJob success Fri Jun 30 21:21:04 EDT 2017
+python TaskWriteBasicStats success Sat Jul 1 03:00:15 EDT 2017
+python TaskUpdateUserData success Sat Jul 1 07:37:51 EDT 2017
+python TaskReadMALShowsIndividual success Sat Jul 1 20:22:09 EDT 2017
+Performing scheduled task on: 2017-07-02 01:21:04
+python RunCronJob success Sat Jul 1 21:21:04 EDT 2017
+python TaskWriteBasicStats success Sun Jul 2 03:00:14 EDT 2017
+python TaskWriteExtendedStats success Sun Jul 2 04:11:40 EDT 2017
+python TaskReadMALShowsIndividual success Sun Jul 2 20:25:44 EDT 2017
+Performing scheduled task on: 2017-07-03 01:21:05
+python RunCronJob success Sun Jul 2 21:21:05 EDT 2017
+python TaskWriteBasicStats success Mon Jul 3 03:00:06 EDT 2017
+python TaskReadMALShowsIndividual success Mon Jul 3 20:41:38 EDT 2017
+Performing scheduled task on: 2017-07-04 01:21:04
+python RunCronJob success Mon Jul 3 21:21:04 EDT 2017
+python TaskWriteBasicStats success Tue Jul 4 03:00:16 EDT 2017
+python TaskReadMALShowsIndividual success Tue Jul 4 20:40:53 EDT 2017
+Performing scheduled task on: 2017-07-05 01:21:05
+python RunCronJob success Tue Jul 4 21:21:05 EDT 2017
+python TaskWriteBasicStats success Wed Jul 5 03:00:18 EDT 2017
+python TaskReadMALShowsIndividual success Wed Jul 5 20:41:54 EDT 2017
+Performing scheduled task on: 2017-07-06 01:21:04
+python RunCronJob success Wed Jul 5 21:21:04 EDT 2017
+python TaskWriteBasicStats success Thu Jul 6 03:00:18 EDT 2017
+python TaskReadMALShowsIndividual success Thu Jul 6 20:42:41 EDT 2017
+Performing scheduled task on: 2017-07-07 01:21:08
+python RunCronJob success Thu Jul 6 21:21:09 EDT 2017
+python TaskWriteBasicStats success Fri Jul 7 03:00:22 EDT 2017
+python TaskReadMALShowsAggregated success Fri Jul 7 04:38:31 EDT 2017
+python TaskReadMALShowsIndividual success Fri Jul 7 20:45:26 EDT 2017
+Performing scheduled task on: 2017-07-08 01:21:04
+python RunCronJob success Fri Jul 7 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sat Jul 8 03:00:16 EDT 2017
+python TaskUpdateUserData success Sat Jul 8 08:03:40 EDT 2017
+python TaskReadMALShowsIndividual success Sat Jul 8 20:41:26 EDT 2017
+Performing scheduled task on: 2017-07-09 01:21:04
+python RunCronJob success Sat Jul 8 21:21:04 EDT 2017
+python TaskWriteBasicStats success Sun Jul 9 03:00:23 EDT 2017
+python TaskWriteExtendedStats success Sun Jul 9 04:12:48 EDT 2017
+python TaskReadMALShowsIndividual success Sun Jul 9 20:15:54 EDT 2017
+Performing scheduled task on: 2017-07-10 01:21:05
+python RunCronJob success Sun Jul 9 21:21:05 EDT 2017
+python TaskWriteBasicStats success Mon Jul 10 03:00:07 EDT 2017
+python TaskReadMALShowsIndividual success Mon Jul 10 20:47:40 EDT 2017
+Performing scheduled task on: 2017-07-11 01:21:06
+python RunCronJob success Mon Jul 10 21:21:07 EDT 2017
+python TaskWriteBasicStats success Tue Jul 11 03:00:26 EDT 2017
+python TaskReadMALShowsIndividual success Tue Jul 11 20:51:40 EDT 2017
+Performing scheduled task on: 2017-07-12 01:21:05
+python RunCronJob success Tue Jul 11 21:21:05 EDT 2017
+python TaskWriteBasicStats success Wed Jul 12 03:00:23 EDT 2017
+python TaskReadMALShowsIndividual success Wed Jul 12 20:44:06 EDT 2017
+Performing scheduled task on: 2017-07-13 01:21:05
+python RunCronJob success Wed Jul 12 21:21:05 EDT 2017
+python TaskWriteBasicStats success Thu Jul 13 03:00:15 EDT 2017
+python TaskReadMALShowsIndividual success Thu Jul 13 20:19:03 EDT 2017
+Performing scheduled task on: 2017-07-14 01:21:06
+python RunCronJob success Thu Jul 13 21:21:07 EDT 2017
+python TaskWriteBasicStats success Fri Jul 14 03:00:16 EDT 2017
+python TaskReadMALShowsAggregated success Fri Jul 14 04:10:56 EDT 2017
+python TaskReadMALShowsIndividual success Fri Jul 14 20:43:28 EDT 2017
+Performing scheduled task on: 2017-07-15 01:21:04
+python RunCronJob success Fri Jul 14 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sat Jul 15 03:00:16 EDT 2017
+python TaskUpdateUserData success Sat Jul 15 08:03:14 EDT 2017
+python TaskReadMALShowsIndividual success Sat Jul 15 20:44:57 EDT 2017
+Performing scheduled task on: 2017-07-16 01:21:03
+python RunCronJob success Sat Jul 15 21:21:04 EDT 2017
+python TaskWriteBasicStats success Sun Jul 16 03:00:14 EDT 2017
+python TaskWriteExtendedStats success Sun Jul 16 04:12:08 EDT 2017
+python TaskReadMALShowsIndividual success Sun Jul 16 20:42:15 EDT 2017
+Performing scheduled task on: 2017-07-17 01:21:05
+python RunCronJob success Sun Jul 16 21:21:05 EDT 2017
+python TaskWriteBasicStats success Mon Jul 17 03:00:05 EDT 2017
+python TaskReadMALShowsIndividual success Mon Jul 17 20:14:36 EDT 2017
+Performing scheduled task on: 2017-07-18 01:21:04
+python RunCronJob success Mon Jul 17 21:21:05 EDT 2017
+python TaskWriteBasicStats success Tue Jul 18 03:00:22 EDT 2017
+python TaskReadMALShowsIndividual success Tue Jul 18 20:07:29 EDT 2017
+Performing scheduled task on: 2017-07-19 01:21:04
+python RunCronJob success Tue Jul 18 21:21:04 EDT 2017
+python TaskWriteBasicStats success Wed Jul 19 03:00:29 EDT 2017
+python TaskReadMALShowsIndividual success Wed Jul 19 20:40:46 EDT 2017
+Performing scheduled task on: 2017-07-20 01:21:05
+python RunCronJob success Wed Jul 19 21:21:05 EDT 2017
+python TaskWriteBasicStats success Thu Jul 20 03:00:15 EDT 2017
+python TaskReadMALShowsIndividual success Thu Jul 20 20:39:08 EDT 2017
+Performing scheduled task on: 2017-07-21 01:21:05
+python RunCronJob success Thu Jul 20 21:21:05 EDT 2017
+python TaskWriteBasicStats success Fri Jul 21 03:00:18 EDT 2017
+python TaskReadMALShowsAggregated success Fri Jul 21 04:40:11 EDT 2017
+python TaskReadMALShowsIndividual success Fri Jul 21 20:44:03 EDT 2017
+Performing scheduled task on: 2017-07-22 01:21:04
+python RunCronJob success Fri Jul 21 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sat Jul 22 03:00:19 EDT 2017
+python TaskUpdateUserData success Sat Jul 22 08:06:18 EDT 2017
+python TaskReadMALShowsIndividual success Sat Jul 22 20:45:49 EDT 2017
+Performing scheduled task on: 2017-07-23 01:21:04
+python RunCronJob success Sat Jul 22 21:21:04 EDT 2017
+python TaskWriteBasicStats success Sun Jul 23 03:00:17 EDT 2017
+python TaskWriteExtendedStats success Sun Jul 23 04:12:05 EDT 2017
+python TaskReadMALShowsIndividual success Sun Jul 23 20:46:17 EDT 2017
+Performing scheduled task on: 2017-07-24 01:21:07
+python RunCronJob success Sun Jul 23 21:21:07 EDT 2017
+python TaskWriteBasicStats success Mon Jul 24 03:00:09 EDT 2017
+python TaskReadMALShowsIndividual success Mon Jul 24 20:46:18 EDT 2017
+Performing scheduled task on: 2017-07-25 01:21:06
+python RunCronJob success Mon Jul 24 21:21:06 EDT 2017
+python TaskWriteBasicStats success Tue Jul 25 03:00:18 EDT 2017
+python TaskReadMALShowsIndividual success Tue Jul 25 20:50:58 EDT 2017
+Performing scheduled task on: 2017-07-26 01:21:08
+python RunCronJob success Tue Jul 25 21:21:09 EDT 2017
+python TaskWriteBasicStats success Wed Jul 26 03:00:23 EDT 2017
+python TaskReadMALShowsIndividual success Wed Jul 26 20:45:09 EDT 2017
+Performing scheduled task on: 2017-07-27 01:21:05
+python RunCronJob success Wed Jul 26 21:21:06 EDT 2017
+python TaskWriteBasicStats success Thu Jul 27 03:00:21 EDT 2017
+python TaskReadMALShowsIndividual success Thu Jul 27 20:44:02 EDT 2017
+Performing scheduled task on: 2017-07-28 01:21:06
+python RunCronJob success Thu Jul 27 21:21:06 EDT 2017
+python TaskWriteBasicStats success Fri Jul 28 03:00:19 EDT 2017
+python TaskReadMALShowsAggregated success Fri Jul 28 04:41:40 EDT 2017
+python TaskReadMALShowsIndividual success Fri Jul 28 20:51:05 EDT 2017
+Performing scheduled task on: 2017-07-29 01:21:05
+python RunCronJob success Fri Jul 28 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sat Jul 29 03:00:17 EDT 2017
+python TaskUpdateUserData success Sat Jul 29 08:16:12 EDT 2017
+python TaskReadMALShowsIndividual success Sat Jul 29 20:47:08 EDT 2017
+Performing scheduled task on: 2017-07-30 01:21:04
+python RunCronJob success Sat Jul 29 21:21:04 EDT 2017
+python TaskWriteBasicStats success Sun Jul 30 03:00:18 EDT 2017
+python TaskWriteExtendedStats success Sun Jul 30 04:15:04 EDT 2017
+python TaskReadMALShowsIndividual success Sun Jul 30 20:47:21 EDT 2017
+Performing scheduled task on: 2017-07-31 01:21:04
+python RunCronJob success Sun Jul 30 21:21:05 EDT 2017
+python TaskWriteBasicStats success Mon Jul 31 03:00:06 EDT 2017
+python TaskReadMALShowsIndividual success Mon Jul 31 20:41:16 EDT 2017
+Performing scheduled task on: 2017-08-01 01:21:04
+python RunCronJob success Mon Jul 31 21:21:05 EDT 2017
+python TaskWriteBasicStats success Tue Aug 1 03:00:20 EDT 2017
+python TaskReadMALShowsIndividual success Tue Aug 1 20:46:55 EDT 2017
+Performing scheduled task on: 2017-08-02 01:21:04
+python RunCronJob success Tue Aug 1 21:21:05 EDT 2017
+python TaskWriteBasicStats success Wed Aug 2 03:00:25 EDT 2017
+python TaskReadMALShowsIndividual success Wed Aug 2 20:46:08 EDT 2017
+Performing scheduled task on: 2017-08-03 01:21:05
+python RunCronJob success Wed Aug 2 21:21:05 EDT 2017
+python TaskWriteBasicStats success Thu Aug 3 03:00:18 EDT 2017
+python TaskReadMALShowsIndividual success Thu Aug 3 20:15:13 EDT 2017
+Performing scheduled task on: 2017-08-04 01:21:05
+python RunCronJob success Thu Aug 3 21:21:05 EDT 2017
+python TaskWriteBasicStats success Fri Aug 4 03:00:19 EDT 2017
+python TaskReadMALShowsAggregated success Fri Aug 4 04:43:48 EDT 2017
+python TaskReadMALShowsIndividual success Fri Aug 4 20:44:56 EDT 2017
+Performing scheduled task on: 2017-08-05 01:21:05
+python RunCronJob success Fri Aug 4 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sat Aug 5 03:00:22 EDT 2017
+python TaskUpdateUserData success Sat Aug 5 07:58:49 EDT 2017
+python TaskReadMALShowsIndividual success Sat Aug 5 20:47:07 EDT 2017
+Performing scheduled task on: 2017-08-06 01:21:04
+python RunCronJob success Sat Aug 5 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sun Aug 6 03:00:19 EDT 2017
+python TaskWriteExtendedStats success Sun Aug 6 04:12:42 EDT 2017
+python TaskReadMALShowsIndividual success Sun Aug 6 20:40:28 EDT 2017
+Performing scheduled task on: 2017-08-07 01:21:05
+python RunCronJob success Sun Aug 6 21:21:06 EDT 2017
+python TaskWriteBasicStats success Mon Aug 7 03:00:06 EDT 2017
+python TaskReadMALShowsIndividual success Mon Aug 7 20:47:14 EDT 2017
+Performing scheduled task on: 2017-08-08 01:21:06
+python RunCronJob success Mon Aug 7 21:21:06 EDT 2017
+python TaskWriteBasicStats success Tue Aug 8 03:00:19 EDT 2017
+python TaskReadMALShowsIndividual success Tue Aug 8 20:41:08 EDT 2017
+Performing scheduled task on: 2017-08-09 01:21:04
+python RunCronJob success Tue Aug 8 21:21:04 EDT 2017
+python TaskWriteBasicStats success Wed Aug 9 03:00:20 EDT 2017
+python TaskReadMALShowsIndividual success Wed Aug 9 20:40:56 EDT 2017
+Performing scheduled task on: 2017-08-10 01:21:05
+python RunCronJob success Wed Aug 9 21:21:05 EDT 2017
+python TaskWriteBasicStats success Thu Aug 10 03:00:20 EDT 2017
+python TaskReadMALShowsIndividual success Thu Aug 10 20:42:06 EDT 2017
+Performing scheduled task on: 2017-08-11 01:21:05
+python RunCronJob success Thu Aug 10 21:21:05 EDT 2017
+python TaskWriteBasicStats success Fri Aug 11 03:00:21 EDT 2017
+python TaskReadMALShowsAggregated success Fri Aug 11 04:09:02 EDT 2017
+python TaskReadMALShowsIndividual success Fri Aug 11 20:42:02 EDT 2017
+Performing scheduled task on: 2017-08-12 01:21:05
+python RunCronJob success Fri Aug 11 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sat Aug 12 03:00:17 EDT 2017
+python TaskUpdateUserData success Sat Aug 12 07:37:38 EDT 2017
+python TaskReadMALShowsIndividual success Sat Aug 12 20:40:55 EDT 2017
+Performing scheduled task on: 2017-08-13 01:21:07
+python RunCronJob success Sat Aug 12 21:21:07 EDT 2017
+python TaskWriteBasicStats success Sun Aug 13 03:00:21 EDT 2017
+python TaskWriteExtendedStats success Sun Aug 13 04:11:50 EDT 2017
+python TaskReadMALShowsIndividual success Sun Aug 13 20:43:00 EDT 2017
+Performing scheduled task on: 2017-08-14 01:21:07
+python RunCronJob success Sun Aug 13 21:21:08 EDT 2017
+python TaskWriteBasicStats success Mon Aug 14 03:00:06 EDT 2017
+Performing scheduled task on: 2017-08-15 01:21:05
+python RunCronJob success Mon Aug 14 21:21:05 EDT 2017
+python TaskWriteBasicStats success Tue Aug 15 03:00:24 EDT 2017
+python TaskReadMALShowsIndividual success Tue Aug 15 20:40:43 EDT 2017
+Performing scheduled task on: 2017-08-16 01:21:05
+python RunCronJob success Tue Aug 15 21:21:06 EDT 2017
+python TaskWriteBasicStats success Wed Aug 16 03:00:20 EDT 2017
+python TaskReadMALShowsIndividual success Wed Aug 16 20:44:42 EDT 2017
+Performing scheduled task on: 2017-08-17 01:21:06
+python RunCronJob success Wed Aug 16 21:21:06 EDT 2017
+python TaskWriteBasicStats success Thu Aug 17 03:00:21 EDT 2017
+python TaskReadMALShowsIndividual success Thu Aug 17 20:46:51 EDT 2017
+Performing scheduled task on: 2017-08-18 01:21:05
+python RunCronJob success Thu Aug 17 21:21:05 EDT 2017
+python TaskWriteBasicStats success Fri Aug 18 03:00:26 EDT 2017
+python TaskReadMALShowsAggregated success Fri Aug 18 04:44:19 EDT 2017
+python TaskReadMALShowsIndividual success Fri Aug 18 20:40:56 EDT 2017
+Performing scheduled task on: 2017-08-19 01:21:05
+python RunCronJob success Fri Aug 18 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sat Aug 19 03:00:23 EDT 2017
+python TaskUpdateUserData success Sat Aug 19 07:36:29 EDT 2017
+python TaskReadMALShowsIndividual success Sat Aug 19 20:16:19 EDT 2017
+Performing scheduled task on: 2017-08-20 01:21:05
+python RunCronJob success Sat Aug 19 21:21:05 EDT 2017
+python TaskWriteBasicStats success Sun Aug 20 03:00:22 EDT 2017
+python TaskWriteExtendedStats success Sun Aug 20 04:12:59 EDT 2017
+python TaskReadMALShowsIndividual success Sun Aug 20 20:01:11 EDT 2017
+Performing scheduled task on: 2017-08-21 01:21:05
+python RunCronJob success Sun Aug 20 21:21:05 EDT 2017
+python TaskWriteBasicStats success Mon Aug 21 03:00:09 EDT 2017
+python TaskReadMALShowsIndividual success Mon Aug 21 20:41:11 EDT 2017
+Performing scheduled task on: 2017-08-22 01:21:06
+python RunCronJob success Mon Aug 21 21:21:07 EDT 2017
+python TaskWriteBasicStats success Tue Aug 22 03:00:21 EDT 2017
+python TaskReadMALShowsIndividual success Tue Aug 22 20:41:29 EDT 2017
+Performing scheduled task on: 2017-08-23 01:21:05
+python RunCronJob success Tue Aug 22 21:21:05 EDT 2017
+python TaskWriteBasicStats success Wed Aug 23 03:00:21 EDT 2017
+python TaskReadMALShowsIndividual success Wed Aug 23 20:41:29 EDT 2017
+Performing scheduled task on: 2017-08-24 01:21:05
+python RunCronJob success Wed Aug 23 21:21:06 EDT 2017
+python TaskWriteBasicStats success Thu Aug 24 03:00:25 EDT 2017
+python TaskReadMALShowsIndividual success Thu Aug 24 20:14:27 EDT 2017
+Performing scheduled task on: 2017-08-25 01:21:04
+python RunCronJob success Thu Aug 24 21:21:05 EDT 2017
+python TaskWriteBasicStats success Fri Aug 25 03:00:20 EDT 2017
+python TaskReadMALShowsAggregated success Fri Aug 25 04:42:30 EDT 2017
+python TaskReadMALShowsIndividual success Fri Aug 25 20:45:30 EDT 2017
+Performing scheduled task on: 2017-08-26 01:21:06
+python RunCronJob success Fri Aug 25 21:21:06 EDT 2017
+python TaskWriteBasicStats success Sat Aug 26 03:00:22 EDT 2017
+python TaskUpdateUserData success Sat Aug 26 07:53:18 EDT 2017
+python TaskReadMALShowsIndividual success Sat Aug 26 20:44:19 EDT 2017
+Performing scheduled task on: 2017-08-27 01:21:05
+python RunCronJob success Sat Aug 26 21:21:06 EDT 2017
+python TaskWriteBasicStats success Sun Aug 27 03:00:20 EDT 2017
+python TaskWriteExtendedStats success Sun Aug 27 04:12:30 EDT 2017
+python TaskReadMALShowsIndividual success Sun Aug 27 20:43:51 EDT 2017
+Performing scheduled task on: 2017-08-28 01:21:06
+python RunCronJob success Sun Aug 27 21:21:06 EDT 2017
+python TaskWriteBasicStats success Mon Aug 28 03:00:09 EDT 2017
+python TaskReadMALShowsIndividual success Mon Aug 28 20:48:54 EDT 2017
+Performing scheduled task on: 2017-08-29 01:21:09
+python RunCronJob success Mon Aug 28 21:21:10 EDT 2017
+python TaskWriteBasicStats success Tue Aug 29 03:00:25 EDT 2017
+python TaskReadMALShowsIndividual success Tue Aug 29 20:48:28 EDT 2017
+Performing scheduled task on: 2017-08-30 01:21:09
+python RunCronJob success Tue Aug 29 21:21:10 EDT 2017
+python TaskWriteBasicStats success Wed Aug 30 03:00:28 EDT 2017
+python TaskReadMALShowsIndividual success Wed Aug 30 20:46:28 EDT 2017
+Performing scheduled task on: 2017-08-31 01:21:04
+python RunCronJob success Wed Aug 30 21:21:04 EDT 2017
+python TaskWriteBasicStats success Thu Aug 31 03:00:23 EDT 2017
+python TaskReadMALShowsIndividual success Thu Aug 31 20:48:45 EDT 2017
+Performing scheduled task on: 2017-09-01 01:21:06
+python RunCronJob success Thu Aug 31 21:21:06 EDT 2017
+python TaskWriteBasicStats success Fri Sep 1 03:00:23 EDT 2017
+python TaskReadMALShowsAggregated success Fri Sep 1 04:32:00 EDT 2017
+python TaskReadMALShowsIndividual success Fri Sep 1 20:49:57 EDT 2017
+Performing scheduled task on: 2017-09-02 01:21:08
+python RunCronJob success Fri Sep 1 21:21:09 EDT 2017
+python TaskWriteBasicStats success Sat Sep 2 03:00:23 EDT 2017
+python TaskUpdateUserData success Sat Sep 2 08:28:21 EDT 2017
+python TaskReadMALShowsIndividual success Sat Sep 2 20:46:34 EDT 2017
+Performing scheduled task on: 2017-09-03 01:21:08
+python RunCronJob success Sat Sep 2 21:21:08 EDT 2017
