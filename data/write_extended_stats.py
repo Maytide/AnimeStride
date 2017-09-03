@@ -112,17 +112,26 @@ def write_extended_stats(max_users, max_shows, basic_statistics=False, item_rec=
 
         pass
 
-
     conn_s.commit()
     conn_s.close()
 
+    if verbose:
+        print('Success!')
 
-def a_cos_sim(v1, v2, mu, threshold=200, correction_fact=0.995, mean1=-1, mean2=-1, var1=-1, var2=-1):
+
+def a_cos_sim(v1, v2, mu, threshold=200, correction_fact=0.983, mean1=-1, mean2=-1, var1=-1, var2=-1):
 
     num = 0
     den_v1 = 0
     den_v2 = 0
     num_common = 0
+
+    if mean1 > 8.3 and mean2 > 8.3 and var1 > 0 and var2 > 0:
+        # correction *= 0.2 + 0.8/(1 + 2.7182818 ** (-abs((mean1 - mean2)*(var1 - var2))*20))
+        return -1
+    elif mean2 > 8.3:
+        # print('[write_extended_stats: a cos sim]', mean2)
+        return -1
 
     i = 0
     for r1, r2 in zip(v1, v2):
@@ -147,13 +156,9 @@ def a_cos_sim(v1, v2, mu, threshold=200, correction_fact=0.995, mean1=-1, mean2=
     else:
         correction = correction_fact ** (threshold - num_common)
 
-    if mean1 > 8.3 and mean2 > 8.3 and var1 > 0 and var2 > 0:
-        # correction *= 0.2 + 0.8/(1 + 2.7182818 ** (-abs((mean1 - mean2)*(var1 - var2))*20))
-        correction = 0
-    elif mean2 > 8.3:
-        correction *= 0.2
-
-    a_cos = correction * num / sqrt(den_v1 * den_v2)
+    a_cos = num / sqrt(den_v1 * den_v2)
+    if a_cos > 0:
+        a_cos = correction * num / sqrt(den_v1 * den_v2)
 
     return a_cos
 
@@ -218,8 +223,12 @@ def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_m
                     j_show_mean = master_stat_dict[j_show]['mean']
                     j_show_var = master_stat_dict[j_show]['var']
 
+            # if j_show_mean > 8.3:
+            #     print('[write_extended_stats: calculate corr]', j_show_mean)
+
             C[index_i, index_j] = a_cos_sim(A[index_i, :], A[index_j, :], user_mean_list, mean1 = i_show_mean, mean2 = j_show_mean, var1 = i_show_var, var2 = j_show_var)
             C[index_j, index_i] = C[index_i, index_j]
+            # print('[write_extended_stats: calculate corr C(i,j)]', C[index_i, index_j])
 
             # if i_show_mean > 8.3 and j_show_mean > 8.3:
             #     print(show_map[index_i], show_map[index_j])
@@ -275,10 +284,14 @@ def calculate_corr_statistics(c_x, max_users, max_shows, master_dict_n, master_m
 
         show_rec = []
         show_rec_tl = []
+        i = 0
         for rec in rec_list:
             # show_rec.append(show_map[rec])
+            print('[write_extended_stats: calculate corr recs]', master_rec_dict[master_dict_n[escape_db_string(show_map[i])]],
+                  max_a_cos_index[index], show_map[rec], master_dict_n[escape_db_string(show_map[rec])])
             show_rec_tl.append(show_map[rec])
             show_rec.append(master_dict_n[escape_db_string(show_map[rec])])
+            i += 1
             # show_rec.append(master_dict_n[escape_db_string(show_map[rec])])
 
         # master_rec_list.append(show_rec)

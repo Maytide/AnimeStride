@@ -42,7 +42,7 @@
                     <h6>Overview</h6>
                     
                     
-                    <p>For the user-based recommender, a user enters their MAL profile then stride takes a random sample of 1000 RedditAnimeList users and finds the few most similar to the given MAL. (Indeed, there is an element of randomness to this. I decided this would make things interesting.) Recommendations are based off what the similar users liked that the given user has not yet watched.</p>
+                    <p>For the user-based recommender, a user enters their MAL profile then Stride takes a random sample of 1000 RedditAnimeList users and finds the few most similar to the given MAL. (There is an element of randomness to this.) Recommendations are based off what the similar users liked that the given user has not yet watched.</p>
                     
                     <p>The algorithm used is a modified version of k-nearest neighbors (kNN). First, cosine similarity is used to determine the users in the random sample that are most similar. Then a rating map scheme is constructed between the most similar users and the given user (to adjust for the fact that people tend to use the 1-10 scale subjectively). The highest of the average of the shows in the rating map are selected and displayed to the recommender.</p>
                     

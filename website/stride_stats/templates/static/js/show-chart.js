@@ -34,7 +34,7 @@ chartApp.controller('chartController', function($scope, $http) {
         	// They do not retain value after exiting function
         	// Fix is to call drawChart() within this function
             $scope.current_period = 'stats_data_month';
-            $scope.current_stat = 'members';
+            $scope.current_stat = 'score';
             $scope.show_data_stats = response.data;
 
             for (var period in $scope.show_data_stats){

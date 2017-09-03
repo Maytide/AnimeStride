@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'home',
     'stride_recommender',
     'stride_stats',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# django-cron
 CRON_CLASSES = [
     'home.crons.RunCronJob',
     'home.crons.TaskReadMALShowsAggregated',
@@ -71,9 +73,16 @@ CRON_CLASSES = [
     # python manage.py runcrons "home.crons.TaskReadMALShowsMaster"
     'home.crons.TaskUpdateUserData',
     # python manage.py runcrons "home.crons.TaskUpdateUserData"
+    'home.crons.TaskWriteBasicStats',
+    # python manage.py runcrons "home.crons.TaskWriteBasicStats"
     'home.crons.TaskWriteExtendedStats',
     # python manage.py runcrons "home.crons.TaskWriteExtendedStats"
     # ...
+]
+
+# django-crontab
+CRONJOBS = [
+    ('*/2 * * * *', 'home.djangocron.my_scheduled_job')
 ]
 
 ROOT_URLCONF = 'stride.urls'
